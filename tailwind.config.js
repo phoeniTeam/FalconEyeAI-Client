@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        IBM: ["IBM Plex Sans Arabic", "sans-serif"],
+        bebasNeue: ["Bebas Neue", "sans-serif"],
       },
       colors: {
-        primary: "#832388", 
-        secondary: "#E3436B", 
-        subsecondary: "#F0772F", 
+        primary: "#832388",
+        secondary: "#E3436B",
+        subsecondary: "#F0772F",
         error: "rgb(239, 68, 68)",
         warning: "rgb(234, 179, 8)",
         success: "rgb(34, 197, 94)",

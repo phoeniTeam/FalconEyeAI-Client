@@ -5,9 +5,11 @@ import Sidebar from './components/Sidebar';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import Home from './pages/Home/Home';
-import Registration from './pages/Registration/Registration';
-import CreditPage from './pages/CreditPage/CreditPage';
+import Credit from './pages/Credit/Credit';
 import Transformation from './pages/Transformation/Transformation';
+import SignUp from './pages/SignUp/SignUp';
+import SignIn from './pages/SignIn/SignIn';
+import Profile from './pages/Profile/Profile';
 
 const router = createBrowserRouter([
     {
@@ -26,40 +28,35 @@ const router = createBrowserRouter([
         path: '/home',
         errorElement: <ErrorPage />,
         element: (
-            <>
+            <div className='flex'>
                 <ScrollRestoration />
-                <Navbar />
+                <Sidebar />
                 <Home />
-                <Footer />
-            </>
+            </div>
         )
     },
     {
-        path: '/registration',
+        path: '/sign-up',
         errorElement: <ErrorPage />,
         element: (
             <>
                 <ScrollRestoration />
-                <Navbar />
-                <Registration />
-                <Footer />
+                <SignUp />
             </>
         )
     },
     {
-        path: '/creditPage',
+        path: '/sign-in',
         errorElement: <ErrorPage />,
         element: (
             <>
                 <ScrollRestoration />
-                <Navbar />
-                <CreditPage />
-                <Footer />
+                <SignIn />
             </>
         )
     },
     {
-        path: '/transformation',
+        path: '/transformation/:transformationType',
         errorElement: <ErrorPage />,
         element: (
             <>
@@ -69,7 +66,30 @@ const router = createBrowserRouter([
                 <Footer />
             </>
         )
-    }
+    },
+    {
+        path: '/credit',
+        errorElement: <ErrorPage />,
+        element: (
+            <>
+                <ScrollRestoration />
+                <Navbar />
+                <Credit />
+                <Footer />
+            </>
+        )
+    },
+    {
+        path: '/profile',
+        errorElement: <ErrorPage />,
+        element: (
+            <div className='flex'>
+                <ScrollRestoration />
+                <Sidebar />
+                <Profile />
+            </div>
+        )
+    },
 ]);
 
 export default router;
