@@ -1,8 +1,19 @@
-import React from 'react'
+import styles from '../../styles'
+import Community from './Community'
+import CTA from './CTA'
+import Features from "./Features"
+import Gallery from './Gallery'
+import Hero from './Hero'
 
 function LandingPage() {
   return (
-    <div>LandingPage</div>
+    <>
+      <Hero />
+      <Features />
+      <Gallery />
+      <Community />
+      <CTA />
+    </>
   )
 }
 

@@ -5,7 +5,13 @@ import logoTitleLight from "./logo/logo-title-light.png"
 import logoSide from "./logo/logo-side.png"
 import logoSideLight from "./logo/logo-side-light.png"
 
+// landing page
+import catImage from "./home/hero/cat.jpg"
+import purpleFlowerImage from "./home/hero/purple-flower.jpg"
 
+import aliImage from "./home/reviews/Ali Hassan.jpg"
+import lukasImage from "./home/reviews/Lukas Meller.jpg"
+import markImage from "./home/reviews/Mark John.jpg"
 
 export {
     logo,
@@ -14,4 +20,11 @@ export {
     logoTitleLight,
     logoSide,
     logoSideLight,
+
+    catImage,
+    purpleFlowerImage,
+
+    aliImage,
+    lukasImage,
+    markImage
 }

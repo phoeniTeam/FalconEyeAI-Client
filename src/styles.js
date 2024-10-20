@@ -1,7 +1,7 @@
 const mainTransition = "transition-all duration-500 ease-in-out"
 
 const styles = {
-    outerWrapper: "py-10 md:py-20 h-auto",
+    outerWrapper: "py-20 sm:py-32 md:py-36 h-auto",
     wrapper: "max-w-[1200px] px-4 mx-auto",
 
     heroHeading: "text-5xl sm:text-6xl md:text-7xl font-bold",
@@ -14,6 +14,12 @@ const styles = {
     paragraph2: "text-base sm:text-lg md:text-xl font-medium max-w-[60ch]",
     paragraph3: "text-sm sm:text-base md:text-lg max-w-[60ch]",
     paragraph4: "text-xs sm:text-sm md:text-base max-w-[60ch]",
+
+    primaryBackground: "bg-primary-gradient-color",
+    primaryButton: "px-6 py-1 rounded-full bg-primary-gradient-color hover:bg-primary-gradient-color-invert text-center h-fit",
+
+    primaryText: `w-fit bg-gradient-to-r from-primary via-primary to-secondary inline-block text-transparent bg-clip-text ${mainTransition}`,
+    primaryTextOnHover: `hover:underline hover:bg-gradient-to-r from-primary via-primary to-secondary inline-block hover:text-transparent bg-clip-text ${mainTransition}`,
 
     transition500: `${mainTransition}`
 }

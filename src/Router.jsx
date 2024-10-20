@@ -16,12 +16,12 @@ const router = createBrowserRouter([
         path: '/',
         errorElement: <ErrorPage />,
         element: (
-            <>
+            <div className='relative'>
                 <ScrollRestoration />
                 <Navbar />
                 <LandingPage />
                 <Footer />
-            </>
+            </div>
         )
     },
     {
