@@ -20,6 +20,31 @@ import imageRestoreImage from "./home/features/image-restore-feature.jpg"
 import objectRecolorImage from "./home/features/object-recolor-feature.jpg"
 import generativeFillImage from "./home/features/generative-fill-feature.jpg"
 
+// gallery
+import creation1Image from "./home/gallery/1.jpg"
+import creation2Image from "./home/gallery/2.jpg"
+import creation3Image from "./home/gallery/3.jpg"
+import creation4Image from "./home/gallery/4.jpg"
+import creation5Image from "./home/gallery/5.jpg"
+import creation6Image from "./home/gallery/6.jpg"
+import creation7Image from "./home/gallery/7.jpg"
+import creation8Image from "./home/gallery/8.jpg"
+import creation9Image from "./home/gallery/9.jpg"
+import creation10Image from "./home/gallery/10.jpg"
+
+const creationsImages = [
+    creation1Image,
+    creation2Image,
+    creation3Image,
+    creation4Image,
+    creation5Image,
+    creation6Image,
+    creation7Image,
+    creation8Image,
+    creation9Image,
+    creation10Image
+]
+
 export {
     logo,
     logoLight,
@@ -40,4 +65,6 @@ export {
     imageRestoreImage,
     objectRecolorImage,
     generativeFillImage,
+
+    creationsImages
 }

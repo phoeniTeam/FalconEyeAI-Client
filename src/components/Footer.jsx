@@ -21,7 +21,7 @@ function Footer() {
 
           <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
             {navbarLinks.map((link, index) => (
-              <a key={index} className={`${styles.primaryTextOnHover}`} href={`${link.id}`}>{link.title}</a>
+              <a key={index} className={`${styles.primaryTextOnHover}`} href={`#${link.id}`}>{link.title}</a>
             ))}
           </div>
         </div>

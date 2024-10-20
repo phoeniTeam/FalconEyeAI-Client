@@ -140,17 +140,15 @@ function Sidebar() {
                       <Link
                         to={ele.route}
                         className={`w-[96%] flex justify-start items-center gap-3 rounded-full 
-                            ${
-                              isActive(ele.route)
-                                ? "bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]"
-                                : ""
-                            }`}
+                            ${isActive(ele.route)
+                            ? "bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]"
+                            : ""
+                          }`}
                       >
                         <div>{ele.icon}</div>
                         <div
-                          className={`text-white font-semibold text-base ${
-                            isActive(ele.route) ? "" : "hover:underline"
-                          }`}
+                          className={`text-white font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
+                            }`}
                         >
                           {ele.label}
                         </div>
@@ -166,11 +164,10 @@ function Sidebar() {
                       <Link
                         to={ele.route}
                         className={`w-[96%] flex justify-start items-center gap-3 rounded-full 
-                            ${
-                              isActive(ele.route)
-                                ? "bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]"
-                                : ""
-                            }`}
+                            ${isActive(ele.route)
+                            ? "bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]"
+                            : ""
+                          }`}
                       >
                         {index === 0 ? (
                           <div className="dropdown dropdown-top md:dropdown-right md:dropdown-top w-full">
@@ -181,9 +178,8 @@ function Sidebar() {
                             >
                               <div>{ele.icon}</div>
                               <div
-                                className={`text-white font-semibold text-base ${
-                                  isActive(ele.route) ? "" : "hover:underline"
-                                }`}
+                                className={`text-white font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
+                                  }`}
                               >
                                 {ele.label}
                               </div>
@@ -217,9 +213,8 @@ function Sidebar() {
                           <>
                             <div>{ele.icon}</div>
                             <div
-                              className={`text-white font-semibold text-base ${
-                                isActive(ele.route) ? "" : "hover:underline"
-                              }`}
+                              className={`text-white font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
+                                }`}
                             >
                               {ele.label}
                             </div>

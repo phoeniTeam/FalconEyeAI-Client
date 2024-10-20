@@ -1,6 +1,8 @@
 import React from 'react'
 import styles from '../../styles'
 import { catImage, purpleFlowerImage } from '../../assets'
+import { Link } from 'react-router-dom'
+
 function Hero() {
     return (
         <div className={`${styles.outerWrapper}`}>
@@ -9,11 +11,11 @@ function Hero() {
                     <div className=' hero-background opacity-90 absolute -translate-x-1/2 -translate-y-1/2 -top-10 left-1/2 w-full h-[1500px] rounded-full filter blur-[100px]'></div>
 
                     <div className='relative overflow-hidden'>
-                        <div className='text-center'>
+                        <div className='text-center px-4'>
                             <h1 className={`${styles.heroHeading}`}>Alter, Creativity!</h1>
                             <p className='mt-4 mb-8'>Leverage AI with a suite of tools to modify
                                 your desgin with a few clicks!</p>
-                            <button className={`${styles.primaryButton} shadow-md`}>Lunch App</button>
+                            <Link to={"/home"} className={`${styles.primaryButton} shadow-md`}>Lunch App</Link>
                         </div>
 
                         <div className='relative px-4 flex justify-center'>

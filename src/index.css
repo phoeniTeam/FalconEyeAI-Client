@@ -29,3 +29,10 @@ body {
   background-color: #333399;
   color: #FF00CC;
 }
+
+
+input,
+textarea {
+  outline: none;
+  outline-color: transparent;
+}
