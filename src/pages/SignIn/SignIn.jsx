@@ -1,6 +1,5 @@
 import styles from "../../styles"
 import { logo } from "../../assets";
-import { BsFillPersonFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 function SignIn() {
