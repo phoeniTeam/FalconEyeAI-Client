@@ -27,9 +27,9 @@ function Home() {
             <label
               onFocus={() => setInputColor(true)}
               onBlur={() => setInputColor(false)}
-              className={`flex items-center gap-2 input min-h-10 h-10 border border-[#38383E]
+              className={`flex items-center gap-2 input min-h-10 h-10 border border-[#38383E] outline-black
                 ${inputColor ? 'bg-[#131313]' : ''}  w-[38vw] rounded-full 
-               focus-within:border-[#38383E]`}
+               focus-within:border-[#38383E] focus-within:outline-none`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,15 +38,13 @@ function Home() {
                 className="h-5 w-5 opacity-70"
               >
                 <path
-                  fillRule="evenodd"
                   d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
-                  clipRule="evenodd"
                 />
               </svg>
               <input
                 type="search"
                 placeholder="Search..."
-                className="text-white placeholder:text-[#38383E] focus:outline-none w-full"
+                className="text-white placeholder:text-[#38383E] w-full"
               />
             </label>
             <div className="btn  btn-circle border-none bg-[#131313] hover:bg-[#131313] min-h-10 h-10 w-10 ">
