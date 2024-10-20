@@ -17,9 +17,15 @@ body {
   font-family: 'Poppins', sans-serif;
   background-color: #040509;
   color: white;
-  overflow-x: hidden;
 }
+
 
 .hero-background {
   background: linear-gradient(90deg, #333399 0%, #333399 51%, #FF00CC 100%);
+}
+
+
+::selection {
+  background-color: #333399;
+  color: #FF00CC;
 }

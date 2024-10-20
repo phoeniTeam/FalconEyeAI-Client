@@ -13,6 +13,13 @@ import aliImage from "./home/reviews/Ali Hassan.jpg"
 import lukasImage from "./home/reviews/Lukas Meller.jpg"
 import markImage from "./home/reviews/Mark John.jpg"
 
+// features
+import backgroundRemovalImage from "./home/features/background-removal-feature.jpg"
+import objectRemovalImage from "./home/features/object-removal-feature.jpg"
+import imageRestoreImage from "./home/features/image-restore-feature.jpg"
+import objectRecolorImage from "./home/features/object-recolor-feature.jpg"
+import generativeFillImage from "./home/features/generative-fill-feature.jpg"
+
 export {
     logo,
     logoLight,
@@ -26,5 +33,11 @@ export {
 
     aliImage,
     lukasImage,
-    markImage
+    markImage,
+
+    backgroundRemovalImage,
+    objectRemovalImage,
+    imageRestoreImage,
+    objectRecolorImage,
+    generativeFillImage,
 }

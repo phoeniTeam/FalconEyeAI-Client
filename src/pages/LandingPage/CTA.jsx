@@ -1,11 +1,15 @@
 import React from 'react'
 import styles from '../../styles'
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
+import { revealingMotion } from '../../utils/motionSettings';
 
 function CTA() {
     return (
-        <section id='cta' className={`${styles.outerWrapper}`}>
-            <div className={`${styles.wrapper} bg-grayDark p-6 py-12 rounded-lg `}>
+        <motion.section id='cta' className={`${styles.outerWrapper}`}
+            {...revealingMotion}
+        >
+            <div className={`${styles.wrapper} bg-grayDark px-10 py-12 rounded-lg `}>
                 <div className='flex  justify-between'>
                     <div className={`${styles.heading2}`}>
                         <p>Modify Your Creativity</p>
@@ -18,7 +22,7 @@ function CTA() {
 
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }
 

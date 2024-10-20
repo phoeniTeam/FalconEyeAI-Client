@@ -3,10 +3,14 @@ import styles from '../styles'
 import { logoSide, logoTitle } from '../assets'
 import { Link } from 'react-router-dom'
 import { navbarLinks } from '../constants/navbarConstants'
+import { motion } from "framer-motion";
+import { toTopMotion } from '../utils/motionSettings';
 
 function Footer() {
   return (
-    <section id='community' className={`${styles.outerWrapper}`}>
+    <motion.section id='community' className={`${styles.footerOuterWrapper}`}
+      {...toTopMotion}
+    >
       <div className={`${styles.wrapper}`}>
         <div className='bg-grayDark w-full py-[3px] rounded-full'></div>
 
@@ -24,7 +28,7 @@ function Footer() {
 
         <p className='text-grayLight text-xs'>© Copyright FalconEye AI</p>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
