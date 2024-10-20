@@ -23,16 +23,7 @@ export default {
   plugins: [require('daisyui'),],
 
   daisyui: {
-    themes: [
-      {
-        mytheme: {
-          "primary": "#832388",
-          "secondary": "#E3436B",
-          "subsecondary": "#F0772F",
-        },
-      },
-      "light",
-    ],
+    themes: [],
   },
 
 }
