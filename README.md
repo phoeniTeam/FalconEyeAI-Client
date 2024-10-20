@@ -75,7 +75,9 @@ FalconEye AI is an advanced web tool that allows users to perform a variety of i
 
 
 ## 🔍 Explore The Project
-- [Coming Soon]()
+- [Live Coming Soon]()
+- [Frontend Documentation](https://github.com/phoeniTeam/FalconEyeAI-Client)
+- [Backend Documentation](https://github.com/phoeniTeam/FalconEyeAI-Server)
 
 ## 🎫 Dependencies
 
