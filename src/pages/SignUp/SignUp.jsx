@@ -5,23 +5,23 @@ import styles from "../../styles";
 import { logo } from "../../assets";
 function SignUp() {
   return (
-    <div className={`${styles.outerWrapper} bg-black `}>
+    <div className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}>
       <div
-        className={`${styles.wrapper} flex justify-center items-center p-64`}
+        className={`${styles.wrapper} `}
       >
-        <div className="grid grid-cols-2 items-center justify-items-center">
-          <div className="logo p-20">
+        <div className="grid lg:grid-cols-2 md:grid-cols-1   sm:grid-cols-1 max-sm:grid-cols-1  md:h-screen sm:h-screen max-sm:h-screen lg:items-center lg:justify-items-center  md:justify-items-center  ">
+          <div className="logo flex md:items-end justify-center sm:justify-center sm:items-end max-sm:justify-center max-sm:items-end">
             <img
               src={logo}
               alt="logo-falconeyeai"
-              className="object-contain object-center"
+              className="object-contain object-center lg:w-full md:w-1/2 sm:w-1/2 max-sm:w-1/2"
             />
           </div>
-          <div className="border-2 p-20">
-            <h2 className={`${styles.heading2} text-white p-6 mb-5`}>Sign Up</h2>
-            <form>
+          <div className="lg:p-16 md:p-0 ">
+            <h2 className={`${styles.heading2} text-white p-6 mb-5 md:text-center sm:text-center max-sm:text-center`}>Sign Up</h2>
+            <form className="w-full max-w-md">
               <div className="mb-4 flex items-center">
-                <div className="relative">
+                <div className="relative w-full">
                   <div className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
                     <BsFillPersonFill className="h-8 w-8"/>
                   </div>
@@ -36,7 +36,7 @@ function SignUp() {
                 </div>
               </div>
               <div className="mb-4 flex items-center  ">
-                <div className="relative">
+                <div className="relative w-full">
                   <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-2 top-1/2 text-[#1A1A1D]">
                     <MdEmail className=" h-8 w-8" />
                   </div>
@@ -52,7 +52,7 @@ function SignUp() {
                 </div>
               </div>
               <div className="mb-8 flex items-center ">
-                <div className="relative">
+                <div className="relative w-full">
                   <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-2 top-1/2 text-[#1A1A1D]">
                     <RiLockPasswordLine className="h-8 w-8"/>
                   </div>
