@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         path: '/home',
         errorElement: <ErrorPage />,
         element: (
-            <div className='flex'>
+            <div className='flex max-md:flex-col '>
                 <ScrollRestoration />
                 <Sidebar />
                 <Home />
@@ -59,31 +59,29 @@ const router = createBrowserRouter([
         path: '/transformation/:transformationType',
         errorElement: <ErrorPage />,
         element: (
-            <>
+            <div className='flex max-md:flex-col'>
                 <ScrollRestoration />
-                <Navbar />
+                <Sidebar />
                 <Transformation />
-                <Footer />
-            </>
+            </div>
         )
     },
     {
         path: '/credit',
         errorElement: <ErrorPage />,
         element: (
-            <>
+            <div className='flex max-md:flex-col'>
                 <ScrollRestoration />
-                <Navbar />
+                <Sidebar />
                 <Credit />
-                <Footer />
-            </>
+            </div>
         )
     },
     {
         path: '/profile',
         errorElement: <ErrorPage />,
         element: (
-            <div className='flex'>
+            <div className='flex max-md:flex-col'>
                 <ScrollRestoration />
                 <Sidebar />
                 <Profile />
