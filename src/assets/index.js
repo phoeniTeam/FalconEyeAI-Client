@@ -8,6 +8,8 @@ import logoSideLight from "./logo/logo-side-light.png"
 // landing page
 import catImage from "./home/hero/cat.jpg"
 import purpleFlowerImage from "./home/hero/purple-flower.jpg"
+import lamobCarImage from "./home/hero/lambo-car.jpg"
+import moonImage from "./home/hero/moon.jpg"
 
 import aliImage from "./home/reviews/Ali Hassan.jpg"
 import lukasImage from "./home/reviews/Lukas Meller.jpg"
@@ -55,6 +57,8 @@ export {
 
     catImage,
     purpleFlowerImage,
+    lamobCarImage,
+    moonImage,
 
     aliImage,
     lukasImage,

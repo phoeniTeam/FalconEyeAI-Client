@@ -21,9 +21,9 @@ function Gallery() {
 
                 <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 '>
                     {creationsImages.map((creation, index) => (
-                        <div key={index} className='mb-4 break-inside-avoid cursor-pointer'>
+                        <motion.div key={index} className='mb-4 break-inside-avoid cursor-pointer'>
                             <img className={`${styles.transition500} rounded-xl opacity-80 hover:opacity-100`} src={creation} alt="Photo" />
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 

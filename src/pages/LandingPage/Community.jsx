@@ -28,7 +28,7 @@ function Community() {
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
                     {communityReviews.map((review, index) => (
-                        <motion.div className='flex flex-col gap-4'
+                        <motion.div key={index} className='flex flex-col gap-4'
                             {...revealingMotion}
                         >
                             <p className='text-center'>{review.comment}</p>

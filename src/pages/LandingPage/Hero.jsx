@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../styles'
-import { catImage, purpleFlowerImage } from '../../assets'
+import { catImage, purpleFlowerImage, lamobCarImage, moonImage } from '../../assets'
 import { Link } from 'react-router-dom'
 
 function Hero() {
@@ -29,8 +29,10 @@ function Hero() {
                             </div>
 
                             <div className='hidden md:inline-block absolute bottom-0 left-0 transform -rotate-6 -translate-x-[50px] -translate-y-[100px] bg-grayLight w-[300px] h-[200px] rounded-lg'>
+                                <img className='rounded-lg' src={lamobCarImage} alt="Purple Flower" />
                             </div>
                             <div className='hidden md:inline-block absolute bottom-0 right-0 transform rotate-12 -translate-x-[0px] -translate-y-[40px] bg-grayLight w-[300px] h-[200px] rounded-lg'>
+                                <img className='rounded-lg' src={moonImage} alt="Purple Flower" />
                             </div>
                         </div>
                     </div>

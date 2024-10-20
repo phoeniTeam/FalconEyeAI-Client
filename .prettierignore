@@ -1,0 +1,13 @@
+# Ignore artifacts:
+build/
+coverage  
+dist/  
+*.min.js
+
+# Ignore configuration files:
+*.config.js
+*.config.json
+
+# Ignore specific directories or files
+node_modules/
+public/
