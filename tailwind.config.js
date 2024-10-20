@@ -19,7 +19,7 @@ export default {
         darkWhite: "#E8E6E3",
         grayLight: "#38383E",
         grayDark: "#1D1A1A",
-        base100: "040509",
+        base100: "#040509",
         error: "rgb(239, 68, 68)",
         warning: "rgb(234, 179, 8)",
         success: "rgb(34, 197, 94)",
