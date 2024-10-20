@@ -4,7 +4,12 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import styles from "../../styles";
 import { logo } from "../../assets";
 import { useState } from "react";
+// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 function SignUp() {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  // const navigate = useNavigate();
   const [register, setRegister] = useState({
     username: "",
     // firstName:"",
@@ -12,7 +17,7 @@ function SignUp() {
     email: "",
     password: "",
   });
-
+  const VITE_REGISTER_API=""
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRegister({
@@ -22,17 +27,57 @@ function SignUp() {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+if(register.username.trim() === "" || register.email.trim() === "" || register.password.trim() === ""){{
+  alert("All fields are required");
+  return;
+  
 
-    // submit form to server
-  };
+}};
+if (!emailRegex.test(register.email)) {
+  alert("Invalid email address");
+  return;
+}
+if(register.username.length < 3 || register.username.length > 20){
+  alert("Username must be between 3 and 20 characters long");
+  return;
+}
+if(register.password.length < 8 || register.password.length > 20){
+  alert("Password must be between 8 and 20 characters long");
+  return;
+  }
+  // Make API call to register user here
 
+  try{
+    const response = await axios.post(VITE_REGISTER_API,{
+      // clerkId:"",
+      username: register.username,
+      email: register.email,
+      password: register.password,
+      // photo:"",
+      // planId:"",
+      // creditBalance:"",
+
+    })
+    if(response.statusCode === 200){
+      alert("User registered successfully. Please login to continue.");
+      // navigate('/signin');
+    }
+    else{
+      alert("Failed to register user. Please try again later.");
+    }
+    
+  }catch(e){
+    console.error(e);
+    alert("Failed to register user. Please try again later.");
+  }
+}
   return (
     <div
       className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}
     >
-      <div className={`${styles.wrapper} `}>
+      <div className={`${styles.wrapper}`}>
         <div className="grid lg:grid-cols-2 md:grid-cols-1   sm:grid-cols-1 max-sm:grid-cols-1  md:h-screen sm:h-screen max-sm:h-screen lg:items-center lg:justify-items-center  md:justify-items-center  ">
           <div className="logo flex md:items-end justify-center sm:justify-center sm:items-end max-sm:justify-center max-sm:items-end">
             <img
