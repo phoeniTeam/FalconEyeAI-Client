@@ -13,7 +13,9 @@ function ObjectRecolor() {
                     Object Recolor        
                                 </h1>
                     <div className={`${styles.paragraph2} text-white `}>
-                    Recolor objects in the image
+                    Identify and recolor objects from image
+
+
                     </div>
                     <div className="flex items-center justify-start gap-4">
                            
@@ -33,6 +35,16 @@ function ObjectRecolor() {
                     </div>
 </div>
 <Input label="Image Title" id="imageTitle" />
+<div className='grid grid-cols-2 justify-items-center gap-6   '>
+  <div className='w-full '>
+  <Input label="Object to Recolor" id="ObjectToRecolor"/>
+
+  </div>
+  <div className='w-full'>
+
+<Input label="Replacement Color" id="Replacement Color"/>
+</div>
+</div>
 <div className="grid grid-cols-2 justify-items-center">
 <div>
                         <h4 className={`${styles.heading4}`}>Original</h4>
