@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { SlMenu } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
 import { navbarLinks } from '../constants/navbarConstants';
+import { motion } from "framer-motion";
+import { revealingMotion } from '../utils/motionSettings';
 
 function Navbar() {
   const [toggleMobileNav, setToggleMobileNav] = useState(false);
@@ -36,10 +38,12 @@ function Navbar() {
   };
 
   return (
-    <div className={`
+    <motion.div className={`
       ${isScrolled ? "bg-grayDark" : ""}
       ${toggleMobileNav ? "bg-grayDark sm:bg-transparent" : ""} 
-      ${styles.transition500} fixed z-50 w-full`}>
+      ${styles.transition500} fixed z-50 w-full`}
+      {...revealingMotion}
+    >
       <div className={`${styles.wrapper} py-2 flex justify-between items-center`}>
         <Link to="/" className='h-14'>
           <img className='h-full' src={`${isScrolled ? logoSide : logoSideLight}`} alt="Logo" />
@@ -83,7 +87,7 @@ function Navbar() {
 
         <Link to={"/home"} className={`${styles.primaryButton}`} onClick={handleLinkClick}>Launch App</Link>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -2,10 +2,14 @@ import React from 'react'
 import styles from '../../styles'
 import { catImage, purpleFlowerImage, lamobCarImage, moonImage } from '../../assets'
 import { Link } from 'react-router-dom'
+import { motion } from "framer-motion";
+import { revealingMotion } from '../../utils/motionSettings';
 
 function Hero() {
     return (
-        <div className={`${styles.outerWrapper}`}>
+        <motion.section className={`${styles.outerWrapper}`}
+            {...revealingMotion}
+        >
             <div className={`max-w-[2000px] mx-auto`}>
                 <div className='relative pt-20'>
                     <div className=' hero-background opacity-90 absolute -translate-x-1/2 -translate-y-1/2 -top-10 left-1/2 w-full h-[1500px] rounded-full filter blur-[100px]'></div>
@@ -38,7 +42,7 @@ function Hero() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.section>
     )
 }
 
