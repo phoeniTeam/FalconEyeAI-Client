@@ -6,12 +6,14 @@ import { logo } from "../../assets";
 import { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { FaRegUser } from "react-icons/fa";
 
 function SignUp() {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   // const navigate = useNavigate();
   const [register, setRegister] = useState({
     username: "",
+    name:"",
     // firstName:"",
     // lastName:"",
     email: "",
@@ -56,6 +58,7 @@ if(register.password.length < 8 || register.password.length > 20){
     const response = await axios.post(VITE_REGISTER_API,{
       // clerkId:"",
       username: register.username,
+      name:register.name,
       email: register.email,
       password: register.password,
       // photo:"",
@@ -96,7 +99,7 @@ if(register.password.length < 8 || register.password.length > 20){
           </div>
           <div className="lg:p-16 md:p-0 ">
             <h2
-              className={`${styles.heading2} text-white p-6 mb-5 md:text-center sm:text-center max-sm:text-center`}
+              className={`${styles.heading2} text-white flex lg:justify-start p-6 mb-5 md:justify-center sm:justify-center max-sm:justify-center `}
             >
               Sign Up
             </h2>
@@ -112,6 +115,22 @@ if(register.password.length < 8 || register.password.length > 20){
                     value={register.username}
                     onChange={handleChange}
                     name="username"
+                    placeholder="UserName"
+                    className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] font-bold"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="mb-4 flex items-center">
+                <div className="relative w-full">
+                  <div className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                  <FaRegUser className="h-7 w-7" />                  </div>
+                  <input
+                    type="text"
+                    id="name"
+                    value={register.fullName}
+                    onChange={handleChange}
+                    name="name"
                     placeholder="Name"
                     className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] font-bold"
                     required
@@ -160,16 +179,15 @@ if(register.password.length < 8 || register.password.length > 20){
                 )}
                 <button
                   type="submit"
-                  className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1 "
+                  className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1  "
                 >
-                  <div className="rounded-full bg-black p-3 ">Sign Up</div>
+                  <div className={`rounded-full bg-black p-3 font-bold hover:bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]  `}>Sign Up</div>
                 </button>
                 <p className="mt-6 text-center text-white">
                   Already have an account?{" "}
                   <a
                     href="#"
-                    className="text-transparent bg-clip-text bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]
-                  font-bold"
+                    className={`${styles.primaryTextOnHover}`}
                   >
                     Sign In
                   </a>
