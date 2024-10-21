@@ -30,7 +30,7 @@ function Transformation() {
   }
 
   return (
-    <div className="flex-grow">
+    <div className="flex-grow overflow-auto">
       <ComponentToRender />
     </div>
   );

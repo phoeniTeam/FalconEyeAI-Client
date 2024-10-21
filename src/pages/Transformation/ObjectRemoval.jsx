@@ -76,7 +76,7 @@ function ObjectRemoval() {
       <div className="flex flex-col gap-5">
         <Input label="Image Title" id="imageTitle" />
         <Input label="Objet to Remove" id="removeObject" />
-        <div className="flex items-center justify-between pt-2 max-md:flex-col max-md:gap-4">
+        <div className="flex items-center justify-evenly pt-2 max-md:flex-col max-md:gap-4">
           <div className="flex flex-col gap-2">
             <div className={`${styles.heading4}`}>Original</div>
             <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from "../../styles";
 import { FaFilter } from "react-icons/fa6";
+import { creationsImages } from '../../assets';
 
 function Home() {
   const [inputColor, setInputColor] = useState(false);
   return (
-    <div className="flex-grow">
+    <div className="flex-grow overflow-auto">
       <div className="pt-2 px-4 w-full flex flex-col justify-between">
         <div className={`${styles.heading3} text-center py-3 `}>
           Unleash Your Creativity <br />
@@ -50,6 +51,24 @@ function Home() {
             </div>
           </div>
         </div>
+        <section id="gallery" className={`${styles.outerWrapper}`}>
+          <div className={`${styles.wrapper}`}>
+            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 ">
+              {creationsImages.map((creation, index) => (
+                <div
+                  key={index}
+                  className="mb-4 break-inside-avoid cursor-pointer"
+                >
+                  <img
+                    className={`${styles.transition500} rounded-xl opacity-80 hover:opacity-100`}
+                    src={creation}
+                    alt="Photo"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
