@@ -18,6 +18,8 @@ const styles = {
 
     primaryBackground: "bg-primary-gradient-color",
     primaryButton: "px-6 py-1 rounded-full bg-primary-gradient-color hover:bg-primary-gradient-color-invert text-center h-fit",
+   
+
 
     primaryText: `w-fit bg-gradient-to-r from-primary via-primary to-secondary inline-block text-transparent bg-clip-text ${mainTransition}`,
     primaryTextOnHover: `hover:underline hover:bg-gradient-to-r from-primary via-primary to-secondary inline-block hover:text-transparent bg-clip-text ${mainTransition}`,
