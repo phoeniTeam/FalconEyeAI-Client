@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import styles from "../../styles";
 import { FaFilter } from "react-icons/fa6";
 import { creationsImages } from "../../assets";
+import { IoSearch } from "react-icons/io5";
 
 function Home() {
   const [inputColor, setInputColor] = useState(false);
   return (
-    <div className="flex-grow overflow-auto">
+    <div className="flex-grow overflow-auto pt-5 sm:pt-10">
       <div className="pt-2 px-4 w-full flex flex-col justify-between">
-        <div className={`${styles.heading3} text-center py-3 `}>
+        <div className={`${styles.heading1} text-center py-3 `}>
           Unleash Your Creativity <br />
           With{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">
             FalconEye
           </span>
         </div>
-        <div className={`flex flex-col gap-2 py-3 px-10`}>
+        <div className={`flex flex-col gap-2 pb-3 pt-10`}>
           <div className={`${styles.heading5}  `}>
             {" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">
@@ -32,14 +33,7 @@ function Home() {
                 ${inputColor ? "bg-[#131313]" : ""}  w-[38vw] rounded-full 
                focus-within:border-grayLight focus-within:outline-none`}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="#38383E"
-                className="h-5 w-5 opacity-70"
-              >
-                <path d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" />
-              </svg>
+              <IoSearch size={24} className="text-grayLight fill-current" />
               <input
                 type="search"
                 placeholder="Search..."

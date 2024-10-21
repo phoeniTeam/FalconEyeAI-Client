@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from '../../styles'
-import { catImage, purpleFlowerImage, lamobCarImage, moonImage } from '../../assets'
+import { catImage, purpleFlowerImage, lamobCarImage, moonImage, heroImage } from '../../assets'
 import { Link } from 'react-router-dom'
 import { motion } from "framer-motion";
 import { revealingMotion } from '../../utils/motionSettings';
@@ -23,7 +23,9 @@ function Hero() {
                         </div>
 
                         <div className='relative px-4 flex justify-center'>
-                            <div className='z-10 mt-20 bg-grayDark w-[100%] sm:w-[60%] h-[700px] rounded-lg'></div>
+                            <div className='z-10 mt-20 bg-grayDark w-[100%] sm:w-[60%] rounded-lg'>
+                                <img className='rounded-lg' src={heroImage} alt="Hero Image" />
+                            </div>
 
                             <div className='hidden md:inline-block absolute left-0 transform rotate-12 -translate-x-[20px] -translate-y-[40px] bg-grayLight w-[300px] h-[200px] rounded-lg'>
                                 <img className='rounded-lg' src={purpleFlowerImage} alt="Purple Flower" />

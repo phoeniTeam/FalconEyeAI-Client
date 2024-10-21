@@ -11,6 +11,7 @@ import { SlMenu } from "react-icons/sl";
 import { FaUserAlt } from "react-icons/fa";
 import { MdHideImage } from "react-icons/md";
 import { HiMiniSquare2Stack } from "react-icons/hi2";
+import { IoClose } from "react-icons/io5";
 
 function Sidebar() {
   const location = useLocation();
@@ -80,21 +81,20 @@ function Sidebar() {
     <div className="flex">
       <SlMenu
         onClick={() => setIsOpen(!isOpen)}
-        className="text-white w-6 h-6 m-4 lg:hidden"
+        className="text-white w-6 h-6 m-4 lg:hidden cursor-pointer"
       />
       {/* Sidebar */}
       <div
-        className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}
+        className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+          } lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}
       >
         <div
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center justify-start py-2 pt-4 pl-4 pb-4 cursor-pointer lg:hidden"
         >
-          <SlMenu className="text-white w-6 h-6" />
+          <IoClose className="text-white w-7 h-7" />
         </div>
-        <div className=" lg:pt-4 pl-3 pb-1 lg:pb-2">
+        <div className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
           <img
             src={logoSide}
             alt="logo"
@@ -108,11 +108,10 @@ function Sidebar() {
               <li key={index}>
                 <Link
                   to={link.route}
-                  className={`flex items-center gap-3 p-2 rounded-full ${
-                    isActive(link.route)
-                      ? "bg-gradient-to-r from-primary via-primary to-secondary"
-                      : "hover:underline"
-                  }`}
+                  className={`flex items-center gap-3 p-2 rounded-full ${isActive(link.route)
+                    ? "bg-gradient-to-r from-primary via-primary to-secondary"
+                    : "hover:underline"
+                    }`}
                 >
                   {link.icon}
                   <span className={`${styles.paragraph4}`}>{link.label}</span>
@@ -125,11 +124,10 @@ function Sidebar() {
               <li key={index}>
                 <Link
                   to={link.route}
-                  className={`flex items-center gap-3 p-2 rounded-full ${
-                    isActive(link.route)
-                      ? "bg-gradient-to-r from-primary via-primary to-secondary"
-                      : "hover:underline"
-                  }`}
+                  className={`flex items-center gap-3 p-2 rounded-full ${isActive(link.route)
+                    ? "bg-gradient-to-r from-primary via-primary to-secondary"
+                    : "hover:underline"
+                    }`}
                 >
                   {link.icon}
                   <span className={`${styles.paragraph4}`}>{link.label}</span>

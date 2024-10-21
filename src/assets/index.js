@@ -6,6 +6,7 @@ import logoSide from "./logo/logo-side.png"
 import logoSideLight from "./logo/logo-side-light.png"
 
 // landing page
+import heroImage from "./home/hero/hero.jpg"
 import catImage from "./home/hero/cat.jpg"
 import purpleFlowerImage from "./home/hero/purple-flower.jpg"
 import lamobCarImage from "./home/hero/lambo-car.jpg"
@@ -55,6 +56,7 @@ export {
     logoSide,
     logoSideLight,
 
+    heroImage,
     catImage,
     purpleFlowerImage,
     lamobCarImage,
