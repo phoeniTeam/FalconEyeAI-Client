@@ -7,7 +7,7 @@ function ObjectRemoval() {
     <div className="py-8 px-9 w-full flex flex-col justify-between gap-8 ">
       <div className="flex flex-col items-start gap-4 w-full">
         <div className="flex items-center justify-between w-full ">
-          <div className={`${styles.heading3} text-white `}>Object Removal</div>
+          <div className={`${styles.heading3}`}>Object Removal</div>
           <div className="flex items-center justify-start gap-2">
             <svg
               width="40"
@@ -34,11 +34,11 @@ function ObjectRemoval() {
                 </linearGradient>
               </defs>
             </svg>
-            <div className={`${styles.heading4} text-white `}>236</div>
+            <div className={`${styles.heading4}`}>236</div>
           </div>
         </div>
         <div className="flex flex-col items-start gap-1">
-          <div className={`${styles.paragraph2} text-white `}>
+          <div className={`${styles.paragraph2}`}>
             Identify and elimante objects from image
           </div>
           <div className="flex items-center justify-start gap-4">
@@ -69,17 +69,17 @@ function ObjectRemoval() {
                 </defs>
               </svg>
             </span>
-            <div className={`${styles.paragraph2} text-white `}>12</div>
+            <div className={`${styles.paragraph2}`}>12</div>
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-5">
         <Input label="Image Title" id="imageTitle" />
         <Input label="Objet to Remove" id="removeObject" />
-        <div className="flex items-center justify-between pt-2 max-md:flex-col max-md:gap-4">
+        <div className="flex items-center justify-evenly pt-2 max-md:flex-col max-md:gap-4">
           <div className="flex flex-col gap-2">
-            <div className={`${styles.heading4} text-white `}>Original</div>
-            <div className="flex items-center justify-center border-2 border-[#38383E] p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
+            <div className={`${styles.heading4}`}>Original</div>
+            <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
               <div className="flex flex-col items-center gap-1">
                 <svg
                   width="24"
@@ -96,22 +96,22 @@ function ObjectRemoval() {
                     fill="#333399"
                   />
                 </svg>
-                <span className="text-[#E8E6E3]">Click here to upload</span>
+                <span className="text-darkWhite">Click here to upload</span>
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <div className={`${styles.heading4} text-white `}>Transformed</div>
-            <div className="flex items-center justify-center border-2 border-[#38383E] p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
+            <div className={`${styles.heading4}`}>Transformed</div>
+            <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
               <div className="flex flex-col items-center">
-                <div className="text-[#E8E6E3]">Transformed Image</div>
+                <div className="text-darkWhite">Transformed Image</div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <button
-        className="btn w-full bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full
+        className="btn w-full bg-gradient-to-r from-primary via-primary to-secondary rounded-full
       min-h-9 h-9 border-none"
       >
         Apply Transformation
