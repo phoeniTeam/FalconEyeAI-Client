@@ -45,7 +45,7 @@ function ObjectRecolor() {
 <Input label="Replacement Color" id="Replacement Color"/>
 </div>
 </div>
-<div className="grid grid-cols-2 justify-items-center">
+<div className="grid lg:grid-cols-2 gap-20 lg:justify-items-center md:justify-items-center sm:justify-items-center max-sm:justify-center max-md:gap-4  ">
 <div>
                         <h4 className={`${styles.heading4}`}>Original</h4>
                         <div className="flex items-center justify-center border-2 border-[#38383E] p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">

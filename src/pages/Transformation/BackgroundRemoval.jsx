@@ -15,7 +15,7 @@ function BackgroundRemoval() {
                         Background Removal
                     </h1>
                     <div className={`${styles.paragraph2} text-white `}>
-                        Identify and elimante objects from image
+                        Removes the background of the image using AI
                     </div>
                     <div className="flex items-center justify-start gap-4">
                            
@@ -36,8 +36,8 @@ function BackgroundRemoval() {
                 </div>
                 
                 <Input label="Image Title" id="imageTitle" />
-                <div className="grid grid-cols-2 justify-items-center">
-                    <div>
+                <div className="grid lg:grid-cols-2 gap-20 lg:justify-items-center md:justify-items-center sm:justify-items-center max-sm:justify-center max-md:gap-4  ">
+                <div>
                         <h4 className={`${styles.heading4}`}>Original</h4>
                         <div className="flex items-center justify-center border-2 border-[#38383E] p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
                             <div className="flex flex-col items-center gap-1">
