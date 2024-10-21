@@ -17,7 +17,8 @@ function SignUp() {
     email: "",
     password: "",
   });
-  const VITE_REGISTER_API=""
+  const [errorMessage ,setErrorMessage] = useState();
+  const VITE_REGISTER_API="import.meta.env.VITE_REGISTER_API"
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRegister({
@@ -30,23 +31,25 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 if(register.username.trim() === "" || register.email.trim() === "" || register.password.trim() === ""){{
-  alert("All fields are required");
+  // alert("All fields are required");
   return;
   
 
 }};
 if (!emailRegex.test(register.email)) {
-  alert("Invalid email address");
+  setErrorMessage("Invalid email format");
   return;
 }
 if(register.username.length < 3 || register.username.length > 20){
-  alert("Username must be between 3 and 20 characters long");
+  setErrorMessage("Username must be between 3 and 20");
   return;
 }
 if(register.password.length < 8 || register.password.length > 20){
   alert("Password must be between 8 and 20 characters long");
+  setErrorMessage("Password must be between 8 and 20 characters long");
   return;
   }
+  setErrorMessage("")
   // Make API call to register user here
 
   try{
@@ -68,11 +71,16 @@ if(register.password.length < 8 || register.password.length > 20){
       alert("Failed to register user. Please try again later.");
     }
     
-  }catch(e){
-    console.error(e);
-    alert("Failed to register user. Please try again later.");
+  }catch(error){
+    if(error.response.status === 400){
+      setErrorMessage(error.response.data.message);
+    }else{
+      setErrorMessage("Failed to register user. Please try again later.");
+    }
+
+    }
   }
-}
+
   return (
     <div
       className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}
@@ -146,6 +154,10 @@ if(register.password.length < 8 || register.password.length > 20){
                 </div>
               </div>
               <div className="flex flex-col">
+                <div className="pt-5"></div>
+                {errorMessage && (
+                  <div className="text-white text-sm">{errorMessage}</div>
+                )}
                 <button
                   type="submit"
                   className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1 "
