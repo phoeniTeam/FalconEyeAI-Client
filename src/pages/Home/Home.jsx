@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../styles";
 import { FaFilter } from "react-icons/fa6";
+import { creationsImages } from "../../assets";
 
 function Home() {
   const [inputColor, setInputColor] = useState(false);
@@ -51,6 +52,14 @@ function Home() {
               <FaFilter className="text-[#38383E] w-5 h-5" />
             </div>
           </div>
+        </div>
+
+        <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 '>
+          {creationsImages.map((creation, index) => (
+            <div key={index} className='mb-4 break-inside-avoid cursor-pointer'>
+              <img className={`${styles.transition500} rounded-xl opacity-80 hover:opacity-100`} src={creation} alt="Photo" />
+            </div>
+          ))}
         </div>
       </div>
     </div>
