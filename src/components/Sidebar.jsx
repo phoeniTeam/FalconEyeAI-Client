@@ -114,7 +114,7 @@ function Sidebar() {
         <div className="drawer-content">
           <label
             htmlFor="my-drawer"
-            className="btn drawer-button min-h-10 h-10 border-[#38383E] lg:hidden"
+            className="btn drawer-button min-h-10 h-10 border-grayLight lg:hidden"
           >
             <CiMenuBurger className="text-white w-6 h-6" />
           </label>
@@ -141,13 +141,13 @@ function Sidebar() {
                         to={ele.route}
                         className={`w-[96%] flex justify-start items-center gap-3 rounded-full 
                             ${isActive(ele.route)
-                            ? "bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]"
+                            ? "bg-gradient-to-r from-primary via-primary to-secondary"
                             : ""
                           }`}
                       >
                         <div>{ele.icon}</div>
                         <div
-                          className={`text-white font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
+                          className={` font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
                             }`}
                         >
                           {ele.label}
@@ -165,7 +165,7 @@ function Sidebar() {
                         to={ele.route}
                         className={`w-[96%] flex justify-start items-center gap-3 rounded-full 
                             ${isActive(ele.route)
-                            ? "bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]"
+                            ? "bg-gradient-to-r from-primary via-primary to-secondary"
                             : ""
                           }`}
                       >
@@ -178,7 +178,7 @@ function Sidebar() {
                             >
                               <div>{ele.icon}</div>
                               <div
-                                className={`text-white font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
+                                className={`font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
                                   }`}
                               >
                                 {ele.label}
@@ -186,11 +186,11 @@ function Sidebar() {
                             </div>
                             <ul
                               tabIndex={0}
-                              className="dropdown-content bg-[#38383E] z-[1] w-40 rounded-xl shadow"
+                              className="dropdown-content bg-grayLight z-[1] w-40 rounded-xl shadow"
                             >
                               <li>
                                 <button
-                                  className="text-white text-lg hover:underline cursor-pointer focus:text-white focus:outline-none"
+                                  className=" text-lg hover:underline cursor-pointer focus:outline-none"
                                   onClick={() => {
                                   }}
                                 >
@@ -199,7 +199,7 @@ function Sidebar() {
                               </li>
                               <li>
                                 <button
-                                  className="text-red-500 text-lg hover:underline cursor-pointer focus:text-red-500 focus:outline-none"
+                                  className="text-error text-lg hover:underline cursor-pointer focus:text-error focus:outline-none"
                                   onClick={() => {
                                     // logout
                                   }}
@@ -213,7 +213,7 @@ function Sidebar() {
                           <>
                             <div>{ele.icon}</div>
                             <div
-                              className={`text-white font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
+                              className={` font-semibold text-base ${isActive(ele.route) ? "" : "hover:underline"
                                 }`}
                             >
                               {ele.label}
