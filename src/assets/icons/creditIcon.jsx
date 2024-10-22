@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-function creditIcon() {
+function creditIcon({ width = 40, height = 40 }) {
   return (
-    <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} fill="none" xmlns="http://www.w3.org/2000/svg">
   <path
     d="M36.6711 19.9918C36.6711 29.1966 29.2093 36.6585 20.0045 36.6585C10.7998 36.6585 3.33789 29.1966 3.33789 19.9918C3.33789 10.7871 10.7998 3.32514 20.0045 3.32514C29.2093 3.32514 36.6711 10.7871 36.6711 19.9918ZM12.9335 19.9918L20.0045 27.0629L27.0756 19.9918L20.0045 12.9208L12.9335 19.9918Z"
     fill="url(#paint0_linear_159_7)"
