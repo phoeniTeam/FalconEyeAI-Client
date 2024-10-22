@@ -100,8 +100,8 @@ function Sidebar() {
                   to={link.route}
                   className={`flex items-center gap-3 p-2 rounded-full ${
                     isActive(link.route)
-                      ? "bg-gradient-to-r from-primary via-primary to-secondary"
-                      : "hover:underline"
+                      ? `${styles.primaryBackground}`
+                      : "hover:underline" 
                   }`}
                 >
                   {link.icon}
@@ -117,7 +117,7 @@ function Sidebar() {
                   to={link.route}
                   className={`flex items-center gap-3 p-2 rounded-full ${
                     isActive(link.route)
-                      ? "bg-gradient-to-r from-primary via-primary to-secondary"
+                      ? `${styles.primaryBackground}`
                       : "hover:underline"
                   }`}
                 >
