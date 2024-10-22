@@ -27,7 +27,11 @@ function Profile() {
   ];
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.innerWrapper}>
+      <div className="flex items-center justify-end gap-2">
+        <CreditIcon />
+        <div className={`${styles.heading4}`}>236</div>
+      </div>
       <div className="pt-2 px-4 flex flex-col justify-between">
         <div className="flex gap-8 items-start">
           <div className="relative w-24 h-24 flex justify-center items-center bg-[#1d1a1a] rounded-full">
@@ -45,7 +49,6 @@ function Profile() {
               onChange={(e) => setName(e.target.value)}
               placeholder="Edit your name"
             />
-            
             <input
               className="bg-transparent text-gray-400 outline-none py-1"
               value={userName}
@@ -71,7 +74,7 @@ function Profile() {
               onFocus={() => setInputColor(true)}
               onBlur={() => setInputColor(false)}
               className={`flex items-center gap-2 input min-h-10 h-10 border border-grayLight outline-black
-                ${inputColor ? "bg-[#131313]" : ""}  w-[38vw] rounded-full 
+                ${inputColor ? "bg-[#131313]" : ""} w-[38vw] rounded-full 
                focus-within:border-grayLight focus-within:outline-none`}
             >
               <IoSearch size={24} className="text-grayLight fill-current" />
@@ -88,27 +91,23 @@ function Profile() {
         </div>
 
         {/* Gallery Section */}
-        <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-5'>
+        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-5">
           {creationsImages.map((creation, index) => (
-            <div key={index} className='relative mb-3 break-inside-avoid cursor-pointer group'>
+            <div key={index} className="relative mb-3 break-inside-avoid cursor-pointer group">
               <img
                 className={`${styles.transition500} rounded-xl opacity-80 group-hover:opacity-100`}
                 src={creation}
                 alt={`Creation ${index + 1}`}
               />
               {/* Text on Hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-center px-4">
+              <div className="absolute bottom-3 bg-black bg-opacity-50 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* This space is for the hover description */}
+                <p className="text-white text-center px-4 pb-2 ">
                   {imageDescriptions[index]}
                 </p>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="flex items-center space-x-2 absolute lg:top-10 lg:right-16 right-10">
-          <CreditIcon /> 
-          <div className={`${styles.heading4} text-white`}>236</div> 
         </div>
       </div>
 
