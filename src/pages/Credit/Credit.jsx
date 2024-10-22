@@ -10,7 +10,7 @@ function Credit() {
   const iconSize = 30;
 
   return (
-    <div className="py-5 px-5 relative">
+    <div className={styles.innerWrapper}>
    
       <div className="mr-5">
         <h1 className={`${styles.heading1}`}>Buy Credit</h1>
