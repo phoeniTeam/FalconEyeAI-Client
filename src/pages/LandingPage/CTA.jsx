@@ -17,7 +17,7 @@ function CTA() {
                     </div>
 
                     <div className='flex justify-center items-center'>
-                        <Link to={"/home"} className={`${styles.primaryButton} `} >Explore More</Link>
+                        <Link to={"/home"} className={`${styles.primaryButton} `} >Lunch App</Link>
                     </div>
 
                 </div>

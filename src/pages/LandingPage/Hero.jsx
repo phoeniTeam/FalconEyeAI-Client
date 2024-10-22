@@ -23,7 +23,7 @@ function Hero() {
                         </div>
 
                         <div className='relative px-4 flex justify-center'>
-                            <div className='z-10 mt-20 bg-grayDark w-[100%] sm:w-[60%] rounded-lg'>
+                            <div className='z-10 mt-20 bg-grayDark max-w-[1000px] h-full rounded-lg'>
                                 <img className='rounded-lg' src={heroImage} alt="Hero Image" />
                             </div>
 

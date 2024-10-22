@@ -8,11 +8,11 @@ function Features() {
         <section id='features' className={`${styles.outerWrapper} overflow-hidden`}>
             <div className={`${styles.wrapper}`}>
                 <motion.div
-                    className='flex justify-center w-full mb-10'
+                    className='flex justify-center w-full mb-16'
                     {...revealingMotion}
                 >
                     <h2 className={`${styles.heading1} relative`}>
-                        <span className={`${styles.primaryText}`}>FalconEyeAI</span> <span>Features</span>
+                        <span className={`${styles.primaryText}`}>FALCONEYE AI</span> <span>Features</span>
                         <div className={`${styles.primaryBackground} absolute md:translate-y-2 w-full py-1 rounded-full`}></div>
                     </h2>
                 </motion.div>

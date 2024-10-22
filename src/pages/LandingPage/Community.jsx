@@ -8,7 +8,7 @@ function Community() {
         <section id='reviews' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>
                 <motion.div
-                    className='flex justify-center w-full'
+                    className='flex justify-center w-full mb-16'
                     {...revealingMotion}
                 >
                     <h2 className={`${styles.heading1} relative`}>
@@ -18,7 +18,7 @@ function Community() {
                 </motion.div>
 
                 <motion.div
-                    className='flex justify-center mt-14 mb-24'
+                    className='flex justify-center mb-24'
                     {...revealingMotion}
                 >
                     <p className='text-center text-darkWhite max-w-[60ch]'>FalconEye AI is more than just an innovative tool for background removal, image

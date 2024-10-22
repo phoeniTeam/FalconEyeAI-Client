@@ -10,10 +10,10 @@ function Gallery() {
         <section id='gallery' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>
                 <motion.div
-                    className='flex justify-center w-full mb-10'
+                    className='flex justify-center w-full mb-16'
                     {...revealingMotion}
                 >
-                    <h2 className={`${styles.heading1} relative`}>
+                    <h2 className={`${styles.heading1} relative mb-4`}>
                         <span className={`${styles.primaryText}`}>Platform</span> <span>Gallery</span>
                         <div className={`${styles.primaryBackground} absolute md:translate-y-2 w-full py-1 rounded-full`}></div>
                     </h2>

@@ -1,7 +1,7 @@
 const mainTransition = "transition-all duration-500 ease-in-out"
 
 const styles = {
-    outerWrapper: "py-20 sm:py-32 md:py-36 h-auto",
+    outerWrapper: "py-10 md:py-20 h-auto",
     footerOuterWrapper: "pt-20 sm:pt-32 md:pt-36 pb-10 sm:pb-22 md:pb-26 h-auto",
     wrapper: "max-w-[1200px] px-4 mx-auto",
 
@@ -18,7 +18,7 @@ const styles = {
 
     primaryBackground: "bg-primary-gradient-color",
     primaryButton: "px-6 py-1 rounded-full bg-primary-gradient-color hover:bg-primary-gradient-color-invert text-center h-fit",
-   
+
 
 
     primaryText: `w-fit bg-gradient-to-r from-primary via-primary to-secondary inline-block text-transparent bg-clip-text ${mainTransition}`,
