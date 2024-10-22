@@ -1,28 +1,16 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
 import { FaUserTie, FaFilter, FaEdit } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import MagicIcon from '../../assets/icons/magician';
 import CreditIcon from "../../assets/icons/creditIcon"; 
-=======
-import { FaUserTie, FaFilter, FaDotCircle, FaEdit } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
-import { FaWandMagicSparkles } from "react-icons/fa6";
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
 import styles from "../../styles";
 import { creationsImages } from '../../assets';
 
 function Profile() {
-<<<<<<< HEAD
   const [inputColor, setInputColor] = useState(false); 
   const [name, setName] = useState("Abdulaziz"); 
   const [userName] = useState("@abdulaziz123"); 
   const [userImage, setUserImage] = useState(null); 
-=======
-  const [name, setName] = useState("Abdulaziz"); // Editable name
-  const [userName] = useState("abdulaziz123"); // Non-editable username
-  const [userImage, setUserImage] = useState(null); // For uploaded image
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
 
   const imageDescriptions = [
     "This is the description for image 1.",
@@ -39,11 +27,7 @@ function Profile() {
 
   const handleImageUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
-<<<<<<< HEAD
       const file = URL.createObjectURL(e.target.files[0]); 
-=======
-      const file = URL.createObjectURL(e.target.files[0]); // Create a URL for the uploaded image
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
       setUserImage(file);
     }
   };
@@ -78,41 +62,22 @@ function Profile() {
           </div>
 
           <div className="flex flex-col mt-2">
-<<<<<<< HEAD
             <input
               className="bg-transparent text-white outline-none mt-1 pr-16 py-1"
-=======
-            {/* Editable name input */}
-            <input
-              className="bg-transparent text-white border-b border-white outline-none mt-1 pr-16 py-1"
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Edit your name"
             />
             
-<<<<<<< HEAD
             <input
               className="bg-transparent text-gray-400 outline-none py-1"
-=======
-            {/* Non-editable username input */}
-            <input
-              className="bg-transparent text-gray-400 border-b border-gray-400 outline-none mt-1 py-1"
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
               value={userName}
               readOnly
               placeholder="Username"
             />
             <div className="flex gap-10 mt-3">
               <div className={`${styles.primaryBackground} rounded-full p-1 items-center`}>
-<<<<<<< HEAD
                 <MagicIcon />
-=======
-                <FaDotCircle className="text-white" size={20} />
-              </div>
-              <div className={`${styles.primaryBackground} rounded-full p-1 items-center`}>
-                <FaWandMagicSparkles className="text-white" size={20} />
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
               </div>
             </div>
           </div>
@@ -163,14 +128,11 @@ function Profile() {
             </div>
           ))}
         </div>
-<<<<<<< HEAD
 
         <div className="flex items-center space-x-2 absolute lg:top-10 lg:right-16 right-10">
           <CreditIcon /> 
           <div className={`${styles.heading4} text-white`}>236</div> 
         </div>
-=======
->>>>>>> 8be021c199197925a2a56aa522dbd73ec48c8545
       </div>
     </div>
   );
