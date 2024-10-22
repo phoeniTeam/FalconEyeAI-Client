@@ -17,11 +17,20 @@ import lukasImage from "./home/reviews/Lukas Meller.webp"
 import markImage from "./home/reviews/Mark John.webp"
 
 // features
-import backgroundRemovalImage from "./home/features/background-removal-feature.webp"
-import objectRemovalImage from "./home/features/object-removal-feature.webp"
-import imageRestoreImage from "./home/features/image-restore-feature.webp"
-import objectRecolorImage from "./home/features/object-recolor-feature.webp"
-import generativeFillImage from "./home/features/generative-fill-feature.webp"
+import backgroundRemovalOriginalImage from "./home/features/background-removal-feature-original.webp"
+import backgroundRemovalTransformedImage from "./home/features/background-removal-feature-transformed.webp"
+
+import objectRemovalOriginalImage from "./home/features/object-removal-feature-original.webp"
+import objectRemovalTransformedImage from "./home/features/object-removal-feature-transformed.webp"
+
+import imageRestoreOriginalImage from "./home/features/image-restore-feature-original.webp"
+import imageRestoreTransformedImage from "./home/features/image-restore-feature-transformed.webp"
+
+import objectRecolorOriginalImage from "./home/features/object-recolor-feature-original.webp"
+import objectRecolorTransformedImage from "./home/features/object-recolor-feature-transformed.webp"
+
+import generativeFillOriginalImage from "./home/features/generative-fill-feature-original.webp"
+import generativeFillTransformedImage from "./home/features/generative-fill-feature-transformed.webp"
 
 // gallery
 import creation1Image from "./home/gallery/1.webp"
@@ -66,11 +75,16 @@ export {
     lukasImage,
     markImage,
 
-    backgroundRemovalImage,
-    objectRemovalImage,
-    imageRestoreImage,
-    objectRecolorImage,
-    generativeFillImage,
+    backgroundRemovalOriginalImage,
+    backgroundRemovalTransformedImage,
+    objectRemovalOriginalImage,
+    objectRemovalTransformedImage,
+    imageRestoreOriginalImage,
+    imageRestoreTransformedImage,
+    objectRecolorOriginalImage,
+    objectRecolorTransformedImage,
+    generativeFillOriginalImage,
+    generativeFillTransformedImage,
 
     creationsImages
 }
