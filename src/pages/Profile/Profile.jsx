@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { FaUserTie, FaFilter, FaEdit } from "react-icons/fa";
+import { FaUserTie, FaFilter } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import MagicIcon from '../../assets/icons/magician';
 import CreditIcon from "../../assets/icons/creditIcon"; 
 import styles from "../../styles";
 import { creationsImages } from '../../assets';
+import Modal from '../Profile/Modal';
 
 function Profile() {
   const [inputColor, setInputColor] = useState(false); 
   const [name, setName] = useState("Abdulaziz"); 
-  const [userName] = useState("@abdulaziz123"); 
-  const [userImage, setUserImage] = useState(null); 
+  const [userName] = useState("@abdulaziz123");
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   const imageDescriptions = [
     "This is the description for image 1.",
@@ -25,40 +26,16 @@ function Profile() {
     "This is the description for image 10."
   ];
 
-  const handleImageUpload = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = URL.createObjectURL(e.target.files[0]); 
-      setUserImage(file);
-    }
-  };
-
   return (
     <div className={styles.wrapper}>
       <div className="pt-2 px-4 flex flex-col justify-between">
         <div className="flex gap-8 items-start">
           <div className="relative w-24 h-24 flex justify-center items-center bg-[#1d1a1a] rounded-full">
-            {userImage ? (
-              <img
-                src={userImage}
-                alt="User"
-                className="w-full h-full object-cover rounded-full cursor-pointer"
-                onClick={() => document.getElementById('file-input').click()}
-              />
-            ) : (
-              <FaUserTie
-                size={48}
-                className="text-white cursor-pointer"
-                onClick={() => document.getElementById('file-input').click()}
-              />
-            )}
-            <input
-              type="file"
-              id="file-input"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            <FaUserTie
+              size={48}
+              className="text-white cursor-pointer"
+              onClick={() => setIsModalOpen(true)}
             />
-            <FaEdit className="absolute top-0 left-24 text-darkWhite fill-current cursor-pointer" />
           </div>
 
           <div className="flex flex-col mt-2">
@@ -76,7 +53,7 @@ function Profile() {
               placeholder="Username"
             />
             <div className="flex gap-10 mt-3">
-              <div className=" rounded-full p-1 items-center">
+              <div className="rounded-full p-1 items-center">
                 <MagicIcon />
               </div>
             </div>
@@ -134,6 +111,9 @@ function Profile() {
           <div className={`${styles.heading4} text-white`}>236</div> 
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
