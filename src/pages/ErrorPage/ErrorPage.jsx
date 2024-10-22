@@ -1,21 +1,33 @@
-import { useRouteError } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "../../styles"; 
 
 export default function ErrorPage() {
-    const error = useRouteError();
-    console.error(error);
+  const navigate = useNavigate();
 
-    return (
-        <main className="w-screen h-screen flex justify-center items-center">
-            <div className="text-center ">
-                <div id="error-page">
-                    <h1 className="text-3xl sm:text-4xl font-bold mx-auto text-center mb-8">Oops!</h1>
-                    <p>Sorry, an unexpected error has occurred.</p>
-                    <p>
-                        <i>{error.statusText || error.message}</i>
-                    </p>
+  const handleGoHome = () => {
+    navigate("/"); 
+  };
 
-                </div>
-            </div>
-        </main>
-    );
+  return (
+    <main className={`w-screen h-screen flex flex-col justify-center items-center ${styles.primaryBackground}`}>
+      <div className={`${styles.wrapper} text-center`}>
+        <h1 className={`${styles.heroHeading} text-white animate-bounce`}>
+          404
+        </h1>
+        <h2 className={`${styles.heading2} text-white mt-4`}>
+          Page Not Found
+        </h2>
+        <p className={`${styles.paragraph1} text-gray-200 mt-4 mb-8`}>
+          Oops! It looks like the page you're looking for doesn't exist. Don't worry, we can guide you back to safety.
+        </p>
+        <button
+          onClick={handleGoHome}
+          className={`${styles.primaryButton} ${styles.transition500} text-white`}
+        >
+          Go Back Home
+        </button>
+      </div>
+    </main>
+  );
 }
