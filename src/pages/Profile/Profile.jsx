@@ -76,7 +76,7 @@ function Profile() {
               placeholder="Username"
             />
             <div className="flex gap-10 mt-3">
-              <div className={`${styles.primaryBackground} rounded-full p-1 items-center`}>
+              <div className=" rounded-full p-1 items-center">
                 <MagicIcon />
               </div>
             </div>
