@@ -98,10 +98,11 @@ function Sidebar() {
               <li key={index}>
                 <Link
                   to={link.route}
-                  className={`flex items-center gap-3 p-2 rounded-full ${isActive(link.route)
-                    ? "bg-gradient-to-r from-primary via-primary to-secondary"
-                    : "hover:underline"
-                    }`}
+                  className={`flex items-center gap-3 p-2 rounded-full ${
+                    isActive(link.route)
+                      ? `${styles.primaryBackground}`
+                      : "hover:underline" 
+                  }`}
                 >
                   {link.icon}
                   <span className={`${styles.paragraph4}`}>{link.label}</span>
@@ -114,10 +115,11 @@ function Sidebar() {
               <li key={index}>
                 <Link
                   to={link.route}
-                  className={`flex items-center gap-3 p-2 rounded-full ${isActive(link.route)
-                    ? "bg-gradient-to-r from-primary via-primary to-secondary"
-                    : "hover:underline"
-                    }`}
+                  className={`flex items-center gap-3 p-2 rounded-full ${
+                    isActive(link.route)
+                      ? `${styles.primaryBackground}`
+                      : "hover:underline"
+                  }`}
                 >
                   {link.icon}
                   <span className={`${styles.paragraph4}`}>{link.label}</span>
