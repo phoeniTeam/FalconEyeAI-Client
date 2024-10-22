@@ -8,7 +8,7 @@ function Features() {
         <section id='features' className={`${styles.outerWrapper} overflow-hidden`}>
             <div className={`${styles.wrapper}`}>
                 <motion.div
-                    className='flex justify-center w-full mb-16'
+                    className='flex justify-center w-full mb-12'
                     {...revealingMotion}
                 >
                     <h2 className={`${styles.heading1} relative`}>

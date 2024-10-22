@@ -8,7 +8,7 @@ function Community() {
         <section id='reviews' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>
                 <motion.div
-                    className='flex justify-center w-full mb-16'
+                    className='flex justify-center w-full mb-12'
                     {...revealingMotion}
                 >
                     <h2 className={`${styles.heading1} relative`}>
@@ -18,7 +18,7 @@ function Community() {
                 </motion.div>
 
                 <motion.div
-                    className='flex justify-center mb-24'
+                    className='flex justify-center mb-12'
                     {...revealingMotion}
                 >
                     <p className='text-center text-darkWhite max-w-[60ch]'>FalconEye AI is more than just an innovative tool for background removal, image
@@ -26,12 +26,14 @@ function Community() {
                         dedicated to empowering users like you.</p>
                 </motion.div>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                     {communityReviews.map((review, index) => (
                         <motion.div key={index} className='flex flex-col gap-4'
                             {...revealingMotion}
                         >
-                            <p className='text-center'>{review.comment}</p>
+                            <div className='flex justify-center'>
+                                <p className='text-center max-w-[40ch]'>{review.comment}</p>
+                            </div>
                             <div className='flex justify-center items-center gap-2'>
                                 <div className='w-[50px]'>
                                     <img

@@ -40,17 +40,17 @@ export const features = [
 
 export const communityReviews = [
     {
-        username: "@Ali",
+        username: "Ali",
         userPhoto: aliImage,
         comment: "“FalconEye has transformed how I express my creativity. With AI, I'm not just consuming content; I'm creating it!”",
     },
     {
-        username: "@Lukas",
+        username: "Lukas",
         userPhoto: lukasImage,
         comment: "“FalconEye is perfect for beginners exploring AI image editing and seasoned professionals seeking powerful tools for their projects.”",
     },
     {
-        username: "@Mark",
+        username: "Mark",
         userPhoto: markImage,
         comment: "“Thanks to FalconEye's models, modifing images has never been easier. The community support is simply unmatched!”",
     }
