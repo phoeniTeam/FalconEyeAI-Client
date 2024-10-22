@@ -58,12 +58,12 @@ function SignUp() {
 
     try {
       const response = await axios.post(VITE_REGISTER_API, {
-        // clerkId:"",
         username: register.username,
         name: register.name,
         email: register.email,
         password: register.password,
         // photo:"",
+        // images:"",
         // planId:"",
         // creditBalance:"",
 

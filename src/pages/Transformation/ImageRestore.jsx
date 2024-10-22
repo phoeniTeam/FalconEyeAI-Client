@@ -50,7 +50,7 @@ function ImageRestore() {
                 <h4 className={`${styles.heading4}`}>Original</h4>
                             <div className="flex items-center justify-center border-2 border-[#38383E] p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
                                 <div className="flex flex-col items-center gap-1">
-                                    <FaSquarePlus className="h-8 w-8 text-[#333399] hover:text-[#FF00CC]" />
+                                    <FaSquarePlus className={`h-8 w-8 text-[#333399] hover:text-[#FF00CC] ${styles.transition500}`} />
                                     <span className="text-[#E8E6E3] ">
                                         Click here to upload
                                     </span>
