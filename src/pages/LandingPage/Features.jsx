@@ -22,14 +22,16 @@ function Features() {
                         <div key={index} className={`flex flex-col gap-4 justify-between ${index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
                             <motion.div
                                 className='sm:w-1/2 flex justify-center items-center'
-                                // {...revealingMotion}
                                 {...(index % 2 === 0 ? toLeftMotion : toRightMotion)}
                             >
-                                <img className='rounded-lg' src={feature.image} alt={`${feature.title} Image`} />
+                                <img
+                                    className='rounded-lg h-[280px] w-[400px] object-cover'
+                                    src={feature.image}
+                                    alt={`${feature.title} Image`}
+                                />
                             </motion.div>
                             <motion.div
                                 className='sm:w-1/2 flex flex-col gap-4'
-                                // {...revealingMotion}
                                 {...(index % 2 === 0 ? toRightMotion : toLeftMotion)}
                             >
                                 <div className='flex flex-col gap-[1px] w-fit'>
