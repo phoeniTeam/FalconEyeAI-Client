@@ -21,12 +21,18 @@ function Features() {
                     {features.map((feature, index) => (
                         <div key={index} className={`flex flex-col gap-4 justify-between ${index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
                             <motion.div
-                                className='sm:w-1/2 flex justify-center items-center'
+                                className='sm:w-1/2 flex'
                                 {...(index % 2 === 0 ? toLeftMotion : toRightMotion)}
                             >
                                 <img
-                                    className='rounded-lg h-[280px] w-[400px] object-cover'
-                                    src={feature.image}
+                                    className='translate-x-10 sm:translate-y-10 rounded-lg h-1/2 w-1/2 object-cover shadow-lg'
+                                    src={feature.images.original}
+                                    alt={`${feature.title} Image`}
+                                />
+
+                                <img
+                                    className='translate-y-4 sm:translate-y-20 -translate-x-10 rounded-lg h-1/2 w-1/2 object-cover shadow-xl'
+                                    src={feature.images.transformed}
                                     alt={`${feature.title} Image`}
                                 />
                             </motion.div>
@@ -38,7 +44,7 @@ function Features() {
                                     <h3 className={`${styles.primaryText} ${styles.heading3} leading-10`}>{feature.title}</h3>
                                     <div className={`${styles.primaryBackground} w-full py-[2px] rounded-full`}></div>
                                 </div>
-                                <p>{feature.description}</p>
+                                <p className='max-w-[50ch]'>{feature.description}</p>
                             </motion.div>
                         </div>
                     ))}

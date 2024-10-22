@@ -7,7 +7,7 @@ import { heroImage, logoSideLight } from '../../assets';
 
 function CTA() {
     return (
-        <motion.section id='cta' className={` bg-grayDark`}
+        <motion.section id='cta' className={` my-10 md:my-20 bg-grayDark`}
             {...revealingMotion}
         >
             <div className={`${styles.wrapper} overflow-hidden relative px-10 py-8 rounded-lg flex flex-col sm:flex-row justify-between`}>

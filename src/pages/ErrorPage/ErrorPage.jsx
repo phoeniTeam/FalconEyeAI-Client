@@ -1,17 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../../styles"; 
+import styles from "../../styles";
 
 export default function ErrorPage() {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate("/"); 
+    navigate("/");
   };
 
   return (
-    <main className={`w-screen h-screen flex flex-col justify-center items-center ${styles.primaryBackground}`}>
-      <div className={`${styles.wrapper} text-center`}>
+    <main className={`relative w-screen h-screen flex flex-col justify-center items-center `}>
+      <div className='hero-background opacity-90 absolute -translate-x-1/2 -translate-y-1/2 -top-0 left-1/2 w-full h-[1500px] rounded-full filter blur-[100px]'></div>
+
+      <div className={`${styles.wrapper} z-10 text-center`}>
         <h1 className={`${styles.heroHeading} text-white animate-bounce`}>
           404
         </h1>
