@@ -42,7 +42,7 @@ function ObjectRemoval() {
                     value={objectName}
                     onChange={(e) => setObjectName(e.target.value)}
                 />
-                <div className="grid lg:grid-cols-2 gap-20 lg:justify-items-center md:justify-items-center sm:justify-items-center max-sm:justify-center max-md:gap-4  ">
+                <div className="flex items-center justify-between max-md:flex-col max-md:gap-4">
                     <div className="flex flex-col gap-2">
                         <div className={`${styles.heading4}`}>Original</div>
                         <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
