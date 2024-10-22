@@ -45,7 +45,7 @@ function GenerativeFill() {
     };
 
     return (
-        <div className="py-8 px-9 w-full flex flex-col justify-between gap-8 ">
+        <div className={`w-full flex flex-col justify-between gap-8`}>
             <div className="flex flex-col items-start gap-4 w-full">
                 <div className="flex items-center justify-between w-full ">
                     <div className={`${styles.heading3}`}>Generative Fill</div>
@@ -125,17 +125,12 @@ function GenerativeFill() {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 justify-center w-full p-2 gap-4">
+            <div className="w-full p-2">
                 <button
-                    className={`btn ${styles.primaryBackground} rounded-full min-h-9 h-9 border-none text-base font-normal ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'}`}
+                    className={`btn ${styles.primaryBackground} w-full rounded-full min-h-9 h-9 border-none text-base font-normal ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'}`}
                     disabled={!isButtonActive}
                 >
                     Apply Transformation
-                </button>
-                <button
-                    className={`btn ${styles.primaryBackground} rounded-full min-h-9 h-9 border-none text-base font-normal`}
-                >
-                    Save image
                 </button>
             </div>
         </div>

@@ -92,7 +92,7 @@ function Sidebar() {
           />
         </div>
 
-        <div className="flex flex-col justify-between h-[84%] lg:h-full">
+        <div className="flex flex-col justify-between h-[78%] md:h-[84%] lg:h-full">
           <ul className="menu gap-1">
             {sideLinks.map((link, index) => (
               <li key={index}>
