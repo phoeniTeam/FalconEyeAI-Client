@@ -2,11 +2,15 @@ const mainTransition = "transition-all duration-500 ease-in-out"
 
 const styles = {
     outerWrapper: "py-10 md:py-20 h-auto",
-    footerOuterWrapper: "pt-20 sm:pt-32 md:pt-36 pb-10 sm:pb-22 md:pb-26 h-auto",
-    wrapper: "max-w-[1200px] px-4 mx-auto",    
-    innerWrapper:"py-8 px-9",
-    outerWrapperAppPages:"max-w-[1300px] mx-auto",
- 
+    wrapper: "max-w-[1200px] px-4 mx-auto",
+    innerWrapper: "py-8 px-9",
+    outerWrapperAppPages: "max-w-[1300px] mx-auto",
+    transformationWrapper: " px-9 py-8",
+    homePageWrapper: "max-w-[1200px] mx-auto flex justify-center items-center",
+    footerOuterWrapper: "pt-10 md:pt-20 pb-10 sm:pb-22 md:pb-26 h-auto",
+
+
+
     heroHeading: "text-5xl sm:text-6xl md:text-7xl font-bold",
     heading1: "text-4xl sm:text-5xl md:text-6xl font-bold",
     heading2: "text-3xl sm:text-4xl md:text-5xl font-semibold",
