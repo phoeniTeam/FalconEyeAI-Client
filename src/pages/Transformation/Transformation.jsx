@@ -5,6 +5,7 @@ import GenerativeFill from "./GenerativeFill";
 import ImageRestore from "./ImageRestore";
 import ObjectRecolor from "./ObjectRecolor";
 import BackgroundRemoval from "./BackgroundRemoval";
+import styles from "../../styles";
 
 function Transformation() {
   const { transformationType } = useParams();
@@ -30,7 +31,7 @@ function Transformation() {
   }
 
   return (
-    <div className="flex-grow overflow-auto">
+    <div className={`${styles.innerWrapper} flex-grow overflow-auto`}>
       <ComponentToRender />
     </div>
   );
