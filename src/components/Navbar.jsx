@@ -39,8 +39,8 @@ function Navbar() {
 
   return (
     <motion.div className={`
-      ${isScrolled ? "bg-grayDark" : ""}
-      ${toggleMobileNav ? "bg-grayDark sm:bg-transparent" : ""} 
+      ${isScrolled ? "bg-base100" : ""}
+      ${toggleMobileNav ? "bg-base100 sm:bg-transparent" : ""} 
       ${styles.transition500} fixed z-50 w-full`}
       {...revealingMotion}
     >
@@ -66,7 +66,7 @@ function Navbar() {
 
       <div
         ref={mobileNavRef}
-        className={`fixed top-0 right-0 h-screen bg-grayDark p-6 px-4 transition-transform duration-300 ease-in-out transform ${toggleMobileNav ? 'translate-x-0' : 'translate-x-full'} sm:hidden flex flex-col items-end gap-14`}>
+        className={`fixed top-0 right-0 h-screen bg-base100 p-6 px-4 transition-transform duration-300 ease-in-out transform ${toggleMobileNav ? 'translate-x-0' : 'translate-x-full'} sm:hidden flex flex-col items-end gap-14`}>
 
         <IoClose
           onClick={() => setToggleMobileNav(false)}
