@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom'
 import { motion } from "framer-motion";
 import { revealingMotion } from '../../utils/motionSettings';
 import { creationsImages } from '../../assets';
+import useGetAllCreators from '../../hooks/useGetAllCreators';
 
 function Gallery() {
+    const { creatorsData, loading, error } = useGetAllCreators()
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
+
     return (
         <section id='gallery' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>

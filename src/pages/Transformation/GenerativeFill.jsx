@@ -8,7 +8,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 function GenerativeFill() {
     const [imageTitle, setImageTitle] = useState('');
     const [selectedAspectRatio, setSelectedAspectRatio] = useState('');
-    const [dimensions, setDimensions] = useState({ width: '', height:'' }); 
+    const [dimensions, setDimensions] = useState({ width: '', height: '' });
 
     const isButtonActive =
         imageTitle.trim() !== '' && selectedAspectRatio.trim() !== '';
@@ -84,11 +84,11 @@ function GenerativeFill() {
                             focus-within:border-grayLight min-h-10 h-11 w-full outline-none 
                             focus:outline-none appearance-none text-white cursor-pointer`}
                         >
-                            <option value="" disabled>
+                            <option className='bg-base100' value="" disabled>
                                 Select size
                             </option>
                             {Object.entries(aspectRatioOptions).map(([key, option]) => (
-                                <option key={key} value={option.aspectRatio} className="text-grayDark">
+                                <option key={key} value={option.aspectRatio} className="bg-base100 cursor-pointer hover:bg-primary">
                                     {option.label}
                                 </option>
                             ))}
