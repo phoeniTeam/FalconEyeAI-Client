@@ -49,7 +49,7 @@ function Home() {
         <div className="flex flex-col gap-2 pb-5 pt-10">
           <div className={`${styles.heading5}`}>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-secondary">
-              Community
+              Community{" "}
             </span>
             Creations
           </div>

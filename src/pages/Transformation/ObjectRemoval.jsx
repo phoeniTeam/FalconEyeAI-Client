@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from '../../styles';
 import Input from '../../components/input';
 import CreditIcon from '../../assets/icons/creditIcon';
-import { FaSquarePlus } from 'react-icons/fa6';
 import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
+import UploadAndTransformImagesBox from '../../components/UploadAndTransformImagesBox';
 
 function ObjectRemoval() {
     const [imageTitle, setImageTitle] = useState('');
@@ -43,31 +43,7 @@ function ObjectRemoval() {
                     value={objectName}
                     onChange={(e) => setObjectName(e.target.value)}
                 />
-                <div className="flex items-center justify-between max-md:flex-col max-md:gap-4 flex-col-lg">
-                    <div className="flex flex-col gap-2">
-                        <div className={`${styles.heading4}`}>Original</div>
-                        <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 flex-col-width">
-                            <div className="flex flex-col items-center gap-1">
-                                <FaSquarePlus
-                                    className={`h-8 w-8 text-primary hover:text-secondary ${styles.transition500}}`}
-                                />
-                                <span className="text-darkWhite">
-                                    Click here to upload
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className={`${styles.heading4}`}>Transformed</div>
-                        <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 flex-col-width">
-                            <div className="flex flex-col items-center">
-                                <div className="text-darkWhite">
-                                    Transformed Image
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <UploadAndTransformImagesBox />
             </div>
             <div className=" w-full p-2 gap-4 ">
                 <button
