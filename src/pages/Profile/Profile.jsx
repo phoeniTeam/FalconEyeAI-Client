@@ -100,12 +100,14 @@ function Profile() {
                 alt={`Creation ${index + 1}`}
               />
               {/* Text on Hover */}
-              <div className="absolute bottom-3 bg-black bg-opacity-50 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {/* This space is for the hover description */}
-                <p className="text-white text-center px-4 pb-2 ">
-                  {imageDescriptions[index]}
-                </p>
-              </div>
+                {/* Text on Hover */}
+                 <div className="absolute bottom-3 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* This space is for the hover description */}
+            <p className="text-white text-center px-4 pb-2 ">
+               {imageDescriptions[index]}
+                             </p>
+                   </div>
+
             </div>
           ))}
         </div>
