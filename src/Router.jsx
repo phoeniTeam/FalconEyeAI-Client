@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             <div className={`${styles.outerWrapperAppPages}`}>
                 <div className="flex h-screen max-md:flex-col">
                     <Sidebar />
-                    <div className="flex-grow overflow-y-auto">
+                    <div className="flex-grow scroll-container	">
                         <ScrollRestoration />
                         <Home />
                     </div>
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
             <div className={`${styles.outerWrapperAppPages}`}>
                 <div className="flex h-screen max-md:flex-col">
                     <Sidebar />
-                    <div className="flex-grow overflow-y-auto">
+                    <div className="flex-grow scroll-container">
                         <ScrollRestoration />
                         <Transformation />
                     </div>
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             <div className={`${styles.outerWrapperAppPages}`}>
                 <div className="flex h-screen max-md:flex-col">
                     <Sidebar />
-                    <div className="flex-grow overflow-y-auto">
+                    <div className="flex-grow  scroll-container">
                         <ScrollRestoration />
                         <Credit />
                     </div>
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
             <div className={`${styles.outerWrapperAppPages}`}>
                 <div className="flex h-screen max-md:flex-col">
                     <Sidebar />
-                    <div className="flex-grow overflow-y-auto">
+                    <div className="flex-grow scroll-container ">
                         <ScrollRestoration />
                         <Profile />
                     </div>

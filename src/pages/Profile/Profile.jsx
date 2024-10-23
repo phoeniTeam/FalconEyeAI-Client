@@ -6,6 +6,7 @@ import CreditIcon from "../../assets/icons/creditIcon";
 import styles from "../../styles";
 import { creationsImages } from '../../assets';
 import Modal from '../Profile/Modal';
+import ImageCard from '../../components/ImageCard.jsx';
 
 function Profile() {
   const [inputColor, setInputColor] = useState(false); 
@@ -28,12 +29,8 @@ function Profile() {
 
   return (
     <div className={styles.innerWrapper}>
-      <div className="flex items-center justify-end gap-2">
-        <CreditIcon />
-        <div className={`${styles.heading4}`}>236</div>
-      </div>
-      <div className="pt-2 px-4 flex flex-col justify-between">
-        <div className="flex gap-8 items-start">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-4">
           <div className="relative w-24 h-24 flex justify-center items-center bg-[#1d1a1a] rounded-full">
             <FaUserTie
               size={48}
@@ -41,8 +38,7 @@ function Profile() {
               onClick={() => setIsModalOpen(true)}
             />
           </div>
-
-          <div className="flex flex-col mt-2">
+          <div className="flex flex-col">
             <input
               className="bg-transparent text-white outline-none mt-1 pr-16 py-1"
               value={name}
@@ -55,14 +51,15 @@ function Profile() {
               readOnly
               placeholder="Username"
             />
-            <div className="flex gap-10 mt-3">
-              <div className="rounded-full p-1 items-center">
-                <MagicIcon />
-              </div>
-            </div>
           </div>
         </div>
+        <div className="flex items-center gap-2 mb-14">
+          <CreditIcon />
+          <div className={`${styles.heading4}`}>236</div>
+        </div>
+      </div>
 
+      <div className="flex flex-col justify-between mt-6">
         <div className="mt-10">
           <div className={`flex space-x-2 mt-4 mb-4 ${styles.paragraph1}`}>
             <span>Your</span>
@@ -73,9 +70,10 @@ function Profile() {
             <label
               onFocus={() => setInputColor(true)}
               onBlur={() => setInputColor(false)}
-              className={`flex items-center gap-2 input min-h-10 h-10 border border-grayLight outline-black
-                ${inputColor ? "bg-[#131313]" : ""} w-[38vw] rounded-full 
-               focus-within:border-grayLight focus-within:outline-none`}
+              className={`flex items-center gap-2 input min-h-10 h-10 border border-grayLight outline-black ${
+                inputColor ? "bg-[#131313]" : ""
+              } w-[38vw] rounded-full 
+              focus-within:border-grayLight focus-within:outline-none`}
             >
               <IoSearch size={24} className="text-grayLight fill-current" />
               <input
@@ -93,25 +91,14 @@ function Profile() {
         {/* Gallery Section */}
         <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-5">
           {creationsImages.map((creation, index) => (
-            <div key={index} className="relative mb-3 break-inside-avoid cursor-pointer group">
-              <img
-                className={`${styles.transition500} rounded-xl opacity-80 group-hover:opacity-100`}
-                src={creation}
-                alt={`Creation ${index + 1}`}
-              />
-              {/* Text on Hover */}
-              <div className="absolute bottom-3 bg-black bg-opacity-50 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {/* This space is for the hover description */}
-                <p className="text-white text-center px-4 pb-2 ">
-                  {imageDescriptions[index]}
-                </p>
-              </div>
-            </div>
+            <ImageCard 
+              key={index}
+              image={creation}
+              description={imageDescriptions[index]} 
+            />
           ))}
         </div>
       </div>
-
-      {/* Modal */}
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
