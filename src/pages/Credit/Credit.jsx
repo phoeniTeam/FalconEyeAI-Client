@@ -11,7 +11,6 @@ function Credit() {
 
   return (
     <div className={styles.innerWrapper}>
-      
       <div className="flex justify-between items-center">
         <div className="text-left">
           <h1 className={`${styles.heading3}`}>Buy Credit</h1>
@@ -25,7 +24,6 @@ function Credit() {
         </div>
       </div>
 
-      
       <div className="flex justify-center mt-28 space-x-6 flex-wrap gap-6 lg:ml-20">
         {/* Free Credit Package */}
         <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10 ml-5">
@@ -39,11 +37,12 @@ function Credit() {
             <p className={`${styles.paragraph2}`}>10 Credit</p>
           </span>
           <div className="flex-grow">
-            <button type="submit" className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1 ">
-              <div className="rounded-full bg-[#211f33] px-12">
-                Free
-              </div>
-            </button>
+          <button type="submit" className={styles.newGradientButton}>
+           <div className={styles.newInnerButton}>
+              Free
+             </div>
+              </button>
+
           </div>
         </div>
 
@@ -59,7 +58,7 @@ function Credit() {
             <p className={`${styles.paragraph2}`}>120 Credit</p>
           </span>
           <div className="flex-grow">
-            <button className={`${styles.primaryButton} px-12 transition-all duration-300 ease-in-out}`}>
+            <button className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
               Buy Credit
             </button>
           </div>
@@ -77,7 +76,7 @@ function Credit() {
             <p className={`${styles.paragraph2}`}>400 Credit</p>
           </span>
           <div className="flex-grow">
-            <button className={`${styles.primaryButton} px-12 transition-all duration-300 ease-in-out}`}>
+            <button className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
               Buy Credit
             </button>
           </div>
