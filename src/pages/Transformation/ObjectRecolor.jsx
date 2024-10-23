@@ -93,9 +93,9 @@ function ObjectRecolor() {
                     </div>
                 </div>
             </div>
-            <div className=" grid grid-cols-1 justify-center w-full p-2 gap-4  ">
+            <div className="w-full p-2">
                 <button
-                    className={` btn ${styles.primaryBackground} rounded-full min-h-9 h-9 border-none ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'} `}
+                    className={`btn ${styles.primaryBackground} w-full rounded-full min-h-9 h-12 border-none text-base font-normal ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'}`}
                     disabled={!isButtonActive}
                 >
                     Apply Transformation

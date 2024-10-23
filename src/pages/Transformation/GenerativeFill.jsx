@@ -141,7 +141,7 @@ function GenerativeFill() {
             </div>
             <div className="w-full p-2">
                 <button
-                    className={`btn ${styles.primaryBackground} w-full rounded-full min-h-9 h-9 border-none text-base font-normal ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'}`}
+                    className={`btn ${styles.primaryBackground} w-full rounded-full min-h-9 h-12 border-none text-base font-normal ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'}`}
                     disabled={!isButtonActive}
                 >
                     Apply Transformation
