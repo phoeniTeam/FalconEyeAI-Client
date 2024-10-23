@@ -11,19 +11,21 @@ function Credit() {
 
   return (
     <div className={styles.innerWrapper}>
-      <div className="flex items-center justify-end gap-2 ">
-        <CreditIcon  /> 
-        <div className={`${styles.heading4}`}>236</div>
+      
+      <div className="flex justify-between items-center">
+        <div className="text-left">
+          <h1 className={`${styles.heading3}`}>Buy Credit</h1>
+          <p className={`mt-2 ${styles.paragraph2}`}>
+            Choose a credit package that suits your needs!
+          </p>
+        </div>
+        <div className="flex items-center gap-2 mb-12">
+          <CreditIcon /> 
+          <div className={`${styles.heading4}`}>236</div>
+        </div>
       </div>
 
-      <div>
-        <h1 className={`${styles.heading3}`}>Buy Credit</h1>
-        <p className={`mt-4 ${styles.paragraph2}`}>
-          Choose a credit package that suits your needs!
-        </p>
-      </div>
-
-      {/* Centering the packages */}
+      
       <div className="flex justify-center mt-28 space-x-6 flex-wrap gap-6 lg:ml-20">
         {/* Free Credit Package */}
         <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10 ml-5">
@@ -53,7 +55,7 @@ function Credit() {
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Pro</p>
           <h1 className={`${styles.heading3}`}>29$</h1>
           <span className="flex space-x-2 items-center rounded-full">
-          <CustomIcon /> 
+            <CustomIcon /> 
             <p className={`${styles.paragraph2}`}>120 Credit</p>
           </span>
           <div className="flex-grow">
@@ -71,7 +73,7 @@ function Credit() {
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
           <h1 className={`${styles.heading3}`}>89$</h1>
           <span className="flex space-x-2 items-center rounded-full">
-          <CustomIcon /> 
+            <CustomIcon /> 
             <p className={`${styles.paragraph2}`}>400 Credit</p>
           </span>
           <div className="flex-grow">
