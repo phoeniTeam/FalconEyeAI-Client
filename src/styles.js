@@ -22,7 +22,7 @@ const styles = {
     primaryButton: "px-6 py-1 rounded-full bg-primary-gradient-color hover:bg-primary-gradient-color-invert text-center h-fit",
 
     // New button styles
-    newGradientButton: "text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-0.5 ${mainTransition}",
+    newGradientButton: "text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-0.5",
     newInnerButton: `rounded-full bg-[#211f33] py-0.5 px-12 ${mainTransition} hover:bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]`,
 
     primaryText: `w-fit bg-gradient-to-r from-primary via-primary to-secondary inline-block text-transparent bg-clip-text ${mainTransition}`,
