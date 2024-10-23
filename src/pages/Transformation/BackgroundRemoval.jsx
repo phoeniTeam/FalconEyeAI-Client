@@ -3,6 +3,7 @@ import styles from '../../styles';
 import Input from '../../components/input';
 import CreditIcon from '../../assets/icons/creditIcon';
 import { FaSquarePlus } from 'react-icons/fa6';
+import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 function BackgroundRemoval() {
     const [inputValue, setInputValue] = useState('');
     const isButtonActive = inputValue.trim() !== '';
@@ -29,7 +30,7 @@ function BackgroundRemoval() {
                     </div>
 
                     <div className="flex items-center justify-start gap-4">
-                        <CreditIcon />
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph2} text-white `}>
                             {' '}
                             12
