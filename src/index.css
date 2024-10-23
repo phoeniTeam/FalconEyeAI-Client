@@ -62,3 +62,16 @@ textarea {
   background: linear-gradient(to right, #333399 ,#333399,#FF00CC); 
 }
 
+
+
+@media (min-width: 1024px) and (max-width: 1119px) {
+  .flex-col-width {
+    width: 21rem; 
+  }
+}
+
+@media (min-width: 775px) and (max-width: 920px) {
+  .flex-col-lg {
+    flex-direction: column; 
+  }
+}
