@@ -3,10 +3,8 @@ const mainTransition = "transition-all duration-500 ease-in-out"
 const styles = {
     outerWrapper: "py-10 md:py-20 h-auto",
     wrapper: "max-w-[1200px] px-4 mx-auto",
-    innerWrapper: "py-8 px-9",
+    innerWrapper: "py-8 px-12",
     outerWrapperAppPages: "max-w-[1300px] mx-auto",
-    transformationWrapper: " px-9 py-8",
-    homePageWrapper: "max-w-[1200px] mx-auto flex justify-center items-center",
     footerOuterWrapper: "pt-10 md:pt-20 pb-10 sm:pb-22 md:pb-26 h-auto",
 
 

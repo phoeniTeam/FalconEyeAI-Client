@@ -132,7 +132,7 @@ function SignIn() {
                                     type="submit"
                                     className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1 "
                                 >
-                                    <div className="rounded-full bg-black p-3 font-bold transition-colors duration-500 ease-in-out   hover:bg-[#333399]">
+                                    <div className="gradient-button ">
                                         Sign In
                                     </div>
                                 </button>
