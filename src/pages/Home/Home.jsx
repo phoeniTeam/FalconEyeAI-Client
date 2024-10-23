@@ -96,7 +96,7 @@ function Home() {
                 </div>
 
                 {/* Text description */}
-                <p className="text-white text-center px-4 absolute bottom-3 p-2  bg-black bg-opacity-50 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-white text-center px-4 absolute bottom-3 p-2 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {imageDescriptions[index]}
                 </p>
               </div>
