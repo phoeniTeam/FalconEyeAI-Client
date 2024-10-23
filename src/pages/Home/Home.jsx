@@ -8,33 +8,33 @@ import ImageCard from '../../components/ImageCard.jsx'
 
 
 function Home() {
-    const [inputColor, setInputColor] = useState(false);
+  const [inputColor, setInputColor] = useState(false);
 
-    const imageDescriptions = [
-        'This is the description for image 1.',
-        'This is the description for image 2.',
-        'This is the description for image 3.',
-        'This is the description for image 4.',
-        'This is the description for image 5.',
-        'This is the description for image 6.',
-        'This is the description for image 7.',
-        'This is the description for image 8.',
-        'This is the description for image 9.',
-        'This is the description for image 10.',
-    ];
+  const imageDescriptions = [
+    "This is the description for image 1.",
+    "This is the description for image 2.",
+    "This is the description for image 3.",
+    "This is the description for image 4.",
+    "This is the description for image 5.",
+    "This is the description for image 6.",
+    "This is the description for image 7.",
+    "This is the description for image 8.",
+    "This is the description for image 9.",
+    "This is the description for image 10."
+  ];
 
-    const userNames = [
-        'User 1',
-        'User 2',
-        'User 3',
-        'User 4',
-        'User 5',
-        'User 6',
-        'User 7',
-        'User 8',
-        'User 9',
-        'User 10',
-    ];
+  const userNames = [
+    "User 1",
+    "User 2",
+    "User 3",
+    "User 4",
+    "User 5",
+    "User 6",
+    "User 7",
+    "User 8",
+    "User 9",
+    "User 10"
+  ];
 
   return (
     <div className={`px-9 flex-grow overflow-auto py-8`}>
@@ -87,7 +87,9 @@ function Home() {
             />
           ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Home;
