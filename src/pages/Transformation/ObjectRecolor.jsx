@@ -3,6 +3,7 @@ import styles from '../../styles';
 import CreditIcon from '../../assets/icons/creditIcon';
 import Input from '../../components/input';
 import { FaSquarePlus } from 'react-icons/fa6';
+import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 
 function ObjectRecolor() {
     const [imageTitle, setImageTitle] = useState('');
@@ -32,7 +33,7 @@ function ObjectRecolor() {
                         Identify and recolor objects from image
                     </div>
                     <div className="flex items-center justify-start gap-4">
-                        <CreditIcon />
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph2} text-white `}>
                             {' '}
                             12

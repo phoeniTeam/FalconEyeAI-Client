@@ -3,6 +3,7 @@ import styles from '../../styles';
 import Input from '../../components/input';
 import CreditIcon from '../../assets/icons/creditIcon';
 import { FaSquarePlus } from 'react-icons/fa6';
+import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 
 function ObjectRemoval() {
     const [imageTitle, setImageTitle] = useState('');
@@ -24,7 +25,7 @@ function ObjectRemoval() {
                         Identify and elimante objects from image
                     </div>
                     <div className="flex items-center justify-start gap-4">
-                        <CreditIcon />
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph2}`}>12</div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import styles from '../../styles';
 import CreditIcon from '../../assets/icons/creditIcon';
 import Input from '../../components/input';
 import { FaSquarePlus } from 'react-icons/fa6';
+import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 
 function ImageRestore() {
     const [inputValue, setInputValue] = useState('');
@@ -27,7 +28,7 @@ function ImageRestore() {
                         Refine images by removing noise and imperfections
                     </div>
                     <div className="flex items-center justify-start gap-4">
-                        <CreditIcon />
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph2} text-white `}>
                             12
                         </div>

@@ -4,6 +4,7 @@ import Input from '../../components/input';
 import CreditIcon from '../../assets/icons/creditIcon';
 import { FaSquarePlus } from 'react-icons/fa6';
 import { IoIosArrowDown } from 'react-icons/io';
+import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 
 function GenerativeFill() {
     const [imageTitle, setImageTitle] = useState('');
@@ -59,7 +60,7 @@ function GenerativeFill() {
                         Enhance an image's dimensions using AI outpainting
                     </div>
                     <div className="flex items-center justify-start gap-4">
-                        <CreditIcon />
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph2}`}>12</div>
                     </div>
                 </div>
