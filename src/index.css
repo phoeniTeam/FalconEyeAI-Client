@@ -36,3 +36,15 @@ textarea {
   outline: none;
   outline-color: transparent;
 }
+.scroll-container {
+  overflow-y: scroll; 
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 0; 
+  background: transparent; 
+}
+
+.scroll-container {
+  scrollbar-width: none; 
+}
