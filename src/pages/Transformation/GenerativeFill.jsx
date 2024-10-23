@@ -8,7 +8,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 function GenerativeFill() {
     const [imageTitle, setImageTitle] = useState('');
     const [selectedAspectRatio, setSelectedAspectRatio] = useState('');
-    const [dimensions, setDimensions] = useState({ width: '', height:'' }); 
+    const [dimensions, setDimensions] = useState({ width: '', height: '' });
 
     const isButtonActive =
         imageTitle.trim() !== '' && selectedAspectRatio.trim() !== '';
@@ -72,14 +72,19 @@ function GenerativeFill() {
                     onChange={(e) => setImageTitle(e.target.value)}
                 />
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="aspectRatio" className={`${styles.paragraph3}`}>
+                    <label
+                        htmlFor="aspectRatio"
+                        className={`${styles.paragraph3}`}
+                    >
                         Aspect Ratio
                     </label>
                     <div className="relative">
                         <select
                             id="aspectRatio"
                             value={selectedAspectRatio}
-                            onChange={(e) => setSelectedAspectRatio(e.target.value)}
+                            onChange={(e) =>
+                                setSelectedAspectRatio(e.target.value)
+                            }
                             className={`input input-bordered border border-grayLight 
                             focus-within:border-grayLight min-h-10 h-11 w-full outline-none 
                             focus:outline-none appearance-none text-white cursor-pointer`}
@@ -87,11 +92,17 @@ function GenerativeFill() {
                             <option value="" disabled>
                                 Select size
                             </option>
-                            {Object.entries(aspectRatioOptions).map(([key, option]) => (
-                                <option key={key} value={option.aspectRatio} className="text-grayDark">
-                                    {option.label}
-                                </option>
-                            ))}
+                            {Object.entries(aspectRatioOptions).map(
+                                ([key, option]) => (
+                                    <option
+                                        key={key}
+                                        value={option.aspectRatio}
+                                        className="text-grayDark"
+                                    >
+                                        {option.label}
+                                    </option>
+                                )
+                            )}
                         </select>
                         <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                             <IoIosArrowDown />
@@ -104,7 +115,9 @@ function GenerativeFill() {
                         <div className={`${styles.heading4}`}>Original</div>
                         <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80">
                             <div className="flex flex-col items-center gap-1">
-                                <FaSquarePlus className="h-8 w-8 text-primary " />
+                                <FaSquarePlus
+                                    className={`h-8 w-8 text-primary hover:text-secondary ${styles.transition500}}`}
+                                />
                                 <span className="text-darkWhite">
                                     Click here to upload
                                 </span>

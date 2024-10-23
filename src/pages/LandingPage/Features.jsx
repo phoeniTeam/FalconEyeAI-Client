@@ -17,7 +17,7 @@ function Features() {
                     </h2>
                 </motion.div>
 
-                <div className='flex flex-col gap-28'>
+                <div className='flex flex-col gap-20'>
                     {features.map((feature, index) => (
                         <div key={index} className={`flex flex-col gap-4 justify-between ${index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
                             <motion.div

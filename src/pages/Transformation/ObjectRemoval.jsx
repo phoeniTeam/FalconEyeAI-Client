@@ -47,7 +47,9 @@ function ObjectRemoval() {
                         <div className={`${styles.heading4}`}>Original</div>
                         <div className="flex items-center justify-center border-2 border-grayLight p-10 w-96 min-h-72 max-h-96 rounded-lg cursor-pointer flex-grow max-sm:w-80 ">
                             <div className="flex flex-col items-center gap-1">
-                                <FaSquarePlus className="h-8 w-8 text-primary " />
+                                <FaSquarePlus
+                                    className={`h-8 w-8 text-primary hover:text-secondary ${styles.transition500}}`}
+                                />
                                 <span className="text-darkWhite">
                                     Click here to upload
                                 </span>

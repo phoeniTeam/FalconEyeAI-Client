@@ -40,7 +40,7 @@ function Community() {
                                         className='rounded-full'
                                         src={review.userPhoto} alt={`${review.username} Photo`} />
                                 </div>
-                                <p className='text-darkWhite'>{review.username}</p>
+                                <p className='text-gray-400'>{review.username}</p>
                             </div>
                         </motion.div>
                     ))}
