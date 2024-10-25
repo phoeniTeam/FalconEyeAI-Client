@@ -4,24 +4,22 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import styles from '../../styles';
 import { logo } from '../../assets';
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 function SignUp() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [register, setRegister] = useState({
         username: '',
         name: '',
-        // firstName:"",
-        // lastName:"",
         email: '',
         password: '',
     });
     const [errorMessage, setErrorMessage] = useState();
-    const VITE_REGISTER_API = 'import.meta.env.VITE_REGISTER_API';
+    const VITE_REGISTER_API = import.meta.env.VITE_REGISTER_API;
     const handleChange = (e) => {
         const { name, value } = e.target;
         setRegister({
@@ -51,7 +49,7 @@ function SignUp() {
             return;
         }
         if (register.password.length < 8 || register.password.length > 20) {
-            alert('Password must be between 8 and 20 characters long');
+            // alert('Password must be between 8 and 20 characters long');
             setErrorMessage(
                 'Password must be between 8 and 20 characters long'
             );
@@ -66,20 +64,22 @@ function SignUp() {
                 name: register.name,
                 email: register.email,
                 password: register.password,
-                // photo:"",
-                // images:"",
-                // planId:"",
-                // creditBalance:"",
+                photo:"",
+                Images:[],
+                planId:1,
+                creditBalance:10,
             });
-            if (response.statusCode === 200) {
+            if (response.status === 201) {
                 alert(
                     'User registered successfully. Please login to continue.'
                 );
-                // navigate('/signin');
+                navigate('/sign-in');
             } else {
                 alert('Failed to register user. Please try again later.');
             }
         } catch (error) {
+            console.log("Failed to register user", error);
+            
             if (error.response.status === 400) {
                 setErrorMessage(error.response.data.message);
             } else {
@@ -138,7 +138,7 @@ function SignUp() {
                                     <input
                                         type="text"
                                         id="name"
-                                        value={register.fullName}
+                                        value={register.name}
                                         onChange={handleChange}
                                         name="name"
                                         placeholder="Name"
