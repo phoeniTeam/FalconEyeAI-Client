@@ -14,8 +14,8 @@ function SignIn() {
     });
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    const VITE_IOGIN_API = 'import.meta.env.VITE_IOGIN_API';
-    const USER_LOCAL_STORGE = 'import.meta.env.VITE_USER_LOCAL_STORGE';
+    const VITE_LOGIN_API = import.meta.env.VITE_LOGIN_API;
+    const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,17 +28,18 @@ function SignIn() {
     const handleSignIn = async (e) => {
         e.preventDefault();
         // handle form submission
-        console.log(signIn);
+        console.log("////////",signIn);
 
         try {
-            const response = await axios.post(VITE_IOGIN_API, {
+            const response = await axios.post(VITE_LOGIN_API, {
                 email: signIn.email,
                 password: signIn.password,
             });
             if (response.status === 200) {
                 console.log('User logged in successfully');
+                alert("Welcome")
                 localStorage.setItem(
-                    USER_LOCAL_STORGE,
+                    USER_LOCAL_STORAGE,
                     JSON.stringify(response.data)
                 );
                 // redirect home page
@@ -53,16 +54,13 @@ function SignIn() {
                 setErrorMessage('Invalid email or password');
             } else if (error.response.status === 500) {
                 setErrorMessage('Internal server error');
+            }else{
+                setErrorMessage('Failed to sign in. Please try again later.');
             }
             // display error message
         }
     };
 
-    //   useEffect(() => {
-    //     if (localStorage.getItem(USER_LOCAL_STORGE)) {
-    //         localStorage.removeItem(USER_LOCAL_STORGE);
-    //     }
-    // }, [])
 
     return (
         <div
