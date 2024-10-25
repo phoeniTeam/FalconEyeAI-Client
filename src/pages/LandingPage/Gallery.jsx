@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom'
 import { motion } from "framer-motion";
 import { revealingMotion } from '../../utils/motionSettings';
 import { creationsImages } from '../../assets';
+import useGetAllImages from '../../hooks/image/useGetAllImages'
 
 function Gallery() {
+
     return (
         <section id='gallery' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>

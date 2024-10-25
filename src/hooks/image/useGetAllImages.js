@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { gatAllCreators } from '../apis/gatAllCreators';
+import { gatAllImages } from '../../apis/image/getAllImages';
 
-const useGetAllCreators = () => {
-    const [creatorsData, setCreatorsData] = useState(null);
+const useGetAllImages = () => {
+    const [imagesData, setImagesData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchAPIData = async () => {
             try {
-                const result = await gatAllCreators();
-                setCreatorsData(result);
+                const result = await gatAllImages();
+                setImagesData(result);
             } catch (error) {
                 setError(error);
             } finally {
@@ -21,7 +21,7 @@ const useGetAllCreators = () => {
         fetchAPIData();
     }, []);
 
-    return { creatorsData, loading, error };
+    return { imagesData, loading, error };
 };
 
-export default useGetAllCreators;
+export default useGetAllImages;
