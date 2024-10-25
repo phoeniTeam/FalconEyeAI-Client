@@ -3,8 +3,8 @@ import { gatAllImages } from '../../apis/image/getAllImages';
 
 const useGetAllImages = () => {
     const [imagesData, setImagesData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loadingImagesData, setLoadingImagesData] = useState(true);
+    const [errorImagesData, setErrorImagesData] = useState(null);
 
     useEffect(() => {
         const fetchAPIData = async () => {
@@ -12,16 +12,16 @@ const useGetAllImages = () => {
                 const result = await gatAllImages();
                 setImagesData(result);
             } catch (error) {
-                setError(error);
+                setErrorImagesData(error);
             } finally {
-                setLoading(false);
+                setLoadingImagesData(false);
             }
         };
 
         fetchAPIData();
     }, []);
 
-    return { imagesData, loading, error };
+    return { imagesData, loadingImagesData, errorImagesData };
 };
 
 export default useGetAllImages;

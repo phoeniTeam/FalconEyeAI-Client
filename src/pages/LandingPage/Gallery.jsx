@@ -5,9 +5,14 @@ import { motion } from "framer-motion";
 import { revealingMotion } from '../../utils/motionSettings';
 import { creationsImages } from '../../assets';
 import useGetAllImages from '../../hooks/image/useGetAllImages'
+import useGetAllCreators from '../../hooks/image/useGetAllImages'
+import ImageCard from '../../components/ImageCard'
 
 function Gallery() {
+    const { imagesData, loadingImagesData, errorImagesData } = useGetAllImages()
+    const { creatorsData, loadingCreatorsData, errorCreatorsData } = useGetAllCreators()
 
+    // console.log(imagesData)
     return (
         <section id='gallery' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>

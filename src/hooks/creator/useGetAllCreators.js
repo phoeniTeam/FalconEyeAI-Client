@@ -3,8 +3,8 @@ import { gatAllCreators } from '../../apis/creator/gatAllCreators';
 
 const useGetAllCreators = () => {
     const [creatorsData, setCreatorsData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loadingCreatorsData, setLoadingCreatorsData] = useState(true);
+    const [errorCreatorsData, setErrorCreatorsData] = useState(null);
 
     useEffect(() => {
         const fetchAPIData = async () => {
@@ -12,16 +12,16 @@ const useGetAllCreators = () => {
                 const result = await gatAllCreators();
                 setCreatorsData(result);
             } catch (error) {
-                setError(error);
+                setErrorCreatorsData(error);
             } finally {
-                setLoading(false);
+                setLoadingCreatorsData(false);
             }
         };
 
         fetchAPIData();
     }, []);
 
-    return { creatorsData, loading, error };
+    return { creatorsData, loadingCreatorsData, errorCreatorsData };
 };
 
 export default useGetAllCreators;
