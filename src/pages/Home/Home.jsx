@@ -91,8 +91,8 @@ function Home() {
                             key={index}
                             image={creation.transformationUrl}
                             description={creation.title}
-                            userImage={creation.avatar}
-                            userName={creation.username}
+                            userImage={creation.creatorId?.photo}
+                            userName={creation.creatorId?.name}
                         />
                     ))}
                 </div>
