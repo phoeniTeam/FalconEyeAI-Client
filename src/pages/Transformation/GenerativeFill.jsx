@@ -1,49 +1,131 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
 import Input from '../../components/input';
 import CreditIcon from '../../assets/icons/creditIcon';
 import { IoIosArrowDown } from 'react-icons/io';
 import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
-import UploadAndTransformImagesBox from '../../components/UploadAndTransformImagesBox';
+import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
+import { aspectRatioOptions, transformationsTypes } from '../../constants/editorConstants'
+import { CloudinaryImage } from '@cloudinary/url-gen';
+import { fill } from "@cloudinary/url-gen/actions/resize";
+import axios from 'axios';
+import useGetCreator from '../../hooks/creator/useGetCreator'
+import { createImage } from '../../apis/image/createImage';
+import { updateCreatorCredit } from '../../apis/creator/updateCreatorCredit'
+import { calculateNewCreditBalance } from '../../utils/calculateNewCreditBalance'
 
 function GenerativeFill() {
-    const [imageTitle, setImageTitle] = useState('');
+    const { creatorData, setCreatorData, loadingCreatorData, errorCreatorData } = useGetCreator("6719364cda60d45fc38b44f1")
+
+    const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTkzNjRjZGE2MGQ0NWZjMzhiNDRmMSIsImlhdCI6MTcyOTkyOTkyOSwiZXhwIjoxNzMwMDE2MzI5fQ.PKzJuV2S7nh86Z0dxFhrd4vPU5DpXT7Tlpj6JvRXB80"
+    const transformationType = "generative-fill"
+    const transformationPrice = transformationsTypes[transformationType].price
     const [selectedAspectRatio, setSelectedAspectRatio] = useState('');
-    const [dimensions, setDimensions] = useState({ width: '', height: '' });
+    const [isProcessing, setIsProcessing] = useState(false)
+    const [image, setImage] = useState({
+        title: "",
+        transformationType: transformationType,
+        publicId: "",
+        secureURL: "",
+        width: "",
+        height: "",
+        config: "",
+        transformationUrl: "",
+        aspectRatio: "",
+        color: "",
+        prompt: "",
+        creatorId: ""
+    })
+    useEffect(() => {
+        if (loadingCreatorData) {
+            return;
+        }
 
+        if (creatorData && creatorData._id) {
+            setImage(prev => ({ ...prev, creatorId: creatorData._id }));
+        }
+    }, [creatorData, loadingCreatorData]);
     const isButtonActive =
-        imageTitle.trim() !== '' && selectedAspectRatio.trim() !== '';
+        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '';
 
-    const aspectRatioOptions = {
-        '1:1': {
-            aspectRatio: '1:1',
-            label: 'Square (1:1)',
-            width: 1000,
-            height: 1000,
-        },
-        '3:4': {
-            aspectRatio: '3:4',
-            label: 'Standard Portrait (3:4)',
-            width: 1000,
-            height: 1334,
-        },
-        '9:16': {
-            aspectRatio: '9:16',
-            label: 'Phone Portrait (9:16)',
-            width: 1000,
-            height: 1778,
-        },
-    };
 
-    const handleApplyTransform = () => {
-        const selectedOption = aspectRatioOptions[selectedAspectRatio];
-        if (selectedOption) {
-            setDimensions({
-                width: selectedOption.width,
-                height: selectedOption.height,
+    const transformImage = async () => {
+        setIsProcessing(true)
+        if (image.publicId) {
+            const myImage = new CloudinaryImage(image.publicId, {
+                cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
             });
+
+            const url = myImage.resize(fill()
+                .width(aspectRatioOptions[selectedAspectRatio].width)
+                .height(aspectRatioOptions[selectedAspectRatio].height))
+                .toURL();
+
+            await uploadTransformedImage(url);
         }
     };
+
+    const uploadTransformedImage = async (imageUrl) => {
+        try {
+            const response = await axios.get(imageUrl, { responseType: 'blob' });
+            const transformedImageBlob = response.data;
+
+            const contentType = response.headers['content-type'];
+            let fileExtension = 'jpg';
+            if (contentType.includes('png')) {
+                fileExtension = 'png';
+            }
+
+            const formData = new FormData();
+            formData.append('file', transformedImageBlob, `${image.title}.${fileExtension}`);
+            formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+
+
+            const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+            console.log('Transformed image uploaded:', uploadResponse.data);
+            setImage(prev => ({ ...prev, transformationUrl: uploadResponse.data.secure_url, aspectRatio: selectedAspectRatio, width: aspectRatioOptions[selectedAspectRatio].width, height: aspectRatioOptions[selectedAspectRatio].height }));
+
+        } catch (error) {
+            console.error('Upload failed:', error);
+        } finally {
+            setIsProcessing(false)
+        }
+    };
+
+
+    useEffect(() => {
+        if (image.transformationUrl && image.aspectRatio) {
+            saveTheImageToDatabase();
+        }
+    }, [image.transformationUrl, image.aspectRatio]);
+
+    const saveTheImageToDatabase = () => {
+        const fetchAPIData = async () => {
+            if (!image || !authToken) {
+                console.log("image or authToken is not defined")
+                return;
+            }
+            try {
+                const result = await createImage(image, authToken);
+                console.log("Image data saved:");
+                console.log(result)
+
+                const newBalance = calculateNewCreditBalance(creatorData.creditBalance, -transformationPrice)
+                updateCreatorCredit(creatorData._id, authToken, newBalance)
+                setCreatorData(prevData => ({ ...prevData, creditBalance: newBalance }));
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchAPIData();
+
+    };
+
 
     return (
         <div className={`w-full flex flex-col justify-between gap-8`}>
@@ -52,7 +134,7 @@ function GenerativeFill() {
                     <div className={`${styles.heading3}`}>Generative Fill</div>
                     <div className="flex items-center justify-start gap-2">
                         <CreditIcon />
-                        <div className={`${styles.heading4}`}>236</div>
+                        <div className={`${styles.heading4}`}>{creatorData?.creditBalance !== undefined ? creatorData.creditBalance : 0}</div>
                     </div>
                 </div>
                 <div className="flex flex-col items-start gap-1">
@@ -61,7 +143,7 @@ function GenerativeFill() {
                     </div>
                     <div className="flex items-center justify-start gap-4">
                         <SmallCreditIcon />
-                        <div className={`${styles.paragraph2}`}>12</div>
+                        <div className={`${styles.paragraph2}`}>{transformationPrice}</div>
                     </div>
                 </div>
             </div>
@@ -69,8 +151,8 @@ function GenerativeFill() {
                 <Input
                     label="Image Title"
                     id="imageTitle"
-                    value={imageTitle}
-                    onChange={(e) => setImageTitle(e.target.value)}
+                    value={image.title}
+                    onChange={(e) => setImage(prev => ({ ...prev, title: e.target.value }))}
                 />
                 <div className="flex flex-col gap-2">
                     <label
@@ -104,12 +186,16 @@ function GenerativeFill() {
                         </div>
                     </div>
                 </div>
-                <UploadAndTransformImagesBox />
+
+
+                <UploadAndTransformImagesBoxV2 image={image} setImage={setImage} isProcessing={isProcessing} />
+
             </div>
             <div className="w-full p-2">
                 <button
                     className={`btn ${styles.primaryBackground} w-full rounded-full min-h-9 h-12 border-none text-base font-normal ${isButtonActive ? styles.buttonActive : 'opacity-50 cursor-not-allowed'}`}
                     disabled={!isButtonActive}
+                    onClick={transformImage}
                 >
                     Apply Transformation
                 </button>

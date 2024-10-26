@@ -10,9 +10,7 @@ import ImageCard from '../../components/ImageCard'
 
 function Gallery() {
     const { imagesData, loadingImagesData, errorImagesData } = useGetAllImages()
-    const { creatorsData, loadingCreatorsData, errorCreatorsData } = useGetAllCreators()
 
-    // console.log(imagesData)
     return (
         <section id='gallery' className={`${styles.outerWrapper}`}>
             <div className={`${styles.wrapper}`}>
@@ -27,11 +25,18 @@ function Gallery() {
                 </motion.div>
 
                 <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 '>
-                    {creationsImages.map((creation, index) => (
-                        <motion.div key={index} className='mb-4 break-inside-avoid cursor-pointer'>
-                            <img className={`${styles.transition500} rounded-xl opacity-80 hover:opacity-100`} src={creation} alt="Photo" />
-                        </motion.div>
-                    ))}
+                    {imagesData.length > 0 ? imagesData.images.map((image, index) => (
+                        <ImageCard
+                            key={index}
+                            image={image.transformationUrl}
+                            description={image.title}
+                        // userImage={ image.creatorId.photo || ""}
+                        // userName={image.creatorId.name || ""}
+                        />
+                    ))
+                        :
+                        null
+                    }
                 </div>
 
                 <motion.div
