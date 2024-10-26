@@ -8,8 +8,8 @@ const ImageCard = ({ image, description, userImage, userName }) => {
         src={image}
         alt="Creation"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-       
+      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-between  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+
         {userImage && userName && (
           <div className="flex items-center gap-2 p-2 rounded-lg w-full">
             <img
@@ -21,8 +21,8 @@ const ImageCard = ({ image, description, userImage, userName }) => {
           </div>
         )}
 
-       
-        <p className="text-white text-center px-5 absolute bottom-3 p-2">
+
+        <p className="text-darkWhite text-xs px-5  bottom-3 p-2">
           {description}
         </p>
       </div>

@@ -21,9 +21,9 @@ function SmallCreditIcon({ width = 32, height = 32 }) {
                     y2="15.9935"
                     gradientUnits="userSpaceOnUse"
                 >
-                    <stop stop-color="#333399" />
-                    <stop offset="0.5" stop-color="#333399" />
-                    <stop offset="1" stop-color="#FF00CC" />
+                    <stop stopColor="#333399" />
+                    <stop offset="0.5" stopColor="#333399" />
+                    <stop offset="1" stopColor="#FF00CC" />
                 </linearGradient>
             </defs>
         </svg>
