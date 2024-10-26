@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ObjectRemoval from "./ObjectRemoval";
 import GenerativeFill from "./GenerativeFill";
@@ -6,9 +6,18 @@ import ImageRestore from "./ImageRestore";
 import ObjectRecolor from "./ObjectRecolor";
 import BackgroundRemoval from "./BackgroundRemoval";
 import styles from "../../styles";
+import { useNavigate } from 'react-router-dom';
 
 function Transformation() {
   const { transformationType } = useParams();
+  const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem(USER_LOCAL_STORAGE) === null) {
+      navigate('/home');
+    }
+  }, [navigate]);
 
   let ComponentToRender;
 
@@ -32,7 +41,9 @@ function Transformation() {
 
   return (
     <div className={`${styles.innerWrapper} flex-grow overflow-auto`}>
-      <ComponentToRender />
+      {localStorage.getItem(USER_LOCAL_STORAGE) !== null &&
+        <ComponentToRender />
+      }
     </div>
   );
 }

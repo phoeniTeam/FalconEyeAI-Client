@@ -13,11 +13,15 @@ import { MdHideImage } from "react-icons/md";
 import { HiMiniSquare2Stack } from "react-icons/hi2";
 import { IoClose } from "react-icons/io5";
 import BasketIcon from "../assets/icons/basketIcon";
+import { useNavigate } from 'react-router-dom';
 
 
 function Sidebar() {
+  const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
+
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const sideLinks = [
     {
@@ -67,6 +71,12 @@ function Sidebar() {
 
   const isActive = (route) => location.pathname === route;
 
+  const logout = () => {
+    localStorage.removeItem(USER_LOCAL_STORAGE);
+    navigate('/');
+  }
+
+
   return (
     <div className="flex">
       <SlMenu
@@ -98,11 +108,10 @@ function Sidebar() {
               <li key={index}>
                 <Link
                   to={link.route}
-                  className={`flex items-center gap-3 p-2 rounded-full ${
-                    isActive(link.route)
-                      ? `${styles.primaryBackground}`
-                      : "hover:underline" 
-                  }`}
+                  className={`flex items-center gap-3 p-2 rounded-full ${isActive(link.route)
+                    ? `${styles.primaryBackground}`
+                    : "hover:underline"
+                    }`}
                 >
                   {link.icon}
                   <span className={`${styles.paragraph4}`}>{link.label}</span>
@@ -115,11 +124,10 @@ function Sidebar() {
               <li key={index}>
                 <Link
                   to={link.route}
-                  className={`flex items-center gap-3 p-2 rounded-full ${
-                    isActive(link.route)
-                      ? `${styles.primaryBackground}`
-                      : "hover:underline"
-                  }`}
+                  className={`flex items-center gap-3 p-2 rounded-full ${isActive(link.route)
+                    ? `${styles.primaryBackground}`
+                    : "hover:underline"
+                    }`}
                 >
                   {link.icon}
                   <span className={`${styles.paragraph4}`}>{link.label}</span>
@@ -127,9 +135,9 @@ function Sidebar() {
               </li>
             ))}
             <li>
-              <Link
-                to="/"
-                className={`flex items-center gap-3 p-2 rounded-full group hover:text-red-700 }`}
+              <div
+                onClick={logout}
+                className={`cursor-pointer flex items-center gap-3 p-2 rounded-full group hover:text-red-700 }`}
               >
                 <RiLogoutCircleLine className="w-5 h-5 lg:w-6 lg:h-6 text-white group-hover:text-red-700" />
                 <span
@@ -138,7 +146,7 @@ function Sidebar() {
                   {" "}
                   Logout
                 </span>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>

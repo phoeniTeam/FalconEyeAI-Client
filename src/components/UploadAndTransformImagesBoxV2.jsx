@@ -20,13 +20,15 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                 if (error) {
                     console.error("Upload error:", error);
                 } else if (result && result.event === "success") {
+                    // ********************************** Change here
                     setImage(prev => ({
                         ...prev,
                         secureURL: result.info.secure_url,
                         publicId: result.info.public_id,
                     }))
-                    console.log(image.secureURL)
+                    // **********************************
                 } else if (result && result.event === "cancel") {
+                    // ********************************** Change here
                     setImage(prev => ({
                         ...prev,
                         secureURL: "",
@@ -34,6 +36,7 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                         width: "",
                         height: ""
                     }))
+                    // **********************************
                 }
             }
         );

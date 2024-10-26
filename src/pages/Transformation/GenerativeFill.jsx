@@ -13,14 +13,17 @@ import useGetCreator from '../../hooks/creator/useGetCreator'
 import { createImage } from '../../apis/image/createImage';
 import { updateCreatorCredit } from '../../apis/creator/updateCreatorCredit'
 import { calculateNewCreditBalance } from '../../utils/calculateNewCreditBalance'
+import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
+import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage'
 
 function GenerativeFill() {
-    const { creatorData, setCreatorData, loadingCreatorData, errorCreatorData } = useGetCreator("6719364cda60d45fc38b44f1")
 
-    const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MTkzNjRjZGE2MGQ0NWZjMzhiNDRmMSIsImlhdCI6MTcyOTkyOTkyOSwiZXhwIjoxNzMwMDE2MzI5fQ.PKzJuV2S7nh86Z0dxFhrd4vPU5DpXT7Tlpj6JvRXB80"
+
+    // ********************************** Change here
     const transformationType = "generative-fill"
-    const transformationPrice = transformationsTypes[transformationType].price
     const [selectedAspectRatio, setSelectedAspectRatio] = useState('');
+    // **********************************
+    const transformationPrice = transformationsTypes[transformationType].price
     const [isProcessing, setIsProcessing] = useState(false)
     const [image, setImage] = useState({
         title: "",
@@ -34,20 +37,13 @@ function GenerativeFill() {
         aspectRatio: "",
         color: "",
         prompt: "",
-        creatorId: ""
+        creatorId: getCreatorLocalStorage().creator._id
     })
-    useEffect(() => {
-        if (loadingCreatorData) {
-            return;
-        }
 
-        if (creatorData && creatorData._id) {
-            setImage(prev => ({ ...prev, creatorId: creatorData._id }));
-        }
-    }, [creatorData, loadingCreatorData]);
+    // ********************************** Change here
     const isButtonActive =
         image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '';
-
+    // **********************************
 
     const transformImage = async () => {
         setIsProcessing(true)
@@ -56,10 +52,12 @@ function GenerativeFill() {
                 cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
             });
 
+            // ********************************** Change here
             const url = myImage.resize(fill()
                 .width(aspectRatioOptions[selectedAspectRatio].width)
                 .height(aspectRatioOptions[selectedAspectRatio].height))
                 .toURL();
+            // **********************************
 
             await uploadTransformedImage(url);
         }
@@ -80,15 +78,15 @@ function GenerativeFill() {
             formData.append('file', transformedImageBlob, `${image.title}.${fileExtension}`);
             formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
-
             const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             });
 
-            console.log('Transformed image uploaded:', uploadResponse.data);
+            // ********************************** Change here
             setImage(prev => ({ ...prev, transformationUrl: uploadResponse.data.secure_url, aspectRatio: selectedAspectRatio, width: aspectRatioOptions[selectedAspectRatio].width, height: aspectRatioOptions[selectedAspectRatio].height }));
+            // **********************************
 
         } catch (error) {
             console.error('Upload failed:', error);
@@ -106,25 +104,30 @@ function GenerativeFill() {
 
     const saveTheImageToDatabase = () => {
         const fetchAPIData = async () => {
-            if (!image || !authToken) {
+            if (!image || !getCreatorLocalStorage().token) {
                 console.log("image or authToken is not defined")
                 return;
             }
             try {
-                const result = await createImage(image, authToken);
-                console.log("Image data saved:");
-                console.log(result)
+                const result = await createImage(image, getCreatorLocalStorage().token);
 
-                const newBalance = calculateNewCreditBalance(creatorData.creditBalance, -transformationPrice)
-                updateCreatorCredit(creatorData._id, authToken, newBalance)
-                setCreatorData(prevData => ({ ...prevData, creditBalance: newBalance }));
+                const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
+                updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
+                const updatedData = {
+                    creator: {
+                        ...getCreatorLocalStorage().creator,
+                        creditBalance: newBalance
+                    }
+                };
+                updateCreatorLocalStorage(updatedData);
+
             } catch (error) {
                 console.log(error)
             }
         };
         fetchAPIData();
-
     };
+
 
 
     return (
@@ -134,7 +137,7 @@ function GenerativeFill() {
                     <div className={`${styles.heading3}`}>Generative Fill</div>
                     <div className="flex items-center justify-start gap-2">
                         <CreditIcon />
-                        <div className={`${styles.heading4}`}>{creatorData?.creditBalance !== undefined ? creatorData.creditBalance : 0}</div>
+                        <div className={`${styles.heading4}`}>{getCreatorLocalStorage().creator?.creditBalance !== undefined ? getCreatorLocalStorage().creator.creditBalance : 0}</div>
                     </div>
                 </div>
                 <div className="flex flex-col items-start gap-1">

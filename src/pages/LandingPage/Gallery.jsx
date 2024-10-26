@@ -1,15 +1,25 @@
-import React from 'react'
-import styles from '../../styles'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import styles from '../../styles';
+import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import { revealingMotion } from '../../utils/motionSettings';
-import { creationsImages } from '../../assets';
-import useGetAllImages from '../../hooks/image/useGetAllImages'
-import useGetAllCreators from '../../hooks/image/useGetAllImages'
-import ImageCard from '../../components/ImageCard'
+import useGetAllImages from '../../hooks/image/useGetAllImages';
+import ImageCard from '../../components/ImageCard';
+import { PuffLoader } from 'react-spinners';
 
 function Gallery() {
-    const { imagesData, loadingImagesData, errorImagesData } = useGetAllImages()
+    const { imagesData, loadingImagesData, errorImagesData } = useGetAllImages();
+
+
+    if (loadingImagesData) {
+        return <PuffLoader color='#fff' />;
+    }
+
+    if (errorImagesData) {
+        return <div>Error fetching images: {errorImagesData.message}</div>;
+    }
+
+    const images = imagesData?.images || [];
 
     return (
         <section id='gallery' className={`${styles.outerWrapper}`}>
@@ -24,30 +34,29 @@ function Gallery() {
                     </h2>
                 </motion.div>
 
-                <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 '>
-                    {imagesData.length > 0 ? imagesData.images.map((image, index) => (
+                <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4'>
+                    {images.length > 0 ? images.map((image, index) => (
                         <ImageCard
                             key={index}
                             image={image.transformationUrl}
                             description={image.title}
-                        // userImage={ image.creatorId.photo || ""}
-                        // userName={image.creatorId.name || ""}
+                        // userImage={image.creatorId.photo}
+                        // userName={image.creatorId.name}
                         />
-                    ))
-                        :
-                        null
-                    }
+                    )) : (
+                        <div>No images available.</div>
+                    )}
                 </div>
 
                 <motion.div
                     className='mt-10 flex justify-center'
                     {...revealingMotion}
                 >
-                    <Link to={"/home"} className={`${styles.primaryButton}`} >Explore More</Link>
+                    <Link to={"/home"} className={`${styles.primaryButton}`}>Explore More</Link>
                 </motion.div>
             </div>
         </section>
-    )
+    );
 }
 
-export default Gallery
+export default Gallery;
