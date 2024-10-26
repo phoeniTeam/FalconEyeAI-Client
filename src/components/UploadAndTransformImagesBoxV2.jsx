@@ -24,9 +24,6 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                         ...prev,
                         secureURL: result.info.secure_url,
                         publicId: result.info.public_id,
-                        width: result.info.width,
-                        height: result.info.height,
-
                     }))
                     console.log(image.secureURL)
                 } else if (result && result.event === "cancel") {
@@ -45,12 +42,6 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
     const handleUpload = () => {
         widgetRef.current.open();
     };
-
-    const imageUrl = 'https://res.cloudinary.com/dyd9xxii3/image/upload/v1729936344/jw3cvpksblcgdgcm8pet.jpg';
-    const imageName = 'downloaded-image.jpg';
-
-
-
 
     const renderTransformationImage = () => {
         if (isProcessing) {
