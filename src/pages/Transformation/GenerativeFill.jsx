@@ -17,12 +17,10 @@ import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage'
 
 function GenerativeFill() {
+    const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0)
 
-
-    // ********************************** Change here
     const transformationType = "generative-fill"
     const [selectedAspectRatio, setSelectedAspectRatio] = useState('');
-    // **********************************
     const transformationPrice = transformationsTypes[transformationType].price
     const [isProcessing, setIsProcessing] = useState(false)
     const [image, setImage] = useState({
@@ -40,10 +38,8 @@ function GenerativeFill() {
         creatorId: getCreatorLocalStorage().creator._id
     })
 
-    // ********************************** Change here
     const isButtonActive =
-        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '';
-    // **********************************
+        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '' && creditBalance !== 0;
 
     const transformImage = async () => {
         setIsProcessing(true)
@@ -52,12 +48,12 @@ function GenerativeFill() {
                 cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
             });
 
-            // ********************************** Change here
             const url = myImage.resize(fill()
                 .width(aspectRatioOptions[selectedAspectRatio].width)
-                .height(aspectRatioOptions[selectedAspectRatio].height))
+                .height(aspectRatioOptions[selectedAspectRatio].height)
+                .aspectRatio(aspectRatioOptions[selectedAspectRatio].aspectRatio)
+                .gravity("auto"))
                 .toURL();
-            // **********************************
 
             await uploadTransformedImage(url);
         }
@@ -84,9 +80,7 @@ function GenerativeFill() {
                 }
             });
 
-            // ********************************** Change here
             setImage(prev => ({ ...prev, transformationUrl: uploadResponse.data.secure_url, aspectRatio: selectedAspectRatio, width: aspectRatioOptions[selectedAspectRatio].width, height: aspectRatioOptions[selectedAspectRatio].height }));
-            // **********************************
 
         } catch (error) {
             console.error('Upload failed:', error);
@@ -111,22 +105,30 @@ function GenerativeFill() {
             try {
                 const result = await createImage(image, getCreatorLocalStorage().token);
 
-                const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
-                updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
-                const updatedData = {
-                    creator: {
-                        ...getCreatorLocalStorage().creator,
-                        creditBalance: newBalance
-                    }
-                };
-                updateCreatorLocalStorage(updatedData);
-
+                await updateBalance()
             } catch (error) {
                 console.log(error)
             }
         };
         fetchAPIData();
     };
+
+    const updateBalance = async () => {
+        try {
+            const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
+            await updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
+            const updatedData = {
+                creator: {
+                    ...getCreatorLocalStorage().creator,
+                    creditBalance: newBalance
+                }
+            };
+            updateCreatorLocalStorage(updatedData);
+            setCreditBalance(newBalance)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
 
@@ -137,7 +139,7 @@ function GenerativeFill() {
                     <div className={`${styles.heading3}`}>Generative Fill</div>
                     <div className="flex items-center justify-start gap-2">
                         <CreditIcon />
-                        <div className={`${styles.heading4}`}>{getCreatorLocalStorage().creator?.creditBalance !== undefined ? getCreatorLocalStorage().creator.creditBalance : 0}</div>
+                        <div className={`${styles.heading4}`}>{creditBalance}</div>
                     </div>
                 </div>
                 <div className="flex flex-col items-start gap-1">

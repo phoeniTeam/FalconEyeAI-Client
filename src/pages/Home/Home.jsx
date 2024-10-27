@@ -32,8 +32,6 @@ function Home() {
     }, [imagesData, creatorsData]);
 
 
-    console.log(imagesWithUserInfo);
-
     useEffect(() => {
         setFilteredImagesWithUserInfo(searchForImage(searchTerm, imagesWithUserInfo));
     }, [searchTerm, imagesWithUserInfo]);

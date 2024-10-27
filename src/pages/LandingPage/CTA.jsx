@@ -7,7 +7,7 @@ import { heroImage, logoSideLight } from '../../assets';
 
 function CTA() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
-    const [userRegistered, setUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) !== null)
+    const [isUserRegistered, setIsUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) !== null)
 
     return (
         <motion.section id='cta' className={` my-10 md:my-20 bg-grayDark`}
@@ -24,7 +24,7 @@ function CTA() {
                             <img src={logoSideLight} alt="Logo" />
                         </div>
                         {
-                            userRegistered ?
+                            isUserRegistered ?
                                 (
                                     <Link to={"/home"} className={`${styles.primaryButton} w-fit shadow-md`}>Lunch App Now</Link>
                                 )
