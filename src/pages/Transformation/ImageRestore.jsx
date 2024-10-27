@@ -51,7 +51,7 @@ function ImageRestore() {
                 const url = myImage.effect(generativeRestore())
                 .effect(upscale())
                 .effect(enhance())
-                .effect(improve())
+                .adjust(improve())
                 .toURL();
   
               await uploadTransformedImage(url);

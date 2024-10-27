@@ -103,7 +103,7 @@ function BackgroundRemoval() {
 
 
     useEffect(() => {
-        if (image.secureURL && image.aspectRatio) {
+        if (image.secureURL) {
             saveTheImageToDatabase();
         }
     }, [image.secureURL]);
