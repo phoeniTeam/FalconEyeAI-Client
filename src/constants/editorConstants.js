@@ -22,5 +22,8 @@ export const aspectRatioOptions = {
 export const transformationsTypes = {
     "generative-fill": {
         price: 2
+    },
+    "image-restore": {
+        price: 1
     }
 }
