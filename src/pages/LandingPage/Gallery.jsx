@@ -35,13 +35,13 @@ function Gallery() {
                 </motion.div>
 
                 <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4'>
-                    {images.length > 0 ? images.map((image, index) => (
+                    {images.length > 0 ? images.slice(0, 8).map((image, index) => (
                         <ImageCard
                             key={index}
                             image={image.transformationUrl}
                             description={image.title}
-                        // userImage={image.creatorId.photo}
-                        // userName={image.creatorId.name}
+                            userImage={image.creatorId?.photo}
+                            userName={image.creatorId?.name}
                         />
                     )) : (
                         <div>No images available.</div>

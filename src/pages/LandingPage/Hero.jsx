@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles'
 import { catImage, purpleFlowerImage, lamobCarImage, moonImage, heroImage } from '../../assets'
 import { Link } from 'react-router-dom'
@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 import { revealingMotion } from '../../utils/motionSettings';
 
 function Hero() {
+    const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
+    const [userRegistered, setUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) !== null)
+
     return (
         <motion.section className={`${styles.outerWrapper}`}
             {...revealingMotion}
@@ -19,7 +22,16 @@ function Hero() {
                             <h1 className={`${styles.heroHeading}`}>Alter, Creativity!</h1>
                             <p className='mt-4 mb-8'>Leverage AI with a suite of tools to modify
                                 your desgin with a few clicks!</p>
-                            <Link to={"/home"} className={`${styles.primaryButton} shadow-md`}>Lunch App</Link>
+                            {
+                                userRegistered ?
+                                    (
+                                        <Link to={"/home"} className={`${styles.primaryButton} shadow-md`}>Lunch App</Link>
+                                    )
+                                    :
+                                    (
+                                        <Link to={"/sign-up"} className={`${styles.primaryButton} shadow-md`}>Get Started</Link>
+                                    )
+                            }
                         </div>
 
                         <div className='relative px-4 flex justify-center'>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles'
 import { Link } from 'react-router-dom'
 import { motion } from "framer-motion";
@@ -6,6 +6,9 @@ import { revealingMotion } from '../../utils/motionSettings';
 import { heroImage, logoSideLight } from '../../assets';
 
 function CTA() {
+    const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
+    const [userRegistered, setUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) !== null)
+
     return (
         <motion.section id='cta' className={` my-10 md:my-20 bg-grayDark`}
             {...revealingMotion}
@@ -20,7 +23,16 @@ function CTA() {
                         <div className='mt-4 mb-10 max-w-[200px] sm:max-w-[300px]'>
                             <img src={logoSideLight} alt="Logo" />
                         </div>
-                        <Link to={"/home"} className={`${styles.primaryButton} w-fit`} >Lunch App Now</Link>
+                        {
+                            userRegistered ?
+                                (
+                                    <Link to={"/home"} className={`${styles.primaryButton} w-fit shadow-md`}>Lunch App Now</Link>
+                                )
+                                :
+                                (
+                                    <Link to={"/sign-up"} className={`${styles.primaryButton} w-fit shadow-md`}>Get Started Now</Link>
+                                )
+                        }
                     </div>
                 </div>
 

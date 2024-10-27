@@ -9,6 +9,9 @@ import { motion } from "framer-motion";
 import { revealingMotion } from '../utils/motionSettings';
 
 function Navbar() {
+  const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
+  const [userRegistered, setUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) === null)
+
   const [toggleMobileNav, setToggleMobileNav] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const mobileNavRef = useRef(null);
@@ -84,8 +87,16 @@ function Navbar() {
             </a>
           ))}
         </div>
-
-        <Link to={"/home"} className={`${styles.primaryButton}`} onClick={handleLinkClick}>Launch App</Link>
+        {
+          userRegistered ?
+            (
+              <Link to={"/home"} className={`${styles.primaryButton} shadow-md`} onClick={handleLinkClick}>Lunch App</Link>
+            )
+            :
+            (
+              <Link to={"/sign-up"} className={`${styles.primaryButton} shadow-md`} onClick={handleLinkClick}>Get Started</Link>
+            )
+        }
       </div>
     </motion.div>
   );
