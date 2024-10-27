@@ -13,16 +13,14 @@ import { calculateNewCreditBalance } from '../../utils/calculateNewCreditBalance
 import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
 import axios from 'axios';
 import { CloudinaryImage } from '@cloudinary/url-gen';
-import { fill } from "@cloudinary/url-gen/actions/resize";
 import { generativeRestore,upscale,enhance } from '@cloudinary/url-gen/actions/effect';
 import { improve } from '@cloudinary/url-gen/actions/adjust';
 
 function ImageRestore() {
-    const [inputValue, setInputValue] = useState('');
       const transformationType = "image-restore"
-
       const transformationPrice = transformationsTypes[transformationType].price
       const [isProcessing, setIsProcessing] = useState(false)
+      const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0)
       const [image, setImage] = useState({
           title: "",
           transformationType: transformationType,
@@ -38,9 +36,12 @@ function ImageRestore() {
           creatorId: getCreatorLocalStorage().creator._id
       })
   
-      const isButtonActive =
-          image.title.trim() !== '' && image.secureURL !== '';
-  
+        const isButtonActive =
+            image.title.trim() !== '' &&
+            image.secureURL !== '' &&
+            creditBalance > 0 &&
+            !isProcessing;
+          
       const transformImage = async () => {
           setIsProcessing(true)
           if (image.publicId) {
@@ -90,7 +91,6 @@ function ImageRestore() {
           }
       };
   
-  
       useEffect(() => {
           if (image.transformationUrl) {
               saveTheImageToDatabase();
@@ -115,6 +115,7 @@ function ImageRestore() {
                       }
                   };
                   updateCreatorLocalStorage(updatedData);
+                  setCreditBalance(newBalance);
   
               } catch (error) {
                   console.log(error)

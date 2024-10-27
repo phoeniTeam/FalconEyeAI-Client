@@ -55,5 +55,8 @@ export const transformationsTypes = {
     },
     "image-restore": {
         price: 1
-    }
+    },
+    "object-removal": {
+        price: 2
+    },
 }
