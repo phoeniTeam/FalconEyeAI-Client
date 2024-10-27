@@ -103,7 +103,7 @@ function BackgroundRemoval() {
 
 
     useEffect(() => {
-        if (image.secureURL && image.aspectRatio) {
+        if (image.secureURL) {
             saveTheImageToDatabase();
         }
     }, [image.secureURL]);
@@ -116,6 +116,7 @@ function BackgroundRemoval() {
             }
             try {
                 const result = await createImage(image, getCreatorLocalStorage().token);
+
 
                 const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
                 updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
