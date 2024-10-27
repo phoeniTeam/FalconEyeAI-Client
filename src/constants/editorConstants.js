@@ -23,6 +23,9 @@ export const transformationsTypes = {
     "generative-fill": {
         price: 2
     },
+     "object-recolor": {
+        price: 4
+    },
     "e_background_removal": {
         price: 2
     },
