@@ -35,7 +35,7 @@ function Gallery() {
                 </motion.div>
 
                 <div className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4'>
-                    {images.length > 0 ? images.map((image, index) => (
+                    {images.length > 0 ? images.slice(0, 8).map((image, index) => (
                         <ImageCard
                             key={image._id}
                             image={image.transformationUrl}

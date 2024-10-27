@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { navbarLinks } from '../constants/navbarConstants'
 import { motion } from "framer-motion";
 import { toTopMotion } from '../utils/motionSettings';
+import { FaDiscord } from 'react-icons/fa'
 
 function Footer() {
   return (
@@ -19,10 +20,21 @@ function Footer() {
             <img className='h-full' src={logoTitle} alt="Logo" />
           </Link>
 
-          <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
-            {navbarLinks.map((link, index) => (
-              <a key={index} className={`${styles.primaryTextOnHover}`} href={`#${link.id}`}>{link.title}</a>
-            ))}
+
+          <div className='flex items-center gap-6'>
+            <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
+              <a className={`${styles.primaryTextOnHover}`} target='_blank' href={`https://www.discord.com/`}>Discord</a>
+              <a className={`${styles.primaryTextOnHover}`} target='_blank' href={`https://www.reddit.com/`}>Reddit</a>
+            </div>
+            <div className='text-grayLight hidden sm:inline-block'>
+              |
+            </div>
+            <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
+              {navbarLinks.map((link, index) => (
+                <a key={index} className={`${styles.primaryTextOnHover}`} href={`#${link.id}`}>{link.title}</a>
+              ))}
+            </div>
+
           </div>
         </div>
 
