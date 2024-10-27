@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 function SignIn() {
     const [signIn, setSignIn] = useState({
         email: '',
@@ -28,7 +28,6 @@ function SignIn() {
     const handleSignIn = async (e) => {
         e.preventDefault();
         // handle form submission
-        console.log("////////",signIn);
 
         try {
             const response = await axios.post(VITE_LOGIN_API, {
@@ -37,8 +36,29 @@ function SignIn() {
             });
             if (response.status === 200) {
                 console.log('User logged in successfully');
-                alert("Welcome")
-                localStorage.setItem(
+               
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+               
+
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                  });
+                  Toast.fire({
+                    icon: "success",
+                    title: 'Welcome Back!',
+                    // background:"black",
+                    // color:"white",
+
+                 
+                  });
+                           localStorage.setItem(
                     USER_LOCAL_STORAGE,
                     JSON.stringify(response.data)
                 );
