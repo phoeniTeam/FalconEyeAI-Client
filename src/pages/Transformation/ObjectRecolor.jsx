@@ -6,6 +6,8 @@ import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { generativeRecolor } from "@cloudinary/url-gen/actions/effect";
+import { improve } from '@cloudinary/url-gen/actions/adjust';
+import { enhance } from '@cloudinary/url-gen/actions/effect';
 import axios from 'axios';
 import { createImage } from '../../apis/image/createImage';
 import { updateCreatorCredit } from '../../apis/creator/updateCreatorCredit';
@@ -48,9 +50,11 @@ function ObjectRecolor() {
                     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
                 });
 
-                const url = myImage.effect(
-                    generativeRecolor(objectName, colors)
-                ).toURL();
+                const url = myImage
+                .effect(generativeRecolor(objectName, colors))  
+                .effect(enhance())
+                .adjust(improve())
+                .toURL();
                 console.log('Generated URL:', url); 
                 await uploadTransformedImage(url);
 
