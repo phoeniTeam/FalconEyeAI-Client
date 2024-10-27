@@ -25,5 +25,8 @@ export const transformationsTypes = {
     },
     "e_background_removal": {
         price: 2
+    },
+    "image-restore": {
+        price: 1
     }
 }
