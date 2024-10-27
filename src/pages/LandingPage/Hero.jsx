@@ -7,7 +7,7 @@ import { revealingMotion } from '../../utils/motionSettings';
 
 function Hero() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE
-    const [userRegistered, setUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) !== null)
+    const [isUserRegistered, setIsUserRegistered] = useState(localStorage.getItem(USER_LOCAL_STORAGE) !== null)
 
     return (
         <motion.section className={`${styles.outerWrapper}`}
@@ -23,10 +23,8 @@ function Hero() {
                             <p className='mt-4 mb-8'>Leverage AI with a suite of tools to modify
                                 your desgin with a few clicks!</p>
                             {
-                                userRegistered ?
-                                    (
-                                        <Link to={"/home"} className={`${styles.primaryButton} shadow-md`}>Lunch App</Link>
-                                    )
+                                isUserRegistered ?
+                                    null
                                     :
                                     (
                                         <Link to={"/sign-up"} className={`${styles.primaryButton} shadow-md`}>Get Started</Link>
