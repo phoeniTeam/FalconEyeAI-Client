@@ -2,7 +2,7 @@ import styles from '../../styles';
 import { logo } from '../../assets';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -74,6 +74,11 @@ function SignIn() {
         }
     };
 
+    useEffect(() => {
+        setErrorMessage("")
+
+        
+    },[ signIn.email, signIn.password])
     return (
         <div
             className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}

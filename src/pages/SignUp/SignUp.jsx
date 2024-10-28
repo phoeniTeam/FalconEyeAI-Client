@@ -3,7 +3,7 @@ import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import styles from '../../styles';
 import { logo } from '../../assets';
-import { useState } from 'react';
+import { useEffect, useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegUser } from 'react-icons/fa';
@@ -104,7 +104,11 @@ function SignUp() {
             }
         }
     };
+    useEffect(() => {
+        setErrorMessage("")
 
+        
+    },[register.name, register.username, register.email, register.password])
     return (
         <div
             className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}
