@@ -17,13 +17,11 @@ import { improve } from '@cloudinary/url-gen/actions/adjust';
 import { enhance } from '@cloudinary/url-gen/actions/effect';
 
 function ObjectRecolor() {
-
-    const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0)
     const transformationType = "object-recolor";
     const transformationPrice = transformationsTypes[transformationType].price;
-    
 
     const [isProcessing, setIsProcessing] = useState(false);
+    const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0);
     const [image, setImage] = useState({
         title: "",
         transformationType: transformationType,
@@ -39,31 +37,32 @@ function ObjectRecolor() {
         prompt: "",
         creatorId: getCreatorLocalStorage().creator._id
     });
+
     const isButtonActive = 
-    image.title.trim() !== '' && 
-    image.objectName.trim() !== '' && 
-    image.color.trim() !== '' && 
-    image.secureURL !== '';
+        image.title.trim() !== '' && 
+        image.objectName.trim() !== '' && 
+        image.color.trim() !== '' && 
+        image.secureURL !== '' &&
+        creditBalance > 0 &&
+        !isProcessing;
 
     const transformImage = async () => {
         setIsProcessing(true);
         if (image.publicId) {
-                const myImage = new CloudinaryImage(image.publicId, {
-                    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-                });
+            const myImage = new CloudinaryImage(image.publicId, {
+                cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+            });
 
-                const url = myImage
-                    .effect(generativeRecolor(image.objectName, image.color))
-                    .effect(enhance())
-                    .adjust(improve())
-                    .toURL();
+            const url = myImage
+                .effect(generativeRecolor(image.objectName, image.color))
+                .effect(enhance())
+                .adjust(improve())
+                .toURL();
 
-                await uploadTransformedImage(url);
-           
+            await uploadTransformedImage(url);
         }
     };
 
-  
     const uploadTransformedImage = async (imageUrl) => {
         try {
             const response = await axios.get(imageUrl, { responseType: 'blob' });
@@ -79,11 +78,15 @@ function ObjectRecolor() {
             formData.append('file', transformedImageBlob, `${image.title}.${fileExtension}`);
             formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
-            const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData, {
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
+            const uploadResponse = await axios.post(
+                `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
+                formData,
+                {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
                 }
-            });
+            );
 
             setImage(prev => ({
                 ...prev,
@@ -107,38 +110,28 @@ function ObjectRecolor() {
     const saveTheImageToDatabase = () => {
         const fetchAPIData = async () => {
             if (!image || !getCreatorLocalStorage().token) {
-                console.log("image or authToken is not defined")
+                console.log("image or authToken is not defined");
                 return;
             }
             try {
                 const result = await createImage(image, getCreatorLocalStorage().token);
 
-                await updateBalance()
+                const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice);
+                updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance);
+                const updatedData = {
+                    creator: {
+                        ...getCreatorLocalStorage().creator,
+                        creditBalance: newBalance
+                    }
+                };
+                updateCreatorLocalStorage(updatedData);
+                setCreditBalance(newBalance);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         };
         fetchAPIData();
     };
-
-    const updateBalance = async () => {
-        try {
-            const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
-            await updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
-            const updatedData = {
-                creator: {
-                    ...getCreatorLocalStorage().creator,
-                    creditBalance: newBalance
-                }
-            };
-            updateCreatorLocalStorage(updatedData);
-            setCreditBalance(newBalance)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-
 
     return (
         <div className="w-full flex flex-col justify-between gap-8">
@@ -154,7 +147,7 @@ function ObjectRecolor() {
                     <div className={`${styles.paragraph2} text-white`}>Identify and recolor objects from image</div>
                     <div className="flex items-center justify-start gap-4">
                         <SmallCreditIcon />
-                            <div className={`${styles.paragraph2}`}>{transformationPrice}</div>
+                        <div className={`${styles.paragraph2}`}>{transformationPrice}</div>
                     </div>
                 </div>
             </div>
