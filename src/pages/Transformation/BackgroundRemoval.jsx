@@ -117,6 +117,7 @@ function BackgroundRemoval() {
             try {
                 const result = await createImage(image, getCreatorLocalStorage().token);
 
+
                 const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
                 updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
                 const updatedData = {

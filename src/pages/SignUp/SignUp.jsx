@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 function SignUp() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -70,12 +72,28 @@ function SignUp() {
                 creditBalance:10,
             });
             if (response.status === 201) {
-                alert(
-                    'User registered successfully. Please login to continue.'
-                );
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                  
+                    didOpen: (toast) => {
+                      toast.onmouseenter = Swal.stopTimer;
+                      toast.onmouseleave = Swal.resumeTimer;
+                    }
+                  });
+                  Toast.fire({
+                    icon: "success",
+                    title: "Thank you for signing up",
+                    background:"black",
+                    color:"white",
+                  });
+                  
                 navigate('/sign-in');
             } else {
-                alert('Failed to register user. Please try again later.');
+                setErrorMessage('Failed to register user. Please try again later.');
             }
         } catch (error) {
             console.log("Failed to register user", error);
@@ -185,9 +203,9 @@ function SignUp() {
                             <div className="flex flex-col">
                                 <div className="pt-5"></div>
                                 {errorMessage && (
-                                    <div className="text-white text-sm">
-                                        {errorMessage}
-                                    </div>
+                                     <p className="text-red-500 text-xs">
+                                     {errorMessage}
+                                 </p>
                                 )}
                                 <button
                                     type="submit"
