@@ -4,48 +4,61 @@ import { FaFilter } from 'react-icons/fa6';
 import { IoSearch } from 'react-icons/io5';
 import ImageCard from '../../components/ImageCard.jsx';
 import useGetAllImages from '../../hooks/image/useGetAllImages.js';
-import useGetAllCreators from '../../hooks/creator/useGetAllCreators.js';
 import searchForImage from '../../utils/searchForTerm.js';
+import Filter from '../../components/Filter.jsx';
 
 function Home() {
     const [inputColor, setInputColor] = useState(false);
     const { imagesData, loadingImagesData, errorImagesData } = useGetAllImages();
-    const { creatorsData, loadingCreatorsData, errorCreatorsData } = useGetAllCreators();
     const [imagesWithUserInfo, setImagesWithUserInfo] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredImagesWithUserInfo, setFilteredImagesWithUserInfo] = useState([]);
-
+    const [filterType, setFilterType] = useState('');
+    const transformationMap = {
+        'All': null, 
+        'Image-Restore': 'image-restore',
+        'Generative-Fill': 'generative-fill', 
+        'Object-Removal': 'object-removal',   
+        'Object-Recolor': 'object-recolor',
+        'Background-Removal': 'e_background_removal',
+    };
 
     useEffect(() => {
-        if (imagesData && creatorsData) {
-            const combinedData = imagesData.images.map((image) => {
-                const creator = creatorsData.find(user => user._id === image.creatorId);
-                return {
-                    ...image,
-                    username: creator?.name || 'Unknown User',
-                    avatar: creator?.photo || 'https://via.placeholder.com/150',
-                };
-            });
-            setImagesWithUserInfo(combinedData);
-            setFilteredImagesWithUserInfo(combinedData);
+        if (imagesData && imagesData.images) {
+            setImagesWithUserInfo(imagesData.images);
+            setFilteredImagesWithUserInfo(imagesData.images);
         }
-    }, [imagesData, creatorsData]);
-
+    }, [imagesData]);
 
     useEffect(() => {
-        setFilteredImagesWithUserInfo(searchForImage(searchTerm, imagesWithUserInfo));
-    }, [searchTerm, imagesWithUserInfo]);
+        const searchedImages = searchForImage(searchTerm, imagesWithUserInfo);
+        
+        const dbValue = transformationMap[filterType];
+        
+        const filteredImages = dbValue && dbValue !== 'All'
+            ? searchedImages.filter(image => {
+                return image.transformationType.toLowerCase() === dbValue;
+            })
+            : searchedImages;
+    
+        setFilteredImagesWithUserInfo(filteredImages);
+    }, [searchTerm, imagesWithUserInfo, filterType]);
+    
+    
 
+    const handleFilterChange = (type) => {
+        setFilterType(type);
+    };
 
-    if (loadingImagesData || loadingCreatorsData) {
+    if (loadingImagesData ) {
         return <div>Loading...</div>;
     }
 
-    if (errorImagesData || errorCreatorsData) {
+    if (errorImagesData ) {
         return <div>Error loading data</div>;
     }
     return (
-        <div className={`px-9 flex-grow overflow-auto py-8`}>
+        <div className={`px-9 flex-grow py-8`}>
             <div className="w-full flex flex-col justify-between">
                 <div className={`${styles.heading1} text-center`}>
                     Unleash Your Creativity <br />
@@ -67,7 +80,10 @@ function Home() {
                             onBlur={() => setInputColor(false)}
                             className={`flex items-center gap-2 input min-h-10 h-10 border border-grayLight outline-black ${inputColor ? 'bg-[#131313]' : ''} w-[55vw] lg:w-[38vw] rounded-full focus-within:border-grayLight focus-within:outline-none`}
                         >
-                            <IoSearch size={24} className="text-grayLight fill-current" />
+                            <IoSearch
+                                size={24}
+                                className="text-grayLight fill-current"
+                            />
                             <input
                                 type="search"
                                 placeholder="Search..."
@@ -76,9 +92,9 @@ function Home() {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </label>
-                        <div className="btn btn-circle border-none bg-[#131313] hover:bg-[#131313] min-h-10 h-10 w-10 ">
-                            <FaFilter className="text-grayLight w-5 h-5" />
-                        </div>
+                        <Filter
+                            onFilterChange={handleFilterChange}
+                        />
                     </div>
                 </div>
 

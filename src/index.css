@@ -38,6 +38,7 @@ textarea {
 }
 .scroll-container {
   overflow-y: scroll; 
+  min-height: h-screen;
 }
 
 .scroll-container::-webkit-scrollbar {
