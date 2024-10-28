@@ -10,7 +10,6 @@ import { FaRegUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-
 function SignUp() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const navigate = useNavigate();
@@ -38,7 +37,6 @@ function SignUp() {
             register.password.trim() === ''
         ) {
             {
-                // alert("All fields are required");
                 return;
             }
         }
@@ -51,7 +49,6 @@ function SignUp() {
             return;
         }
         if (register.password.length < 8 || register.password.length > 20) {
-            // alert('Password must be between 8 and 20 characters long');
             setErrorMessage(
                 'Password must be between 8 and 20 characters long'
             );
@@ -66,38 +63,38 @@ function SignUp() {
                 name: register.name,
                 email: register.email,
                 password: register.password,
-                photo:"",
-                Images:[],
-                planId:1,
-                creditBalance:10,
+                photo: '',
+                Images: [],
+                planId: 1,
+                creditBalance: 10,
             });
             if (response.status === 201) {
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: "top-end",
+                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
-                  
+
                     didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    }
-                  });
-                  Toast.fire({
-                    icon: "success",
-                    title: "Thank you for signing up",
-                    background:"black",
-                    color:"white",
-                  });
-                  
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Thank you for signing up',
+                });
+
                 navigate('/sign-in');
             } else {
-                setErrorMessage('Failed to register user. Please try again later.');
+                setErrorMessage(
+                    'Failed to register user. Please try again later.'
+                );
             }
         } catch (error) {
-            console.log("Failed to register user", error);
-            
+            console.log('Failed to register user', error);
+
             if (error.response.status === 400) {
                 setErrorMessage(error.response.data.message);
             } else {
@@ -203,17 +200,15 @@ function SignUp() {
                             <div className="flex flex-col">
                                 <div className="pt-5"></div>
                                 {errorMessage && (
-                                     <p className="text-red-500 text-xs">
-                                     {errorMessage}
-                                 </p>
+                                    <p className="text-red-500 text-xs">
+                                        {errorMessage}
+                                    </p>
                                 )}
                                 <button
                                     type="submit"
                                     className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1  "
                                 >
-                                    <div
-                                        className={`gradient-button`}
-                                    >
+                                    <div className={`gradient-button`}>
                                         Sign Up
                                     </div>
                                 </button>
