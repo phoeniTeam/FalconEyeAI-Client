@@ -61,7 +61,7 @@ function Navbar() {
           {
             isUserRegistered ?
               (
-                <Link to={"/home"} className={`${styles.primaryButton} shadow-md`} onClick={handleLinkClick}>Lunch App</Link>
+                <Link to={"/sign-in"} className={`${styles.primaryButton} shadow-md`} onClick={handleLinkClick}>Lunch App</Link>
               )
               :
               (

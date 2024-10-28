@@ -26,7 +26,7 @@ function CTA() {
                         {
                             isUserRegistered ?
                                 (
-                                    <Link to={"/home"} className={`${styles.primaryButton} w-fit shadow-md`}>Lunch App Now</Link>
+                                    <Link to={"/sign-in"} className={`${styles.primaryButton} w-fit shadow-md`}>Lunch App Now</Link>
                                 )
                                 :
                                 (
