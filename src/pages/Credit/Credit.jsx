@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "../../styles";
 import { TbJewishStarFilled } from "react-icons/tb";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { IoDiamond } from "react-icons/io5";
 import CreditIcon from "../../assets/icons/creditIcon.jsx";
 import CustomIcon from '../../assets/icons/CustomIcon.jsx'; 
+import { getUserInfo } from '../../utils/getUserInfo'; 
 
 function Credit() {
+  const [creditBalance, setCreditBalance] = useState(0);
   const iconSize = 28;
+
+  const fetchUserCredit = async () => {
+    try {
+      const { creditBalance: localCreditBalance } = getUserInfo(); 
+      setCreditBalance(localCreditBalance);
+    } catch (err) {
+      console.error('Failed to fetch user credit:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserCredit();
+  }, []);
 
   return (
     <div className={styles.innerWrapper}>
@@ -20,7 +35,7 @@ function Credit() {
         </div>
         <div className="flex items-center gap-2 mb-12">
           <CreditIcon /> 
-          <div className={`${styles.heading4}`}>236</div>
+          <div className={`${styles.heading4}`}>{creditBalance}</div>
         </div>
       </div>
 
@@ -37,12 +52,9 @@ function Credit() {
             <p className={`${styles.paragraph2}`}>10 Credit</p>
           </span>
           <div className="flex-grow">
-          <button type="submit" className={styles.newGradientButton}>
-           <div className={styles.newInnerButton}>
-              Free
-             </div>
-              </button>
-
+            <button type="submit" className={styles.newGradientButton}>
+              <div className={styles.newInnerButton}>Free</div>
+            </button>
           </div>
         </div>
 

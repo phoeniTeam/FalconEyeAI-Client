@@ -17,8 +17,11 @@ import { improve } from '@cloudinary/url-gen/actions/adjust';
 import { enhance } from '@cloudinary/url-gen/actions/effect';
 
 function ObjectRecolor() {
+
+    const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0)
     const transformationType = "object-recolor";
     const transformationPrice = transformationsTypes[transformationType].price;
+    
 
     const [isProcessing, setIsProcessing] = useState(false);
     const [image, setImage] = useState({
@@ -45,7 +48,6 @@ function ObjectRecolor() {
     const transformImage = async () => {
         setIsProcessing(true);
         if (image.publicId) {
-            try {
                 const myImage = new CloudinaryImage(image.publicId, {
                     cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
                 });
@@ -57,30 +59,31 @@ function ObjectRecolor() {
                     .toURL();
 
                 await uploadTransformedImage(url);
-            } catch (error) {
-                console.error('Transformation error:', error);
-            }
-        } else {
-            console.error('No publicId found in image state.');
+           
         }
     };
 
+  
     const uploadTransformedImage = async (imageUrl) => {
         try {
             const response = await axios.get(imageUrl, { responseType: 'blob' });
             const transformedImageBlob = response.data;
+
             const contentType = response.headers['content-type'];
-            const fileExtension = contentType.includes('png') ? 'png' : 'jpg';
+            let fileExtension = 'jpg';
+            if (contentType.includes('png')) {
+                fileExtension = 'png';
+            }
 
             const formData = new FormData();
             formData.append('file', transformedImageBlob, `${image.title}.${fileExtension}`);
             formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
-            const uploadResponse = await axios.post(
-                `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
-                formData,
-                { headers: { 'X-Requested-With': 'XMLHttpRequest' } }
-            );
+            const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
 
             setImage(prev => ({
                 ...prev,
@@ -101,19 +104,27 @@ function ObjectRecolor() {
         }
     }, [image.transformationUrl]);
 
-    const saveTheImageToDatabase = async () => {
-        if (!image || !getCreatorLocalStorage().token) {
-            console.log("image or authToken is not defined");
-            return;
-        }
-        try {
-            const result = await createImage(image, getCreatorLocalStorage().token);
-            const newBalance = calculateNewCreditBalance(
-                getCreatorLocalStorage().creator.creditBalance,
-                -transformationPrice
-            );
-            await updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance);
+    const saveTheImageToDatabase = () => {
+        const fetchAPIData = async () => {
+            if (!image || !getCreatorLocalStorage().token) {
+                console.log("image or authToken is not defined")
+                return;
+            }
+            try {
+                const result = await createImage(image, getCreatorLocalStorage().token);
 
+                await updateBalance()
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchAPIData();
+    };
+
+    const updateBalance = async () => {
+        try {
+            const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
+            await updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
             const updatedData = {
                 creator: {
                     ...getCreatorLocalStorage().creator,
@@ -121,10 +132,13 @@ function ObjectRecolor() {
                 }
             };
             updateCreatorLocalStorage(updatedData);
+            setCreditBalance(newBalance)
         } catch (error) {
-            console.log('Error saving image to database:', error);
+            console.log(error)
         }
-    };
+    }
+
+
 
     return (
         <div className="w-full flex flex-col justify-between gap-8">
@@ -133,16 +147,14 @@ function ObjectRecolor() {
                     <div className={`${styles.heading3} text-white`}>Object Recolor</div>
                     <div className="flex items-center justify-start gap-2">
                         <CreditIcon />
-                        <div className={`${styles.heading4} text-white`}>
-                            {getCreatorLocalStorage()?.creator?.creditBalance || 0}
-                        </div>
+                        <div className={`${styles.heading4}`}>{creditBalance}</div>
                     </div>
                 </div>
                 <div className="flex flex-col items-start gap-1">
                     <div className={`${styles.paragraph2} text-white`}>Identify and recolor objects from image</div>
                     <div className="flex items-center justify-start gap-4">
                         <SmallCreditIcon />
-                        <div className={`${styles.paragraph2} text-white`}>{transformationPrice}</div>
+                            <div className={`${styles.paragraph2}`}>{transformationPrice}</div>
                     </div>
                 </div>
             </div>
