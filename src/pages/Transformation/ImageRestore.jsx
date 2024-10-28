@@ -135,7 +135,7 @@ function ImageRestore() {
                         <CreditIcon />
 
                         <div className={`${styles.heading4} text-white `}>
-                            {getCreatorLocalStorage().creator?.creditBalance !== undefined ? getCreatorLocalStorage().creator.creditBalance : 0}
+                            {creditBalance}
                         </div>
                     </div>
                 </div>
