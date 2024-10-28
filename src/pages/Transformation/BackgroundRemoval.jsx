@@ -12,21 +12,16 @@ import { calculateNewCreditBalance } from '../../utils/calculateNewCreditBalance
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage'
 import { transformationsTypes } from '../../constants/editorConstants'
+import { backgroundRemoval } from "@cloudinary/url-gen/actions/effect";
+import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
 
-function BackgroundRemoval() {
 
-    // const [publicId, setPublicId] = useState("");
-    // const [transformedPublicId, setTransformedPublicId] = useState("");
-    // const [loading, setLoading] = useState(false);
-    // const handleUpload = (uploadPublicId)=>{
-    //     setPublicId(uploadPublicId);
-    //     setTransformedPublicId("");
-
-    // }
-    
+function BackgroundRemoval() {   
     const transformationType = "e_background_removal"
     const transformationPrice = transformationsTypes[transformationType].price
     const [isProcessing, setIsProcessing] = useState(false)
+    const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0)
+
     const [image, setImage] = useState({
         title: "",
         transformationType: transformationType,
@@ -42,30 +37,13 @@ function BackgroundRemoval() {
         creatorId: getCreatorLocalStorage().creator._id
     })
 
-    const isButtonActive =  image.title.trim() !== '' && image.secureURL !== '';
+    const isButtonActive = 
+     image.title.trim() !== '' && 
+     image.secureURL !== ''&&
+     creditBalance > 0 &&
+     !isProcessing;
 
 
-    // const uploadImage = async (file) => {
-    //     const formData = new FormData();
-    //     formData.append('file', file);
-    //     formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
-        
-    //     try {
-    //         const response = await axios.post(
-    //             `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`
-    //             , formData,{
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data'
-    //             },
-    //         }
-    //     );
-    //         console.log("Upload successful:", response.data);
-    //         return response.data;       
-    //      } catch (error) {
-    //         console.error("Upload Error:", error);
-    //         throw error;
-    //     }
-    // };
 
     const transformImage = async () => {
         setIsProcessing(true)
@@ -74,11 +52,12 @@ function BackgroundRemoval() {
                 cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
             });
 
-            // const transformationUrl = `https://res.cloudinary.com/${myImage}/image/upload/${transformationType}/${image.publicId}`;
-            // const transformationUrl = `https://res.cloudinary.com/${myImage}/image/upload//${image.publicId}`;
-
-            const transformationUrl = `https://res.cloudinary.com/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload/e_background_removal/${image.publicId}`;
-            await uploadTransformedImage(transformationUrl);
+         
+           const url = 
+            myImage.effect(backgroundRemoval())
+            .toURL();
+            
+            await uploadTransformedImage(url)
         }
     };
     const uploadTransformedImage = async (imageUrl) => {
@@ -86,12 +65,21 @@ function BackgroundRemoval() {
             const response = await axios.get(imageUrl, { responseType: 'blob' });
             const transformedImageBlob = response.data;
 
+            const contentType = response.headers['content-type'];
+            let fileExtension = 'jpg';
+            if (contentType.includes('png')) {
+                fileExtension = 'png';
+            }
+
             const formData = new FormData();
-            formData.append('file', transformedImageBlob, `${image.title}.png`);
+            formData.append('file', transformedImageBlob, `${image.title}.${fileExtension}`);
             formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
 
-            const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData);
-            
+            const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
             setImage(prev => ({ ...prev, transformationUrl: uploadResponse.data.secure_url }));
         } catch (error) {
             console.error('Upload failed:', error);
@@ -103,10 +91,10 @@ function BackgroundRemoval() {
 
 
     useEffect(() => {
-        if (image.secureURL) {
+        if (image.transformationUrl) {
             saveTheImageToDatabase();
         }
-    }, [image.secureURL]);
+    }, [image.transformationUrl]);
 
     const saveTheImageToDatabase = () => {
         const fetchAPIData = async () => {
@@ -127,6 +115,8 @@ function BackgroundRemoval() {
                     }
                 };
                 updateCreatorLocalStorage(updatedData);
+                setCreditBalance(newBalance);
+
 
             } catch (error) {
                 console.log(error)
@@ -140,25 +130,6 @@ function BackgroundRemoval() {
 
       
 
-    // const handleTransform = async () => {
-    //     if (publicId) {
-    //         setLoading(true); 
-    //         try {
-    //         const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-    //         const transformation = `e_background_removal`;
-
-    //         const transformedImageUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${transformation}/${publicId}`;
-            
-    //         const uploadResponse = await uploadImage(transformedImageUrl);
-    //         setTransformedPublicId(uploadResponse.secure_url);  
-    //           } catch (error) {
-    //         console.error("Error transforming image:", error);
-    //     }
-    //     finally {
-    //         setLoading(false); 
-    //     }
-    //     }
-    // };
   
 
     return (
@@ -171,7 +142,9 @@ function BackgroundRemoval() {
                     </div>
                     <div className="flex items-center justify-start gap-2">
                         <CreditIcon />
-                        <div className={`${styles.heading4}`}>{getCreatorLocalStorage().creator?.creditBalance !== undefined ? getCreatorLocalStorage().creator.creditBalance : 0}</div>
+                        <div className={`${styles.heading4}`}>
+                            {creditBalance}
+                        </div>
 
                     </div>
                 </div>
@@ -195,7 +168,7 @@ function BackgroundRemoval() {
                     onChange={(e) => setImage(prev => ({ ...prev, title: e.target.value }))}
                 />
 
-           <UploudAndtranforamtioncopy
+           <UploadAndTransformImagesBoxV2
            image={image} setImage={setImage} isProcessing={isProcessing}
            />
             </div>
@@ -205,7 +178,6 @@ function BackgroundRemoval() {
                     disabled={!isButtonActive}
                     onClick={transformImage}
                 >
-                    {/* {loading ? 'Transforming...' : 'Apply Transformation'}     */}
                     Apply Transformation
 
                                 </button>
