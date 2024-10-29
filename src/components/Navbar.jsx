@@ -4,7 +4,7 @@ import { logoLight, logoSide, logoSideLight } from '../assets';
 import { Link } from 'react-router-dom';
 import { SlMenu } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
-import { navbarLinks } from '../constants/navbarConstants';
+import { navbarLinks } from '../constants/general';
 import { motion } from "framer-motion";
 import { revealingMotion } from '../utils/motionSettings';
 

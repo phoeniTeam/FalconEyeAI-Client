@@ -2,7 +2,7 @@ import React from 'react'
 import styles from '../styles'
 import { logoSide, logoTitle } from '../assets'
 import { Link } from 'react-router-dom'
-import { navbarLinks } from '../constants/navbarConstants'
+import { navbarLinks } from '../constants/general'
 import { motion } from "framer-motion";
 import { toTopMotion } from '../utils/motionSettings';
 import { FaDiscord } from 'react-icons/fa'
