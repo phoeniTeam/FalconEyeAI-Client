@@ -146,7 +146,7 @@ function BackgroundRemoval() {
         <div className="w-full flex flex-col justify-between gap-8">
             <div className="flex flex-col items-start gap-4 w-full">
                 <div className="flex items-center justify-between w-full">
-                    <div className={`${styles.heading3} text-white `}>
+                    <div className={`${styles.heading3} text-darkWhite `}>
                         {' '}
                         Background Removal
                     </div>
@@ -164,7 +164,7 @@ function BackgroundRemoval() {
 
                     <div className="flex items-center justify-start gap-2">
                         <SmallCreditIcon /> 
-                        <div className={`${styles.paragraph4} text-slate-50`}>
+                        <div className={`${styles.paragraph4}`}>
                             {transformationPrice} credits
                         </div>
                     </div>
