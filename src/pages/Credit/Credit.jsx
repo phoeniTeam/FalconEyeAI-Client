@@ -8,7 +8,6 @@ import CustomIcon from '../../assets/icons/CustomIcon.jsx';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage'
-import CustomIcon from '../../assets/icons/CustomIcon.jsx';
 import { getUserInfo } from '../../utils/getUserInfo';
 
 function Credit() {
