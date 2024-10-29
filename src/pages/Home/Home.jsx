@@ -13,9 +13,6 @@ function Home() {
         id: "",
         isOpen: false
     })
-    useEffect(() => {
-        console.log(imagePreviewState)
-    }, [imagePreviewState])
     const [inputColor, setInputColor] = useState(false);
     const { imagesData, loadingImagesData, errorImagesData } = useGetAllImages();
     const [imagesWithUserInfo, setImagesWithUserInfo] = useState([]);
