@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import styles from "../../styles";
 import StarIcon from '../../assets/icons/StarIcon.jsx';
 import AiFillThunderbolt from '../../assets/icons/AiFillThunderbolt.jsx';
@@ -11,8 +12,8 @@ import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { getUserInfo } from '../../utils/getUserInfo';
 
 function Credit() {
+  const navigate = useNavigate(); 
   const [creditBalance, setCreditBalance] = useState(0);
-
 
   const makePayment = async (plan) => {
     const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -20,7 +21,7 @@ function Credit() {
       1: 0,
       2: 29,
       3: 89,
-    }
+    };
     const body = {
       plan,
       creatorId: getCreatorLocalStorage().creatorId
@@ -36,13 +37,11 @@ function Credit() {
       const session = response.data;
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
 
-      console.log(result)
+      console.log(result);
       if (result.error) {
-      
         console.error("Error redirecting to checkout:", result.error);
       }
     } catch (error) {
-
       console.error("Error making payment:", error.response || error.message);
     }
   };
@@ -57,8 +56,13 @@ function Credit() {
   };
 
   useEffect(() => {
-    fetchUserCredit();
-  }, []);
+    const userData = getCreatorLocalStorage(); 
+    if (!userData) {
+      navigate("/sign-in"); 
+    } else {
+      fetchUserCredit(); 
+    }
+  }, [navigate]); 
 
   return (
     <div className={styles.innerWrapper}>
@@ -79,7 +83,7 @@ function Credit() {
         {/* Free Credit Package */}
         <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <StarIcon className="text-white w-8 h-8" /> {/* Set fixed size */}
+            <StarIcon className="text-white w-8 h-8" />
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Free</p>
           <h1 className={`${styles.heading3}`}>0$</h1>
@@ -97,7 +101,7 @@ function Credit() {
         {/* Pro Credit Package */}
         <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <AiFillThunderbolt className="text-white w-14 h-14" /> 
+            <AiFillThunderbolt className="text-white w-14 h-14" />
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Pro</p>
           <h1 className={`${styles.heading3}`}>29$</h1>
@@ -117,10 +121,10 @@ function Credit() {
         {/* Diamond Credit Package */}
         <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <IoDiamond className="text-white w-10 h-10" /> 
+            <IoDiamond className="text-white w-14 h-14" />
           </div>
-          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
-          <h1 className={`${styles.heading3}`}>79$</h1>
+          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Diamond</p>
+          <h1 className={`${styles.heading3}`}>89$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
             <p className={`${styles.paragraph4} text-gray-500`}>500 Credit</p>
@@ -139,4 +143,3 @@ function Credit() {
 }
 
 export default Credit;
-

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
 import { FaUserTie, FaEdit } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import styles from "../../styles";
@@ -11,8 +12,11 @@ import Filter from '../../components/Filter.jsx';
 import CheckmarkIcon from "../../assets/icons/CheckmarkIcon.jsx";
 import MagicIcon from "../../assets/icons/magician.jsx";
 import ImagePreview from '../../components/ImagePreview.jsx';
+import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage'; 
+import Loader from '../../components/Loader.jsx'; 
 
 function Profile() {
+  const navigate = useNavigate(); 
   const [inputColor, setInputColor] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,6 +27,14 @@ function Profile() {
       id: "",
       isOpen: false
   });
+
+  const userData = getCreatorLocalStorage();
+  
+  useEffect(() => {
+    if (!userData) {
+      navigate("/sign-in"); 
+    }
+  }, [userData, navigate]);
 
   const {
     name,
@@ -39,11 +51,11 @@ function Profile() {
 
   const transformationMap = {
     'All': null,
-    'Image Restore': 'image-restore',
-    'Generative Fill': 'generative-fill',
-    'Object Removal': 'object-removal',
-    'Object Recolor': 'object-recolor',
-    'Background Removal': 'e_background_removal',
+    'Image-Restore': 'image-restore',
+    'Generative-Fill': 'generative-fill',
+    'Object-Removal': 'object-removal',
+    'Object-Recolor': 'object-recolor',
+    'Background-Removal': 'e_background_removal',
   };
 
   const filteredCreations = searchForImage(searchTerm, creations).filter(image => {
@@ -70,7 +82,7 @@ function Profile() {
   return (
     <div className={styles.innerWrapper}>
       {loading ? (
-        <div>Loading...</div>
+        <Loader />  
       ) : (
         <>
           <div className="flex justify-between items-center">
@@ -188,9 +200,9 @@ function Profile() {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onConfirm={updateProfilePhoto}
+          
           />
           
-         
           {imagePreviewState.isOpen && (
             <ImagePreview 
               imagePreviewState={imagePreviewState} 

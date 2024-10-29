@@ -7,6 +7,7 @@ import useGetAllImages from '../../hooks/image/useGetAllImages.js';
 import searchForImage from '../../utils/searchForTerm.js';
 import Filter from '../../components/Filter.jsx';
 import ImagePreview from '../../components/ImagePreview.jsx';
+import Loader from '../../components/Loader.jsx'; 
 
 function Home() {
     const [imagePreviewState, setImagePreviewState] = useState({
@@ -58,7 +59,7 @@ function Home() {
     };
 
     if (loadingImagesData) {
-        return <div>Loading...</div>;
+        return <Loader />; 
     }
 
     if (errorImagesData) {
