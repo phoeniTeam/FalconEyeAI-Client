@@ -3,6 +3,8 @@ import { IoClose } from "react-icons/io5";
 import styles from "../styles";
 import { handleImageDownload } from "../apis/image/handleImageDownload";
 import { FaDownload } from "react-icons/fa6";
+import { transformationsTypes } from '../constants/editorConstants'
+import moment from "moment";
 
 function ImagePreview({ imagePreviewState, setImagePreviewState }) {
     const { imageData, loadingImageData, errorImageData } = useGetImage(imagePreviewState.id)
@@ -11,7 +13,7 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
         return (
             <>
                 <div className="w-full px-8 z-[60] fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex justify-center">
-                    <div className="max-w-[800px]  bg-base100 p-6 rounded-xl">
+                    <div className="max-w-[800px] max-h-[90vh]  bg-base100 p-6 rounded-xl">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
                                 <div>
@@ -27,8 +29,11 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
                         </div>
 
                         <div className="flex flex-col mt-12 mb-4">
-                            <h2 className={`${styles.heading3}`}>{imageData.title}</h2>
-                            <p className="text-darkWhite">{imageData.transformationType}</p>
+                            <div className="flex items-center justify-between">
+                                <h2 className={`${styles.heading3}`}>{imageData.title}</h2>
+                                <p className={`${styles.paragraph4} text-grayLight`}>{moment(imageData.createdAt).fromNow()}</p>
+                            </div>
+                            <p className="text-darkWhite">{transformationsTypes[imageData.transformationType].name}</p>
                         </div>
 
 
@@ -45,8 +50,8 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
 
                                     </button>
                                 </div>
-                                <div>
-                                    <img className="rounded-xl" src={imageData.secureURL} alt="Image" />
+                                <div className="flex justify-center">
+                                    <img className="h-auto rounded-xl" src={imageData.secureURL} alt="Image" />
                                 </div>
                             </div>
 
@@ -62,8 +67,8 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
 
                                     </button>
                                 </div>
-                                <div>
-                                    <img className="rounded-xl" src={imageData.transformationUrl} alt="Image" />
+                                <div className="flex justify-center">
+                                    <img className="h-auto rounded-xl" src={imageData.transformationUrl} alt="Image" />
                                 </div>
                             </div>
 

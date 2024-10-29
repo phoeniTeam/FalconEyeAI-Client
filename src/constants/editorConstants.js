@@ -45,18 +45,23 @@ export const aspectRatioOptions = {
 
 export const transformationsTypes = {
     "generative-fill": {
+        name: "Generative Fill",
         price: 2
     },
     "object-recolor": {
+        name: "Object Recolor",
         price: 2
     },
     "e_background_removal": {
+        name: "Background Removal",
         price: 4
     },
     "image-restore": {
+        name: "Image Restore",
         price: 2
     },
     "object-removal": {
+        name: "Object Removal",
         price: 2
     },
 }
