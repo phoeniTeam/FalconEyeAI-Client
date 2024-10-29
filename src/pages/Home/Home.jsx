@@ -13,7 +13,8 @@ function Home() {
     const [imagesWithUserInfo, setImagesWithUserInfo] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredImagesWithUserInfo, setFilteredImagesWithUserInfo] = useState([]);
-    const [filterType, setFilterType] = useState('');
+    const [filterType, setFilterType] = useState('All'); 
+    const [selectedFilter, setSelectedFilter] = useState('All');
     const transformationMap = {
         'All': null, 
         'Image-Restore': 'image-restore',
@@ -48,6 +49,7 @@ function Home() {
 
     const handleFilterChange = (type) => {
         setFilterType(type);
+        setSelectedFilter(type); 
     };
 
     if (loadingImagesData ) {
@@ -95,6 +97,7 @@ function Home() {
                         <Filter
                             onFilterChange={handleFilterChange}
                         />
+                        {selectedFilter !== 'All' && <div>{selectedFilter}</div>}
                     </div>
                 </div>
 
