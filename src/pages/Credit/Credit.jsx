@@ -4,10 +4,43 @@ import { TbJewishStarFilled } from "react-icons/tb";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { IoDiamond } from "react-icons/io5";
 import CreditIcon from "../../assets/icons/creditIcon.jsx";
-import CustomIcon from '../../assets/icons/CustomIcon.jsx'; 
-
+import CustomIcon from '../../assets/icons/CustomIcon.jsx';
+import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
+import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage'
 function Credit() {
   const iconSize = 28;
+
+  const makePayment = async (plan) => {
+    const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+    const plansPrices = {
+      1: 0,
+      2: 29,
+      3: 89,
+    }
+    const body = {
+      plan,
+      creatorId: getCreatorLocalStorage().creatorId
+    };
+
+    try {
+      const response = await axios.post(import.meta.env.VITE_CREATE_CHECKOUT_SESSION_API, body, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const session = response.data;
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
+
+      console.log(result)
+      if (result.error) {
+        console.error("Error redirecting to checkout:", result.error);
+      }
+    } catch (error) {
+      console.error("Error making payment:", error.response || error.message);
+    }
+  };
 
   return (
     <div className={styles.innerWrapper}>
@@ -19,7 +52,7 @@ function Credit() {
           </p>
         </div>
         <div className="flex items-center gap-2 mb-12">
-          <CreditIcon /> 
+          <CreditIcon />
           <div className={`${styles.heading4}`}>236</div>
         </div>
       </div>
@@ -33,15 +66,15 @@ function Credit() {
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Free</p>
           <h1 className={`${styles.heading3}`}>0$</h1>
           <span className="flex space-x-2 items-center rounded-full">
-            <CustomIcon /> 
+            <CustomIcon />
             <p className={`${styles.paragraph2}`}>10 Credit</p>
           </span>
           <div className="flex-grow">
-          <button type="submit" className={styles.newGradientButton}>
-           <div className={styles.newInnerButton}>
-              Free
-             </div>
-              </button>
+            <button type="submit" className={styles.newGradientButton}>
+              <div className={styles.newInnerButton}>
+                Free
+              </div>
+            </button>
 
           </div>
         </div>
@@ -54,11 +87,13 @@ function Credit() {
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Pro</p>
           <h1 className={`${styles.heading3}`}>29$</h1>
           <span className="flex space-x-2 items-center rounded-full">
-            <CustomIcon /> 
-            <p className={`${styles.paragraph2}`}>120 Credit</p>
+            <CustomIcon />
+            <p className={`${styles.paragraph2}`}>220 Credit</p>
           </span>
           <div className="flex-grow">
-            <button className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
+            <button
+              onClick={() => makePayment(2)}
+              className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
               Buy Credit
             </button>
           </div>
@@ -70,13 +105,15 @@ function Credit() {
             <IoDiamond size={iconSize} className="text-white" />
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
-          <h1 className={`${styles.heading3}`}>89$</h1>
+          <h1 className={`${styles.heading3}`}>79$</h1>
           <span className="flex space-x-2 items-center rounded-full">
-            <CustomIcon /> 
-            <p className={`${styles.paragraph2}`}>400 Credit</p>
+            <CustomIcon />
+            <p className={`${styles.paragraph2}`}>500 Credit</p>
           </span>
           <div className="flex-grow">
-            <button className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
+            <button
+              onClick={() => makePayment(3)}
+              className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
               Buy Credit
             </button>
           </div>
