@@ -13,11 +13,11 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
         return (
             <>
                 <div className="w-full px-8 z-[60] fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex justify-center">
-                    <div className="max-w-[800px] max-h-[90vh]  bg-base100 p-6 rounded-xl">
+                    <div className="max-w-[800px] max-h-[90vh] bg-base100 p-6 rounded-xl overflow-y-auto scroll-container">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-2">
                                 <div>
-                                    <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full" src={imageData.creatorId.photo} alt="" />
+                                    <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full" src={imageData.creatorId.photo} alt="Photo" />
                                 </div>
 
                                 <p className={`text-darkWhite`}>{imageData.creatorId.name}</p>
@@ -28,12 +28,12 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
                             />
                         </div>
 
-                        <div className="flex flex-col mt-12 mb-4">
+                        <div className="flex flex-col mt-12 mb-8">
                             <div className="flex items-center justify-between">
                                 <h2 className={`${styles.heading3}`}>{imageData.title}</h2>
                                 <p className={`${styles.paragraph4} text-grayLight`}>{moment(imageData.createdAt).fromNow()}</p>
                             </div>
-                            <p className="text-darkWhite">{transformationsTypes[imageData.transformationType].name}</p>
+                            <p className={`${styles.paragraph3} text-darkWhite`}>{transformationsTypes[imageData.transformationType].name}</p>
                         </div>
 
 

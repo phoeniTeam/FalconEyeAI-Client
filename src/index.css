@@ -36,29 +36,30 @@ textarea {
   outline: none;
   outline-color: transparent;
 }
+
 .scroll-container {
-  overflow-y: scroll; 
+  overflow-y: scroll;
   min-height: h-screen;
 }
 
 .scroll-container::-webkit-scrollbar {
-  width: 0; 
-  background: transparent; 
+  width: 0;
+  background: transparent;
 }
 
 .scroll-container {
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
 
 .gradient-button {
   background: #000;
-  border-radius: 9999px; 
-  padding: 0.75rem; 
-  font-weight: bold; 
+  border-radius: 9999px;
+  padding: 0.75rem;
+  font-weight: bold;
   transition: all 0.5s ease-in-out;
 
 }
 
 .gradient-button:hover {
-  background: linear-gradient(to right, #333399 ,#333399,#FF00CC); 
+  background: linear-gradient(to right, #333399, #333399, #FF00CC);
 }
