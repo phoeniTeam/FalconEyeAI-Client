@@ -130,7 +130,7 @@ function Sidebar() {
                             <li key={index}>
                                 <Link
                                     to={link.route}
-                                    className={`flex items-center gap-3 p-2 pl-3 rounded-full ${isActive(link.route)
+                                    className={`flex items-center gap-3 p-2 pl-3 mb-2 rounded-full ${isActive(link.route)
                                             ? `${styles.primaryBackground}`
                                             : 'hover:bg-grayDark'
                                         }`}
