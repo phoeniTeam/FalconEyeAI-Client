@@ -2,7 +2,7 @@ const mainTransition = "transition-all duration-500 ease-in-out";
 
 const styles = {
     outerWrapper: "py-10 md:py-20 h-auto",
-    footerOuterWrapper: "pt-20 sm:pt-32 md:pt-36 pb-10 sm:pb-22 md:pb-26 h-auto",
+    footerOuterWrapper: "pt-10 md:pt-20 pb-5 md:pb-10 h-auto",
     wrapper: "max-w-[1200px] px-4 mx-auto",
     innerWrapper: "py-8 px-9",
     outerWrapperAppPages: "max-w-[1300px] mx-auto",
@@ -22,11 +22,11 @@ const styles = {
     primaryButton: "px-6 py-1 rounded-full bg-primary-gradient-color hover:bg-primary-gradient-color-invert text-center h-fit",
 
     // New button styles
-    newGradientButton: "text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-0.5",
+    newGradientButton: "text-white bg-gradient-to-r from-primary via-thirdly to-[#FF00CC] rounded-full p-0.5",
     newInnerButton: `rounded-full bg-[#211f33] py-0.5 px-12 ${mainTransition} hover:bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC]`,
 
-    primaryText: `w-fit bg-gradient-to-r from-primary via-primary to-secondary inline-block text-transparent bg-clip-text ${mainTransition}`,
-    primaryTextOnHover: `hover:underline hover:bg-gradient-to-r from-primary via-primary to-secondary inline-block hover:text-transparent bg-clip-text ${mainTransition}`,
+    primaryText: `w-fit bg-gradient-to-r from-primary via-thirdly to-secondary inline-block text-transparent bg-clip-text ${mainTransition}`,
+    primaryTextOnHover: `hover:underline hover:bg-gradient-to-r from-primary via-thirdly to-secondary inline-block hover:text-transparent bg-clip-text ${mainTransition}`,
 
     transition500: `${mainTransition}`
 };

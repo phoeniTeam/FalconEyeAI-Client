@@ -26,13 +26,13 @@ function Community() {
                         dedicated to empowering users like you.</p>
                 </motion.div>
 
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
                     {communityReviews.map((review, index) => (
                         <motion.div key={index} className='flex flex-col gap-4'
                             {...revealingMotion}
                         >
                             <div className='flex justify-center'>
-                                <p className='text-center max-w-[40ch]'>{review.comment}</p>
+                                <p className='text-center max-w-[40ch] text-darkWhite'>{review.comment}</p>
                             </div>
                             <div className='flex justify-center items-center gap-2'>
                                 <div className='w-[50px]'>
@@ -40,7 +40,7 @@ function Community() {
                                         className='rounded-full'
                                         src={review.userPhoto} alt={`${review.username} Photo`} />
                                 </div>
-                                <p className='text-gray-400'>{review.username}</p>
+                                <p className='text-darkWhite'>{review.username}</p>
                             </div>
                         </motion.div>
                     ))}

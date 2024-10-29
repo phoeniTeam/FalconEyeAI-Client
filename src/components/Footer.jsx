@@ -6,6 +6,7 @@ import { navbarLinks } from '../constants/navbarConstants'
 import { motion } from "framer-motion";
 import { toTopMotion } from '../utils/motionSettings';
 import { FaDiscord } from 'react-icons/fa'
+import { socials } from '../constants/general'
 
 function Footer() {
   return (
@@ -23,15 +24,22 @@ function Footer() {
 
           <div className='flex items-center gap-6'>
             <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
-              <a className={`${styles.primaryTextOnHover}`} target='_blank' href={`https://www.discord.com/`}>Discord</a>
-              <a className={`${styles.primaryTextOnHover}`} target='_blank' href={`https://www.reddit.com/`}>Reddit</a>
+              {socials.map(social => (
+                <div key={social.id} className={`relative group hover:text-primary ${styles.transition500}`}>
+                  <a href={social.link}>{social.title}</a>
+                  <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
+                </div>
+              ))}
             </div>
             <div className='text-grayLight hidden sm:inline-block'>
               |
             </div>
             <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
               {navbarLinks.map((link, index) => (
-                <a key={index} className={`${styles.primaryTextOnHover}`} href={`#${link.id}`}>{link.title}</a>
+                <div key={index} className={`relative group hover:text-primary ${styles.transition500}`}>
+                  <a href={`#${link.id}`}>{link.title}</a>
+                  <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
+                </div>
               ))}
             </div>
 

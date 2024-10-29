@@ -26,11 +26,11 @@ function CTA() {
                         {
                             isUserRegistered ?
                                 (
-                                    <Link to={"/home"} className={`${styles.primaryButton} w-fit shadow-md`}>Lunch App Now</Link>
+                                    <Link to={"/home"} className={`${styles.primaryButton} mt-10 w-fit shadow-md`}>Lunch App Now</Link>
                                 )
                                 :
                                 (
-                                    <Link to={"/sign-up"} className={`${styles.primaryButton} w-fit shadow-md`}>Get Started Now</Link>
+                                    <Link to={"/sign-up"} className={`${styles.primaryButton} mt-10 w-fit shadow-md`}>Get Started Now</Link>
                                 )
                         }
                     </div>
