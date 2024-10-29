@@ -2,7 +2,7 @@ import styles from '../../styles';
 import { logo } from '../../assets';
 import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -35,37 +35,30 @@ function SignIn() {
                 password: signIn.password,
             });
             if (response.status === 200) {
-                console.log('User logged in successfully');
-               
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: "top-end",
+                    position: 'top-end',
                     showConfirmButton: false,
                     timer: 3000,
                     timerProgressBar: true,
-               
 
                     didOpen: (toast) => {
-                      toast.onmouseenter = Swal.stopTimer;
-                      toast.onmouseleave = Swal.resumeTimer;
-                    }
-                  });
-                  Toast.fire({
-                    icon: "success",
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: 'success',
                     title: 'Welcome Back!',
-                    // background:"black",
-                    // color:"white",
-
-                 
-                  });
-                           localStorage.setItem(
+                });
+                localStorage.setItem(
                     USER_LOCAL_STORAGE,
                     JSON.stringify(response.data)
                 );
                 // redirect home page
                 navigate('/home');
             } else {
-                console.log('Invalid credentials');
+                setErrorMessage('Invalid credentials');
                 // display error message
             }
         } catch (error) {
@@ -74,14 +67,18 @@ function SignIn() {
                 setErrorMessage('Invalid email or password');
             } else if (error.response.status === 500) {
                 setErrorMessage('Internal server error');
-            }else{
+            } else {
                 setErrorMessage('Failed to sign in. Please try again later.');
             }
             // display error message
         }
     };
 
+    useEffect(() => {
+        setErrorMessage("")
 
+        
+    },[ signIn.email, signIn.password])
     return (
         <div
             className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}

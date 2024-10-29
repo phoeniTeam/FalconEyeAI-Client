@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from "../../styles";
 import { TbJewishStarFilled } from "react-icons/tb";
 import { AiFillThunderbolt } from "react-icons/ai";
@@ -8,7 +8,11 @@ import CustomIcon from '../../assets/icons/CustomIcon.jsx';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage'
+import CustomIcon from '../../assets/icons/CustomIcon.jsx';
+import { getUserInfo } from '../../utils/getUserInfo';
+
 function Credit() {
+  const [creditBalance, setCreditBalance] = useState(0);
   const iconSize = 28;
 
   const makePayment = async (plan) => {
@@ -42,6 +46,19 @@ function Credit() {
     }
   };
 
+  const fetchUserCredit = async () => {
+    try {
+      const { creditBalance: localCreditBalance } = getUserInfo();
+      setCreditBalance(localCreditBalance);
+    } catch (err) {
+      console.error('Failed to fetch user credit:', err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserCredit();
+  }, []);
+
   return (
     <div className={styles.innerWrapper}>
       <div className="flex justify-between items-center">
@@ -53,7 +70,7 @@ function Credit() {
         </div>
         <div className="flex items-center gap-2 mb-12">
           <CreditIcon />
-          <div className={`${styles.heading4}`}>236</div>
+          <div className={`${styles.heading4}`}>{creditBalance}</div>
         </div>
       </div>
 
@@ -71,11 +88,8 @@ function Credit() {
           </span>
           <div className="flex-grow">
             <button type="submit" className={styles.newGradientButton}>
-              <div className={styles.newInnerButton}>
-                Free
-              </div>
+              <div className={styles.newInnerButton}>Free</div>
             </button>
-
           </div>
         </div>
 

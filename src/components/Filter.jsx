@@ -15,7 +15,7 @@ function Filter({ onFilterChange }) {
 
     return (
         <>
-            <div className="dropdown dropdown-hover">
+            <div className="dropdown dropdown-hover max-md:dropdown-end">
                 <div
                     onClick={() => setMenuOpen(!menuOpen)}
                     className="btn btn-circle border-none bg-[#131313] hover:bg-[#131313] min-h-10 h-10 w-10 "
