@@ -18,9 +18,9 @@ function MagicIcon({ width = 20, height = 20 }) {
           y2="5.9993"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#FF00CC" />
-          <stop offset="0.5" stopColor="#333399" />
-          <stop offset="1" stopColor="#333399" />
+          <stop stopColor="#4D91FF" />
+          <stop offset="0.5" stopColor="#620A9C" />
+          <stop offset="1" stopColor="#FF00CC" />
         </linearGradient>
         <clipPath id="clip0_299_2">
           <rect width="12" height="12" fill="white" />

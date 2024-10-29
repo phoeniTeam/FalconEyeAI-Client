@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styles from "../../styles";
-import { TbJewishStarFilled } from "react-icons/tb";
-import { AiFillThunderbolt } from "react-icons/ai";
-import { IoDiamond } from "react-icons/io5";
+import TbJewishStarFilled from '../../assets/icons/TbJewishStarFilled.jsx';
+import AiFillThunderbolt from '../../assets/icons/AiFillThunderbolt.jsx';
+import IoDiamond from '../../assets/icons/IoDiamond.jsx';
 import CreditIcon from "../../assets/icons/creditIcon.jsx";
 import CustomIcon from '../../assets/icons/CustomIcon.jsx';
 import { loadStripe } from '@stripe/stripe-js';
@@ -12,7 +12,7 @@ import { getUserInfo } from '../../utils/getUserInfo';
 
 function Credit() {
   const [creditBalance, setCreditBalance] = useState(0);
-  const iconSize = 28;
+
 
   const makePayment = async (plan) => {
     const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -38,9 +38,11 @@ function Credit() {
 
       console.log(result)
       if (result.error) {
+      
         console.error("Error redirecting to checkout:", result.error);
       }
     } catch (error) {
+
       console.error("Error making payment:", error.response || error.message);
     }
   };
@@ -60,6 +62,8 @@ function Credit() {
 
   return (
     <div className={styles.innerWrapper}>
+   
+      
       <div className="flex justify-between items-center">
         <div className="text-left">
           <h1 className={`${styles.heading3}`}>Buy Credit</h1>
@@ -77,13 +81,13 @@ function Credit() {
         {/* Free Credit Package */}
         <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10 ml-5">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <TbJewishStarFilled size={iconSize} className="text-white" />
+            <TbJewishStarFilled  className="text-white" />
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Free</p>
           <h1 className={`${styles.heading3}`}>0$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
-            <p className={`${styles.paragraph2}`}>10 Credit</p>
+            <p className={`${styles.paragraph4} text-gray-500`}>10 Credit</p>
           </span>
           <div className="flex-grow">
             <button type="submit" className={styles.newGradientButton}>
@@ -95,13 +99,13 @@ function Credit() {
         {/* Pro Credit Package */}
         <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <AiFillThunderbolt size={iconSize} className="text-white" />
+            <AiFillThunderbolt  className="text-white" />
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Pro</p>
           <h1 className={`${styles.heading3}`}>29$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
-            <p className={`${styles.paragraph2}`}>220 Credit</p>
+            <p className={`${styles.paragraph4} text-gray-500`}>220 Credit</p>
           </span>
           <div className="flex-grow">
             <button
@@ -115,13 +119,13 @@ function Credit() {
         {/* Diamond Credit Package */}
         <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <IoDiamond size={iconSize} className="text-white" />
+            <IoDiamond className="text-white" />
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
           <h1 className={`${styles.heading3}`}>79$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
-            <p className={`${styles.paragraph2}`}>500 Credit</p>
+            <p className={`${styles.paragraph4} text-gray-500`}>500 Credit</p>
           </span>
           <div className="flex-grow">
             <button
@@ -134,6 +138,6 @@ function Credit() {
       </div>
     </div>
   );
-}
+};
 
 export default Credit;

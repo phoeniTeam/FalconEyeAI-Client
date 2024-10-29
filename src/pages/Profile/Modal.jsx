@@ -54,7 +54,8 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
     <>
       {isOpen && (
         <div
-          className="modal-overlay fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center z-50"
+          className="modal-overlay fixed inset-0 flex justify-center items-center z-50 
+                     bg-black bg-opacity-10 backdrop-filter backdrop-blur-md"
           onClick={handleOutsideClick}
         >
           <div className={`modal-content bg-gray-800 max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
@@ -110,7 +111,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
 
               <button
                 onClick={handleConfirmImage}
-                className={`${styles.newGradientButton}  text-white py-2 px-4 rounded transition mt-4`}
+                className={`${styles.newGradientButton} text-white py-2 px-4 rounded transition mt-4`}
               >
                 Confirm Upload
               </button>
