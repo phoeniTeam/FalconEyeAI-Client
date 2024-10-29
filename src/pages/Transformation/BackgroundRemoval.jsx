@@ -150,7 +150,7 @@ function BackgroundRemoval() {
                         {' '}
                         Background Removal
                     </div>
-                    <div className="flex items-center justify-start gap-2">
+                    <div className="flex items-center justify-start gap-2 tooltip  tooltip-bottom  [--tooltip-color:#38383e] [--tooltip-text-color:#ffffff]" data-tip=" your credits">
                         <CreditIcon />
                         <div className={`${styles.heading4}`}>
                             {creditBalance}
@@ -162,10 +162,10 @@ function BackgroundRemoval() {
                         Removes the background of the image using AI
                     </div>
 
-                    <div className="flex items-center justify-start gap-4">
-                        <SmallCreditIcon />
-                        <div className={`${styles.paragraph2}`}>
-                            {transformationPrice}
+                    <div className="flex items-center justify-start gap-2">
+                        <SmallCreditIcon /> 
+                        <div className={`${styles.paragraph4} text-slate-50`}>
+                            {transformationPrice} credits
                         </div>
                     </div>
                 </div>
