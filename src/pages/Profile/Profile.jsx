@@ -35,11 +35,11 @@ function Profile() {
 
   const transformationMap = {
     'All': null,
-    'Image-Restore': 'image-restore',
-    'Generative-Fill': 'generative-fill',
-    'Object-Removal': 'object-removal',
-    'Object-Recolor': 'object-recolor',
-    'Background-Removal': 'e_background_removal',
+    'Image Restore': 'image-restore',
+    'Generative Fill': 'generative-fill',
+    'Object Removal': 'object-removal',
+    'Object Recolor': 'object-recolor',
+    'Background Removal': 'e_background_removal',
   };
 
   const filteredCreations = searchForImage(searchTerm, creations).filter(image => {

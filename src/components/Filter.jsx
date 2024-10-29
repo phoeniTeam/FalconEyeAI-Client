@@ -6,11 +6,11 @@ function Filter({ onFilterChange }) {
 
     const trandformation = [
         'All',
-        'Image-Restore',
-        'Generative-Fill',
-        'Object-Removal',
-        'Object-Recolor',
-        'Background-Removal',
+        'Image Restore',
+        'Generative Fill',
+        'Object Removal',
+        'Object Recolor',
+        'Background Removal',
     ];
 
     return (
