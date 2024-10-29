@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
 import Input from '../../components/input';
 import CreditIcon from '../../assets/icons/creditIcon';
@@ -35,24 +35,24 @@ function ObjectRemoval() {
         creatorId: getCreatorLocalStorage().creator._id
     })
     const isButtonActive =
-          image.title.trim() !== '' && image.secureURL !== '' &&
-           image.prompt.trim() !== '' && creditBalance > 0 &&
-           !isProcessing;
+        image.title.trim() !== '' && image.secureURL !== '' &&
+        image.prompt.trim() !== '' && creditBalance > 0 &&
+        !isProcessing;
 
-          const transformImage = async () => {
-            setIsProcessing(true)
-            if (image.publicId) {
-                const myImage = new CloudinaryImage(image.publicId, {
-                    cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-                });
-    
-                 const url = myImage.effect(generativeRemove().prompt(image.prompt).detectMultiple()).toURL();
-    
-                await uploadTransformedImage(url);
-            }
-     };
+    const transformImage = async () => {
+        setIsProcessing(true)
+        if (image.publicId) {
+            const myImage = new CloudinaryImage(image.publicId, {
+                cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+            });
 
-     const uploadTransformedImage = async (imageUrl) => {
+            const url = myImage.effect(generativeRemove().prompt(image.prompt).detectMultiple()).toURL();
+
+            await uploadTransformedImage(url);
+        }
+    };
+
+    const uploadTransformedImage = async (imageUrl) => {
         try {
             const response = await axios.get(imageUrl, { responseType: 'blob' });
             const transformedImageBlob = response.data;
@@ -73,7 +73,8 @@ function ObjectRemoval() {
                 }
             });
 
-            setImage(prev => ({ ...prev, 
+            setImage(prev => ({
+                ...prev,
                 transformationUrl: uploadResponse.data.secure_url
             }));
 
@@ -83,7 +84,7 @@ function ObjectRemoval() {
             setIsProcessing(false)
         }
     };
-    
+
     useEffect(() => {
         if (image.transformationUrl && image.prompt) {
             saveTheImageToDatabase();
@@ -134,7 +135,7 @@ function ObjectRemoval() {
                         Identify and elimante objects from image
                     </div>
                     <div className="flex items-center justify-start gap-2">
-                        <SmallCreditIcon /> 
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph4}`}>
                             {transformationPrice} credits
                         </div>

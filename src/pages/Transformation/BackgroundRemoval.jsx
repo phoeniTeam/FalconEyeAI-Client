@@ -41,7 +41,7 @@ function BackgroundRemoval() {
     const isButtonActive =
         image.title.trim() !== '' &&
         image.secureURL !== '' &&
-        creditBalance > 0 &&
+        creditBalance >= transformationPrice &&
         !isProcessing;
 
     const transformImage = async () => {
@@ -51,7 +51,7 @@ function BackgroundRemoval() {
                 cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
             });
 
-            const url = myImage.effect(backgroundRemoval()).toURL();
+            const url = myImage.effect(backgroundRemoval()).format('png').toURL();
 
             await uploadTransformedImage(url);
         }
@@ -63,11 +63,7 @@ function BackgroundRemoval() {
             });
             const transformedImageBlob = response.data;
 
-            const contentType = response.headers['content-type'];
-            let fileExtension = 'jpg';
-            if (contentType.includes('png')) {
-                fileExtension = 'png';
-            }
+            const fileExtension = 'png';
 
             const formData = new FormData();
             formData.append(
@@ -146,7 +142,7 @@ function BackgroundRemoval() {
         <div className="w-full flex flex-col justify-between gap-8">
             <div className="flex flex-col items-start gap-4 w-full">
                 <div className="flex items-center justify-between w-full">
-                    <div className={`${styles.heading3} text-darkWhite `}>
+                    <div className={`${styles.heading3} `}>
                         {' '}
                         Background Removal
                     </div>
@@ -158,12 +154,12 @@ function BackgroundRemoval() {
                     </div>
                 </div>
                 <div className="flex flex-col items-start gap-1">
-                    <div className={`${styles.paragraph2} text-white `}>
+                    <div className={`${styles.paragraph2} text-darkWhite `}>
                         Removes the background of the image using AI
                     </div>
 
                     <div className="flex items-center justify-start gap-2">
-                        <SmallCreditIcon /> 
+                        <SmallCreditIcon />
                         <div className={`${styles.paragraph4}`}>
                             {transformationPrice} credits
                         </div>

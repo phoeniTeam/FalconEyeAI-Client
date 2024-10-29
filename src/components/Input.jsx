@@ -5,7 +5,7 @@ function Input({ label, id, value, onChange, width = 'full', height = '11' }) {
     return (
         <>
             <div className="flex flex-col gap-2">
-                <label htmlFor={id} className={`${styles.paragraph3} `}>
+                <label htmlFor={id} className={`${styles.paragraph3} text-darkWhite`}>
                     {label}
                 </label>
                 <input
