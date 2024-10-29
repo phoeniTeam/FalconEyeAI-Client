@@ -72,7 +72,7 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                     <div className={`${styles.heading4}`}>Original</div>
                     {
                         image.secureURL ? (
-                            <div className='flex justify-center items-center border-2 border-grayLight rounded-lg'>
+                            <div className=' min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center  border-2 border-grayLight rounded-lg'>
                                 <img className='max-h-[300px] max-w-[300px] object-cover rounded-lg' src={image.secureURL} alt="Image" />
                             </div>
                         ) :
