@@ -203,8 +203,8 @@ function ImageRestore() {
                     </div>
                     <div className="flex items-center justify-start gap-4">
                         <SmallCreditIcon />
-                        <div className={`${styles.paragraph2} text-white `}>
-                            {transformationPrice}
+                        <div className={`${styles.paragraph4}`}>
+                            {transformationPrice} credits
                         </div>
                     </div>
                 </div>
