@@ -4,7 +4,7 @@ import { FaUpload, FaRedo } from 'react-icons/fa';
 import defaultUserImage from '../../assets/home/users/default-user.png';
 import styles from '../../styles';
 
-const Modal = ({ isOpen, onClose, onConfirm }) => {
+const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -34,6 +34,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
   const handleImageReset = () => {
     setSelectedImage(null);
     setImagePreview(null);
+    onConfirm(defaultUserImage);
   };
 
   const handleDragOver = (e) => {
@@ -60,7 +61,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
         >
           <div className={`modal-content bg-gray-800 max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
             <button
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              className="absolute top-2 right-2 text-gray-400 hover:text-white transition"
               onClick={onClose}
               title="Close"
             >
@@ -74,10 +75,11 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
             <div className="flex flex-col items-center mb-6">
               <div className="relative w-36 h-36 mb-4">
                 <img
-                  src={imagePreview || defaultUserImage}
+                  src={imagePreview || profilePhoto || defaultUserImage}
                   alt="Profile"
                   className="w-full h-full rounded-full border-4 border-blue-500 shadow-lg object-cover"
                 />
+
                 {imagePreview && (
                   <button
                     onClick={handleImageReset}
@@ -89,11 +91,11 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
                 )}
               </div>
 
-              <div 
+              <div
                 className="border-dashed border-2 border-gray-500 p-4 w-full text-center cursor-pointer hover:bg-gray-700 transition"
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                onClick={() => document.getElementById('file-input').click()} 
+                onClick={() => document.getElementById('file-input').click()}
               >
                 <p className="text-white mb-2">Drag & Drop your image here or</p>
                 <p className="text-white inline-flex items-center">
@@ -111,7 +113,8 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
 
               <button
                 onClick={handleConfirmImage}
-                className={`${styles.newGradientButton} text-white py-2 px-4 rounded transition mt-4`}
+                className={`${styles.newGradientButton} text-white py-2 px-4 rounded transition mt-4 ${imagePreview ? '' : 'opacity-50 cursor-not-allowed'}`}
+                disabled={!imagePreview}
               >
                 Confirm Upload
               </button>
