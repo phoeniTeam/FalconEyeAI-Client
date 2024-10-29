@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { IoMdClose, IoMdCloudUpload, IoMdRefreshCircle } from 'react-icons/io';
-import { BsFillCheckCircleFill } from 'react-icons/bs';
+import { IoMdClose } from 'react-icons/io';
+import { FaUpload, FaRedo } from 'react-icons/fa';
 import defaultUserImage from '../../assets/home/users/default-user.png';
 import styles from '../../styles';
 
@@ -14,8 +14,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
     }
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
+  const handleImageUpload = (file) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -37,6 +36,20 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
     setImagePreview(null);
   };
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const files = e.dataTransfer.files;
+    if (files && files[0]) {
+      handleImageUpload(files[0]);
+    }
+  };
+
   return (
     <>
       {isOpen && (
@@ -44,7 +57,7 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
           className="modal-overlay fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center z-50"
           onClick={handleOutsideClick}
         >
-          <div className={`modal-content ${styles.newGradientButton} max-w-md w-full p-8 rounded-2xl shadow-2xl relative`}>
+          <div className={`modal-content bg-gray-800 max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
             <button
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
               onClick={onClose}
@@ -53,10 +66,12 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
               <IoMdClose size={24} />
             </button>
 
-            <h2 className="text-2xl font-bold text-center text-white mb-8">Upload Profile Photo</h2>
-            
-            <div className="flex flex-col items-center mb-8">
-              <div className="relative w-36 h-36 mb-6">
+            <h2 className={`${styles.heading4} text-center text-white mb-6`}>
+              Upload Profile Photo
+            </h2>
+
+            <div className="flex flex-col items-center mb-6">
+              <div className="relative w-36 h-36 mb-4">
                 <img
                   src={imagePreview || defaultUserImage}
                   alt="Profile"
@@ -65,29 +80,39 @@ const Modal = ({ isOpen, onClose, onConfirm }) => {
                 {imagePreview && (
                   <button
                     onClick={handleImageReset}
-                    className="absolute -bottom-2 -right-2 bg-red-600 text-white rounded-full p-2 hover:bg-red-700 transition"
-                    title="Reset Image"
+                    className="absolute bottom-1 right-1 p-1 rounded-full bg-red-500 hover:bg-red-600 text-white transition"
+                    title="Reset"
                   >
-                    <IoMdRefreshCircle size={20} />
+                    <FaRedo />
                   </button>
                 )}
               </div>
 
-              <label className="flex flex-col items-center cursor-pointer text-blue-400 mb-8">
-                <IoMdCloudUpload size={48} className="hover:text-blue-500 transition" />
-                <span className="mt-2 text-sm text-gray-300">Choose an image file</span>
-                <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
-              </label>
-            </div>
+              <div 
+                className="border-dashed border-2 border-gray-500 p-4 w-full text-center cursor-pointer hover:bg-gray-700 transition"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onClick={() => document.getElementById('file-input').click()} 
+              >
+                <p className="text-white mb-2">Drag & Drop your image here or</p>
+                <p className="text-white inline-flex items-center">
+                  <FaUpload className="mr-2" />
+                  <span>Upload Image</span>
+                </p>
+                <input
+                  type="file"
+                  id="file-input"
+                  accept="image/*"
+                  onChange={(e) => handleImageUpload(e.target.files[0])}
+                  className="hidden"
+                />
+              </div>
 
-            <div className="flex justify-center">
               <button
                 onClick={handleConfirmImage}
-                className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition"
-                title="Confirm"
+                className={`${styles.newGradientButton}  text-white py-2 px-4 rounded transition mt-4`}
               >
-                <BsFillCheckCircleFill size={20} />
-                Confirm
+                Confirm Upload
               </button>
             </div>
           </div>
