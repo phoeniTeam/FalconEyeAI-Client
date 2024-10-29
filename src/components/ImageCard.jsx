@@ -1,8 +1,10 @@
 import React from "react";
 
-const ImageCard = ({ image, description, userImage, userName }) => {
+const ImageCard = ({ onClick, setImagePreviewState, imageId, image, description, userImage, userName }) => {
   return (
-    <div className="relative mb-4 break-inside-avoid cursor-pointer group overflow-hidden rounded-xl">
+    <div
+      onClick={onClick}
+      className="relative mb-4 break-inside-avoid cursor-pointer group overflow-hidden rounded-xl">
       <img
         className="transition duration-500 rounded-xl opacity-80 group-hover:opacity-100 group-hover:scale-[1.02]"
         src={image}
