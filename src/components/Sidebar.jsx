@@ -19,7 +19,6 @@ import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
 function Sidebar() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
     const creatorLocalStorage = getCreatorLocalStorage();
-    console.log(creatorLocalStorage.creator.name);
 
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);

@@ -107,7 +107,7 @@ function Home() {
                             <Filter
                                 onFilterChange={handleFilterChange}
                             />
-                            {selectedFilter !== 'All' && <div>{selectedFilter}</div>}
+                           {selectedFilter !== 'All' && <div>{selectedFilter.replace(/-/g, ' ')}</div>}
                         </div>
                     </div>
 

@@ -17,8 +17,9 @@ function Profile() {
   const [inputColor, setInputColor] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('All');
-  const [isEditing, setIsEditing] = useState(false);
+  const [filterType, setFilterType] = useState('All'); 
+  const [selectedFilter, setSelectedFilter] = useState('All');
+  const [isEditing, setIsEditing] = useState(false); 
   const {
     name,
     userName,
@@ -48,6 +49,7 @@ function Profile() {
 
   const handleFilterChange = (type) => {
     setFilterType(type);
+    setSelectedFilter(type); 
   };
 
   const handleNameChange = (e) => {
@@ -164,6 +166,7 @@ function Profile() {
                   />
                 </label>
                 <Filter onFilterChange={handleFilterChange} />
+                {selectedFilter !== 'All' && <div>{selectedFilter.replace(/-/g, ' ')}</div>}
               </div>
             </div>
 
