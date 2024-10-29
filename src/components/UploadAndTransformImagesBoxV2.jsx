@@ -20,15 +20,12 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                 if (error) {
                     console.error("Upload error:", error);
                 } else if (result && result.event === "success") {
-                    // ********************************** Change here
                     setImage(prev => ({
                         ...prev,
                         secureURL: result.info.secure_url,
                         publicId: result.info.public_id,
                     }))
-                    // **********************************
                 } else if (result && result.event === "cancel") {
-                    // ********************************** Change here
                     setImage(prev => ({
                         ...prev,
                         secureURL: "",
@@ -36,7 +33,6 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                         width: "",
                         height: ""
                     }))
-                    // **********************************
                 }
             }
         );
@@ -72,15 +68,15 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
                     <div className={`${styles.heading4}`}>Original</div>
                     {
                         image.secureURL ? (
-                            <div className='flex justify-center items-center border-2 border-grayLight rounded-lg'>
+                            <div className=' min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center  border-2 border-grayLight rounded-lg  '>
                                 <img className='max-h-[300px] max-w-[300px] object-cover rounded-lg' src={image.secureURL} alt="Image" />
                             </div>
                         ) :
                             (
-                                <div onClick={handleUpload} className="cursor-pointer border-2 border-grayLight rounded-lg">
+                                <div onClick={handleUpload} className="cursor-pointer border-2 border-grayLight rounded-lg group ">
                                     <div className="min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center text-darkWhite">
                                         <FaSquarePlus
-                                            className={`h-8 w-8 text-primary hover:text-secondary ${styles.transition500}`}
+                                            className={`h-8 w-8 text-primary group-hover:text-secondary ${styles.transition500}`}
                                         />
                                         <span>Click here to upload</span>
                                     </div>

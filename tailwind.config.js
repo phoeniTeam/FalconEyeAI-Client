@@ -10,12 +10,13 @@ export default {
         bebasNeue: ["Bebas Neue", "sans-serif"],
       },
       backgroundImage: {
-        'primary-gradient-color': 'linear-gradient(90deg, #333399 0%, #333399 51%, #FF00CC 100%)',
-        'primary-gradient-color-invert': 'linear-gradient(270deg, #333399 0%, #333399 51%, #FF00CC 100%)'
+        'primary-gradient-color': 'linear-gradient(90deg, #4D91FF 0%, #620A9C 51%, #FF00CC 100%)',
+        'primary-gradient-color-invert': 'linear-gradient(270deg, #4D91FF 0%, #620A9C 51%, #FF00CC 100%)'
       },
       colors: {
-        primary: "#333399",
+        primary: "#4D91FF",
         secondary: "#FF00CC",
+        thirdly: "#620A9C",
         darkWhite: "#E8E6E3",
         grayLight: "#38383E",
         grayDark: "#1D1A1A",

@@ -4,7 +4,7 @@ import { logoLight, logoSide, logoSideLight } from '../assets';
 import { Link } from 'react-router-dom';
 import { SlMenu } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
-import { navbarLinks } from '../constants/navbarConstants';
+import { navbarLinks } from '../constants/general';
 import { motion } from "framer-motion";
 import { revealingMotion } from '../utils/motionSettings';
 
@@ -42,9 +42,9 @@ function Navbar() {
 
   return (
     <motion.div className={`
-      ${isScrolled ? "bg-base100" : ""}
+      ${isScrolled ? "bg-base100 shadow-lg" : ""}
       ${toggleMobileNav ? "bg-base100 sm:bg-transparent" : ""} 
-      ${styles.transition500} fixed z-50 w-full`}
+      ${styles.transition500} fixed z-50 py-2 w-full`}
       {...revealingMotion}
     >
       <div className={`${styles.wrapper} py-2 flex justify-between items-center`}>
@@ -52,16 +52,19 @@ function Navbar() {
           <img className='h-full' src={`${isScrolled ? logoSide : logoSideLight}`} alt="Logo" />
         </Link>
 
-        <div className='hidden sm:flex items-center gap-14'>
+        <div className='hidden sm:flex items-center gap-10'>
           <div className='flex items-center gap-4'>
             {navbarLinks.map((link, index) => (
-              <a key={index} className={`${styles.primaryTextOnHover}`} href={`#${link.id}`}>{link.title}</a>
+              <div key={index} className={`relative group hover:text-primary ${styles.transition500}`}>
+                <a href={`#${link.id}`}>{link.title}</a>
+                <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
+              </div>
             ))}
           </div>
           {
             isUserRegistered ?
               (
-                <Link to={"/sign-in"} className={`${styles.primaryButton} shadow-md`} onClick={handleLinkClick}>Lunch App</Link>
+                <Link to={"/home"} className={`${styles.primaryButton} shadow-md`} onClick={handleLinkClick}>Lunch App</Link>
               )
               :
               (
@@ -85,14 +88,13 @@ function Navbar() {
 
         <div className='flex flex-col items-center justify-center w-full gap-4'>
           {navbarLinks.map((link, index) => (
-            <a
-              key={index}
-              className={`${styles.primaryTextOnHover}`}
-              href={`#${link.id}`}
-              onClick={handleLinkClick}
-            >
-              {link.title}
-            </a>
+            <div key={index} className={`relative group hover:text-primary ${styles.transition500}`}>
+              <a href={`#${link.id}`}
+                onClick={handleLinkClick}
+
+              >{link.title}</a>
+              <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
+            </div>
           ))}
         </div>
         {

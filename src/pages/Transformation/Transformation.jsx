@@ -15,7 +15,7 @@ function Transformation() {
 
   useEffect(() => {
     if (localStorage.getItem(USER_LOCAL_STORAGE) === null) {
-      navigate('/home');
+      navigate('/sign-in');
     }
   }, [navigate]);
 

@@ -39,7 +39,7 @@ function GenerativeFill() {
     })
 
     const isButtonActive =
-        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '' && creditBalance !== 0;
+        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '' && creditBalance !== 0 && !isProcessing;
 
     const transformImage = async () => {
         setIsProcessing(true)
@@ -137,7 +137,7 @@ function GenerativeFill() {
             <div className="flex flex-col items-start gap-4 w-full">
                 <div className="flex items-center justify-between w-full ">
                     <div className={`${styles.heading3}`}>Generative Fill</div>
-                    <div className="flex items-center justify-start gap-2">
+                    <div className="flex items-center justify-start gap-2 tooltip  tooltip-bottom  [--tooltip-color:#38383e] [--tooltip-text-color:#ffffff]" data-tip=" your credits">
                         <CreditIcon />
                         <div className={`${styles.heading4}`}>{creditBalance}</div>
                     </div>
@@ -146,9 +146,11 @@ function GenerativeFill() {
                     <div className={`${styles.paragraph2}`}>
                         Enhance an image's dimensions using AI outpainting
                     </div>
-                    <div className="flex items-center justify-start gap-4">
-                        <SmallCreditIcon />
-                        <div className={`${styles.paragraph2}`}>{transformationPrice}</div>
+                    <div className="flex items-center justify-start gap-2">
+                        <SmallCreditIcon /> 
+                        <div className={`${styles.paragraph4}`}>
+                            {transformationPrice} credits
+                        </div>
                     </div>
                 </div>
             </div>

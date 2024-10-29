@@ -48,13 +48,13 @@ export const transformationsTypes = {
         price: 2
     },
     "object-recolor": {
-        price: 4
-    },
-    "e_background_removal": {
         price: 2
     },
+    "e_background_removal": {
+        price: 4
+    },
     "image-restore": {
-        price: 1
+        price: 2
     },
     "object-removal": {
         price: 2
