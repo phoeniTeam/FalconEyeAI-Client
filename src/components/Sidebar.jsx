@@ -138,7 +138,7 @@ function Sidebar() {
                                     {link.icon}
                                     <span className={`${styles.paragraph4}`}>
                                         {link.label === 'Profile'
-                                            ? `${creatorLocalStorage.creator?.name || 'Profile'} `
+                                            ? `${creatorLocalStorage?.creator?.name || 'Profile'} `
                                             : link.label}
                                     </span>
                                 </Link>

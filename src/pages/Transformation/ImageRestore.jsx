@@ -201,7 +201,7 @@ function ImageRestore() {
                     <div className={`${styles.paragraph2} text-white `}>
                         Refine images by removing noise and imperfections
                     </div>
-                    <div className="flex items-center justify-start gap-4">
+                    <div className="flex items-center justify-start gap-2">
                         <SmallCreditIcon />
                         <div className={`${styles.paragraph4}`}>
                             {transformationPrice} credits
