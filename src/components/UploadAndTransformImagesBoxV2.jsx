@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from '../styles';
 import { FaSquarePlus } from 'react-icons/fa6';
 import { PuffLoader } from 'react-spinners';
-import { FaDownload } from "react-icons/fa6";
+import { FaDownload } from 'react-icons/fa6';
 import { handleImageDownload } from '../apis/image/handleImageDownload';
 
 function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
@@ -18,24 +18,24 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
             },
             (error, result) => {
                 if (error) {
-                    console.error("Upload error:", error);
-                } else if (result && result.event === "success") {
+                    console.error('Upload error:', error);
+                } else if (result && result.event === 'success') {
                     // ********************************** Change here
-                    setImage(prev => ({
+                    setImage((prev) => ({
                         ...prev,
                         secureURL: result.info.secure_url,
                         publicId: result.info.public_id,
-                    }))
+                    }));
                     // **********************************
-                } else if (result && result.event === "cancel") {
+                } else if (result && result.event === 'cancel') {
                     // ********************************** Change here
-                    setImage(prev => ({
+                    setImage((prev) => ({
                         ...prev,
-                        secureURL: "",
-                        publicId: "",
-                        width: "",
-                        height: ""
-                    }))
+                        secureURL: '',
+                        publicId: '',
+                        width: '',
+                        height: '',
+                    }));
                     // **********************************
                 }
             }
@@ -48,13 +48,13 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
 
     const renderTransformationImage = () => {
         if (isProcessing) {
-            return <PuffLoader color='#fff' />;
+            return <PuffLoader color="#fff" />;
         }
 
         if (image.transformationUrl) {
             return (
                 <img
-                    className='max-h-[300px] max-w-[300px] object-cover rounded-lg'
+                    className="max-h-[300px] max-w-[300px] object-cover rounded-lg"
                     src={image.transformationUrl}
                     alt="Transformed"
                 />
@@ -64,45 +64,55 @@ function UploadAndTransformImagesBoxV2({ image, setImage, isProcessing }) {
         return <span>Transformed Image</span>;
     };
 
-
     return (
         <>
             <div className="w-full flex flex-col sm:flex-row gap-8">
                 <div className="w-full sm:w-1/2 flex flex-col gap-2">
                     <div className={`${styles.heading4}`}>Original</div>
-                    {
-                        image.secureURL ? (
-                            <div className=' min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center  border-2 border-grayLight rounded-lg  '>
-                                <img className='max-h-[300px] max-w-[300px] object-cover rounded-lg' src={image.secureURL} alt="Image" />
+                    {image.secureURL ? (
+                        <div className=" min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center  border-2 border-grayLight rounded-lg  ">
+                            <img
+                                className="max-h-[300px] max-w-[300px] object-cover rounded-lg"
+                                src={image.secureURL}
+                                alt="Image"
+                            />
+                        </div>
+                    ) : (
+                        <div
+                            onClick={handleUpload}
+                            className="cursor-pointer border-2 border-grayLight rounded-lg group "
+                        >
+                            <div className="min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center text-darkWhite">
+                                <FaSquarePlus
+                                    className={`h-8 w-8 text-primary group-hover:text-secondary ${styles.transition500}`}
+                                />
+                                <span>Click here to upload</span>
                             </div>
-                        ) :
-                            (
-                                <div onClick={handleUpload} className="cursor-pointer border-2 border-grayLight rounded-lg group ">
-                                    <div className="min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center text-darkWhite">
-                                        <FaSquarePlus
-                                            className={`h-8 w-8 text-primary group-hover:text-secondary ${styles.transition500}`}
-                                        />
-                                        <span>Click here to upload</span>
-                                    </div>
-                                </div>
-                            )
-                    }
+                        </div>
+                    )}
                 </div>
 
-
                 <div className="w-full sm:w-1/2 flex flex-col gap-2">
-                    <div className='flex justify-between items-center'>
+                    <div className="flex justify-between items-center">
                         <div className={`${styles.heading4}`}>Transformed</div>
-                        {image.transformationUrl &&
+                        {image.transformationUrl && (
                             <button
-                                onClick={() => handleImageDownload(image.transformationUrl, image.title)}
+                                onClick={() =>
+                                    handleImageDownload(
+                                        image.transformationUrl,
+                                        image.title
+                                    )
+                                }
                             >
+                                <div
+                                    className={`btn btn-circle border-none bg-[#131313] hover:bg-grayDark group min-h-10 h-10 w-10 ${styles.transition500}`}
+                                >
                                 <FaDownload
-                                    className={`cursor-pointer text-grayLight hover:text-darkWhite ${styles.transition500}`}
+                                    className={`w-4 h-4 text-grayLight group-hover:text-darkWhite cursor-pointer ${styles.transition500}`}
                                 />
-
+                                </div>
                             </button>
-                        }
+                        )}
                     </div>
                     <div className="border-2 border-grayLight rounded-lg">
                         <div className="min-h-[400px] sm:min-h-[300px] flex flex-col justify-center items-center text-darkWhite">

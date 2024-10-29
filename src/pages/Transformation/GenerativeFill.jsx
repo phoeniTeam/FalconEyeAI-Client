@@ -38,6 +38,19 @@ function GenerativeFill() {
         creatorId: getCreatorLocalStorage().creator._id
     })
 
+    const keysToCheck = [
+        'title',
+        'publicId',
+        'secureURL',
+        'width',
+        'height',
+        'config',
+        'transformationUrl',
+        'aspectRatio',
+        'color',
+        'prompt',
+    ];
+
     const isButtonActive =
         image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '' && creditBalance !== 0 && !isProcessing;
 
@@ -130,6 +143,24 @@ function GenerativeFill() {
         }
     }
 
+    const hasValues = keysToCheck.some((key) => image[key] !== '') || selectedAspectRatio !== '';
+    const resetImage = () => {
+        setImage({
+            title: '',
+            transformationType: transformationType,
+            publicId: '',
+            secureURL: '',
+            width: '',
+            height: '',
+            config: '',
+            transformationUrl: '',
+            aspectRatio: '',
+            color: '',
+            prompt: '',
+            creatorId: getCreatorLocalStorage().creator._id,
+        });
+        setSelectedAspectRatio('')
+    };
 
 
     return (
@@ -158,6 +189,9 @@ function GenerativeFill() {
                     id="imageTitle"
                     value={image.title}
                     onChange={(e) => setImage(prev => ({ ...prev, title: e.target.value }))}
+                    onReset={resetImage}
+                    canReset={hasValues}
+                    isProcessing={isProcessing}
                 />
                 <div className="flex flex-col gap-2">
                     <label
