@@ -122,7 +122,7 @@ function ObjectRemoval() {
             <div className="flex flex-col items-start gap-4 w-full">
                 <div className="flex items-center justify-between w-full ">
                     <div className={`${styles.heading3}`}>Object Removal</div>
-                    <div className="flex items-center justify-start gap-2">
+                    <div className="flex items-center justify-start gap-2 tooltip  tooltip-bottom  [--tooltip-color:#38383e] [--tooltip-text-color:#ffffff]" data-tip=" your credits">
                         <CreditIcon />
                         <div className={`${styles.heading4} text-white `}>
                             {getCreatorLocalStorage().creator?.creditBalance !== undefined ? getCreatorLocalStorage().creator.creditBalance : 0}
@@ -133,10 +133,10 @@ function ObjectRemoval() {
                     <div className={`${styles.paragraph2}`}>
                         Identify and elimante objects from image
                     </div>
-                    <div className="flex items-center justify-start gap-4">
-                        <SmallCreditIcon />
-                        <div className={`${styles.paragraph2} text-white `}>
-                            {transformationPrice}
+                    <div className="flex items-center justify-start gap-2">
+                        <SmallCreditIcon /> 
+                        <div className={`${styles.paragraph4}`}>
+                            {transformationPrice} credits
                         </div>
                     </div>
                 </div>

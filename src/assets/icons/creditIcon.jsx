@@ -17,8 +17,8 @@ function creditIcon({ width = 40, height = 40 }) {
       y2="19.9918"
       gradientUnits="userSpaceOnUse"
     >
-      <stop stopColor="#333399" />
-      <stop offset="0.5" stopColor="#333399" />
+      <stop stopColor="#4D91FF" />
+      <stop offset="0.5" stopColor="#620A9C" />
       <stop offset="1" stopColor="#FF00CC" />
     </linearGradient>
   </defs>
