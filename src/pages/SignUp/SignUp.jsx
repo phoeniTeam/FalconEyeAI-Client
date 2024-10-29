@@ -9,6 +9,7 @@ import axios from 'axios';
 import { FaRegUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 
 function SignUp() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -112,9 +113,8 @@ function SignUp() {
         
     },[register.name, register.username, register.email, register.password])
     useEffect(() => {
-        
 
-        const userIsSignedIn = JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE));
+        const userIsSignedIn = getCreatorLocalStorage()
 
         if (userIsSignedIn) {
             localStorage.removeItem(USER_LOCAL_STORAGE);
