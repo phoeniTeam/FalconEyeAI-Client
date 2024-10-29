@@ -134,8 +134,8 @@ function SignUp() {
                         >
                             <div className="mb-4 flex items-center">
                                 <div className="relative w-full">
-                                    <div className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
-                                        <BsFillPersonFill className="h-8 w-8" />
+                                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                                        <BsFillPersonFill className="h-6 w-6" />
                                     </div>
                                     <input
                                         type="text"
@@ -144,15 +144,15 @@ function SignUp() {
                                         onChange={handleChange}
                                         name="username"
                                         placeholder="UserName"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] font-bold"
+                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-4 flex items-center">
                                 <div className="relative w-full">
-                                    <div className="absolute left-2 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
-                                        <FaRegUser className="h-7 w-7" />{' '}
+                                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                                        <FaRegUser className="h-6 w-6" />{' '}
                                     </div>
                                     <input
                                         type="text"
@@ -161,15 +161,15 @@ function SignUp() {
                                         onChange={handleChange}
                                         name="name"
                                         placeholder="Name"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] font-bold"
+                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-4 flex items-center  ">
                                 <div className="relative w-full">
-                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-2 top-1/2 text-[#1A1A1D]">
-                                        <MdEmail className=" h-8 w-8" />
+                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-3 top-1/2 text-[#1A1A1D]">
+                                        <MdEmail className=" h-6 w-6" />
                                     </div>
 
                                     <input
@@ -179,15 +179,15 @@ function SignUp() {
                                         onChange={handleChange}
                                         name="email"
                                         placeholder="Email"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] font-bold"
+                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-8 flex items-center ">
                                 <div className="relative w-full">
-                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-2 top-1/2 text-[#1A1A1D]">
-                                        <RiLockPasswordLine className="h-8 w-8" />
+                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-3 top-1/2 text-[#1A1A1D]">
+                                        <RiLockPasswordLine className="h-6 w-6" />
                                     </div>
                                     <input
                                         type="password"
@@ -196,7 +196,7 @@ function SignUp() {
                                         value={register.password}
                                         onChange={handleChange}
                                         placeholder="Password"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] font-bold"
+                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
                                         required
                                     />
                                 </div>
