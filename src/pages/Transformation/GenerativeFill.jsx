@@ -39,7 +39,7 @@ function GenerativeFill() {
     })
 
     const isButtonActive =
-        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '' && creditBalance !== 0;
+        image.title.trim() !== '' && selectedAspectRatio.trim() !== '' && image.secureURL !== '' && creditBalance !== 0 && !isProcessing;
 
     const transformImage = async () => {
         setIsProcessing(true)
