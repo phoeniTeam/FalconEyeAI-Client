@@ -38,6 +38,19 @@ function BackgroundRemoval() {
         creatorId: getCreatorLocalStorage().creator._id,
     });
 
+    const keysToCheck = [
+        'title',
+        'publicId',
+        'secureURL',
+        'width',
+        'height',
+        'config',
+        'transformationUrl',
+        'aspectRatio',
+        'color',
+        'prompt',
+    ];
+
     const isButtonActive =
         image.title.trim() !== '' &&
         image.secureURL !== '' &&
@@ -137,6 +150,23 @@ function BackgroundRemoval() {
         };
         fetchAPIData();
     };
+    const hasValues = keysToCheck.some((key) => image[key] !== '');
+    const resetImage = () => {
+        setImage({
+            title: '',
+            transformationType: transformationType,
+            publicId: '',
+            secureURL: '',
+            width: '',
+            height: '',
+            config: '',
+            transformationUrl: '',
+            aspectRatio: '',
+            color: '',
+            prompt: '',
+            creatorId: getCreatorLocalStorage().creator._id,
+        });
+    };
 
     return (
         <div className="w-full flex flex-col justify-between gap-8">
@@ -174,6 +204,9 @@ function BackgroundRemoval() {
                     onChange={(e) =>
                         setImage((prev) => ({ ...prev, title: e.target.value }))
                     }
+                    onReset={resetImage}
+                    canReset={hasValues}
+                    isProcessing={isProcessing}
                 />
 
                 <UploadAndTransformImagesBoxV2

@@ -3,7 +3,6 @@ import styles from '../../styles';
 import CreditIcon from '../../assets/icons/creditIcon';
 import Input from '../../components/input';
 import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
-import UploadAndTransformImagesBox from '../../components/UploadAndTransformImagesBox';
 import { transformationsTypes } from '../../constants/editorConstants';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage';
@@ -167,6 +166,22 @@ function ImageRestore() {
         fetchAPIData();
     };
     const hasValues = keysToCheck.some((key) => image[key] !== '');
+    const resetImage = () => {
+        setImage({
+            title: '',
+            transformationType: transformationType,
+            publicId: '',
+            secureURL: '',
+            width: '',
+            height: '',
+            config: '',
+            transformationUrl: '',
+            aspectRatio: '',
+            color: '',
+            prompt: '',
+            creatorId: getCreatorLocalStorage().creator._id,
+        });
+    };
     return (
         <div className="w-full flex flex-col justify-between gap-8 ">
             <div className="flex flex-col items-start gap-4 w-full">
@@ -186,44 +201,11 @@ function ImageRestore() {
                     <div className={`${styles.paragraph2} text-white `}>
                         Refine images by removing noise and imperfections
                     </div>
-                    <div className="flex items-center justify-between w-full ">
-                    <div className="flex items-center justify-start gap-2">
-                        <SmallCreditIcon /> 
-                        <div className={`${styles.paragraph4}`}>
-                            {transformationPrice} credits
+                    <div className="flex items-center justify-start gap-4">
+                        <SmallCreditIcon />
+                        <div className={`${styles.paragraph2} text-white `}>
+                            {transformationPrice}
                         </div>
-                    </div>
-                        {hasValues && (
-                            <div
-                                onClick={() => setMenuOpen(!menuOpen)}
-                                className="btn btn-circle border-none bg-[#131313] hover:bg-grayDark min-h-10 h-10 w-10 "
-                            >
-                                <FiRefreshCcw
-                                    className={`w-5 h-5 lg:w-6 lg:h-6 text-white cursor-pointer ${styles.transition500}`}
-                                    onClick={() => {
-                                        if (hasValues) {
-                                            setImage({
-                                                title: '',
-                                                transformationType:
-                                                    transformationType,
-                                                publicId: '',
-                                                secureURL: '',
-                                                width: '',
-                                                height: '',
-                                                config: '',
-                                                transformationUrl: '',
-                                                aspectRatio: '',
-                                                color: '',
-                                                prompt: '',
-                                                creatorId:
-                                                    getCreatorLocalStorage()
-                                                        .creator._id,
-                                            });
-                                        }
-                                    }}
-                                />
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
@@ -235,6 +217,9 @@ function ImageRestore() {
                     onChange={(e) =>
                         setImage((prev) => ({ ...prev, title: e.target.value }))
                     }
+                    onReset={resetImage}
+                    canReset={hasValues}
+                    isProcessing={isProcessing}
                 />
                 <UploadAndTransformImagesBoxV2
                     image={image}

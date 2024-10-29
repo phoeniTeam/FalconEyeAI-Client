@@ -19,7 +19,6 @@ import { enhance } from '@cloudinary/url-gen/actions/effect';
 function ObjectRecolor() {
     const transformationType = "object-recolor";
     const transformationPrice = transformationsTypes[transformationType].price;
-
     const [isProcessing, setIsProcessing] = useState(false);
     const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0);
     const [image, setImage] = useState({
@@ -37,6 +36,20 @@ function ObjectRecolor() {
         prompt: "",
         creatorId: getCreatorLocalStorage().creator._id
     });
+
+    const keysToCheck = [
+        'title',
+        'publicId',
+        'secureURL',
+        'width',
+        'height',
+        'config',
+        'transformationUrl',
+        'aspectRatio',
+        'color',
+        'objectName',
+        'prompt',
+    ];
 
     const isButtonActive = 
         image.title.trim() !== '' && 
@@ -133,6 +146,25 @@ function ObjectRecolor() {
         fetchAPIData();
     };
 
+    const hasValues = keysToCheck.some((key) => image[key] !== '');
+    const resetImage = () => {
+        setImage({
+            title: "",
+            transformationType: transformationType,
+            publicId: "",
+            secureURL: "",
+            width: "",
+            height: "",
+            config: "",
+            transformationUrl: "",
+            aspectRatio: "",
+            color: "",
+            objectName: '',
+            prompt: "",
+            creatorId: getCreatorLocalStorage().creator._id
+        });
+    };
+
     return (
         <div className="w-full flex flex-col justify-between gap-8">
             <div className="flex flex-col items-start gap-4 w-full">
@@ -159,6 +191,9 @@ function ObjectRecolor() {
                     id="imageTitle" 
                     value={image.title} 
                     onChange={(e) => setImage(prev => ({ ...prev, title: e.target.value }))} 
+                    onReset={resetImage}
+                    canReset={hasValues}
+                    isProcessing={isProcessing}
                 />
                 <div className="grid grid-cols-2 justify-items-center gap-6">
                     <div className="w-full">
