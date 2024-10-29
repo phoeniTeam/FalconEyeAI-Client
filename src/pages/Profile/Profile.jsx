@@ -8,13 +8,17 @@ import CreditIcon from "../../assets/icons/creditIcon";
 import useUserProfile from '../../hooks/creator/useUserProfile.js';
 import searchForImage from '../../utils/searchForTerm.js';
 import Filter from '../../components/Filter.jsx';
+import CheckmarkIcon from "../../assets/icons/CheckmarkIcon.jsx";
+import MagicIcon from "../../assets/icons/magician.jsx"
+
+
 
 function Profile() {
   const [inputColor, setInputColor] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('All');
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
   const {
     name,
     userName,
@@ -53,7 +57,7 @@ function Profile() {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       updateName(name);
-      setIsEditing(false); 
+      setIsEditing(false);
     }
   };
 
@@ -67,13 +71,13 @@ function Profile() {
             <div className="flex items-center gap-4">
               <div
                 className="relative w-24 h-24 flex justify-center items-center bg-[#1d1a1a] rounded-full cursor-pointer"
-                onClick={() => setIsModalOpen(true)} 
+                onClick={() => setIsModalOpen(true)}
               >
                 {profilePhoto ? (
-                  <img 
-                    src={profilePhoto} 
-                    alt="Profile" 
-                    className="w-full h-full rounded-full object-cover" 
+                  <img
+                    src={profilePhoto}
+                    alt="Profile"
+                    className="w-full h-full rounded-full object-cover"
                   />
                 ) : (
                   <FaUserTie size={48} className="text-white" />
@@ -81,45 +85,57 @@ function Profile() {
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center">
-                  {isEditing ? ( 
+                  {isEditing ? (
                     <input
-                      className="bg-transparent text-white outline-none mt-1 border-b border-gray-400 focus:border-blue-500 transition duration-200"
+                      className="bg-transparent outline-none mt-1 border-b-[1px] w-36 border-gray-300 text-lg focus:border-blue-500 transition duration-50"
                       value={name}
                       onChange={handleNameChange}
-                      onKeyDown={handleKeyDown} 
+                      onKeyDown={handleKeyDown}
                       onFocus={() => setInputColor(true)}
                       onBlur={() => setInputColor(false)}
                     />
                   ) : (
-                    <span className="text-white">{name}</span> 
+                    <span className="text-white text-xl">{name}</span>
                   )}
-                  <div className="ml-2 flex-shrink-0 cursor-pointer" 
+
+                  <div className="ml-2 flex-shrink-0 cursor-pointer"
                     onClick={() => {
                       if (isEditing) {
-                        updateName(name); 
-                        setIsEditing(false); 
+                        updateName(name);
+                        setIsEditing(false);
                       } else {
-                        setIsEditing(true); 
+                        setIsEditing(true);
                       }
                     }}
                   >
                     {isEditing ? (
-                      <IoCheckmarkOutline size={20} className="text-white hover:text-gray-400 transition duration-200 mt-5" />
+                      <CheckmarkIcon size={20} className="text-white hover:text-gray-400 transition duration-200 mt-5" />
                     ) : (
                       <FaEdit size={17} className="text-white hover:text-gray-400 transition duration-200" />
                     )}
                   </div>
                 </div>
+
+
+
                 <input
-                  className="bg-transparent text-gray-400 outline-none py-1"
+                  className="bg-transparent text-gray-400 outline-none py-1 text-sm"
                   value={userName}
                   readOnly
                   placeholder="Username"
                 />
+
+                <div className="flex items-center mt-2">
+                  <MagicIcon width={18} height={18} /> 
+                  <span className="text-white relative left-2">{creations.length}</span>
+                </div>
+
                 {error && <div className="text-red-500">{error}</div>}
               </div>
             </div>
-            <div className="flex items-center gap-2 mb-14">
+
+
+            <div className="flex items-center gap-2 mb-14 relative lg:right-0 right-12">
               <CreditIcon />
               <div className={`${styles.heading4}`}>{creditBalance}</div>
             </div>
@@ -162,14 +178,15 @@ function Profile() {
             </div>
           </div>
 
-          <Modal 
-            isOpen={isModalOpen} 
-            onClose={() => setIsModalOpen(false)} 
-            onConfirm={updateProfilePhoto} 
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onConfirm={updateProfilePhoto}
           />
         </>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 }
 
