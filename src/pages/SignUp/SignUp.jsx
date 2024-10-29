@@ -3,7 +3,7 @@ import { MdEmail } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import styles from '../../styles';
 import { logo } from '../../assets';
-import { useEffect, useState  } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegUser } from 'react-icons/fa';
@@ -110,8 +110,8 @@ function SignUp() {
     useEffect(() => {
         setErrorMessage("")
 
-        
-    },[register.name, register.username, register.email, register.password])
+
+    }, [register.name, register.username, register.email, register.password])
     useEffect(() => {
 
         const userIsSignedIn = getCreatorLocalStorage()
@@ -227,11 +227,11 @@ function SignUp() {
                                         Sign Up
                                     </div>
                                 </button>
-                                <p className="mt-6 text-center text-white">
+                                <p className="mt-6 text-center text-darkWhite">
                                     Already have an account?{' '}
                                     <Link
                                         to="/sign-in"
-                                        className={`${styles.primaryTextOnHover}`}
+                                        className={`${styles.primaryTextOnHover} text-thirdly`}
                                     >
                                         Sign In
                                     </Link>

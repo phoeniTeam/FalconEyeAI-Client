@@ -59,7 +59,7 @@ function SignIn() {
                 // redirect home page
                 navigate('/home');
             } else {
-                
+
                 setErrorMessage('Invalid credentials');
                 // display error message
             }
@@ -79,8 +79,8 @@ function SignIn() {
     useEffect(() => {
         setErrorMessage("")
 
-        
-    },[ signIn.email, signIn.password])
+
+    }, [signIn.email, signIn.password])
 
     useEffect(() => {
 
@@ -90,7 +90,7 @@ function SignIn() {
             localStorage.removeItem(USER_LOCAL_STORAGE);
         }
     }, []);
-  
+
     return (
         <div
             className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}
@@ -163,11 +163,11 @@ function SignIn() {
                                         Sign In
                                     </div>
                                 </button>
-                                <p className="mt-6 text-center text-white">
+                                <p className="mt-6 text-center text-darkWhite">
                                     Do not have an account?{' '}
                                     <Link
                                         to="/sign-up"
-                                        className={`${styles.primaryTextOnHover}`}
+                                        className={`${styles.primaryTextOnHover} text-thirdly`}
                                     >
                                         Sign Up
                                     </Link>
