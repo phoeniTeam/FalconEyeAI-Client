@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { FaUserTie, FaEdit, } from "react-icons/fa";
-import { IoSearch, IoPencilOutline, IoCheckmarkOutline } from "react-icons/io5";
+import { FaUserTie, FaEdit } from "react-icons/fa";
+import { IoSearch } from "react-icons/io5";
 import styles from "../../styles";
 import Modal from '../Profile/Modal';
-import ImageCard from '../../components/ImageCard.jsx';
+import ImageCard2 from '../../components/ImageCard2.jsx';
 import CreditIcon from "../../assets/icons/creditIcon";
 import useUserProfile from '../../hooks/creator/useUserProfile.js';
 import searchForImage from '../../utils/searchForTerm.js';
 import Filter from '../../components/Filter.jsx';
 import CheckmarkIcon from "../../assets/icons/CheckmarkIcon.jsx";
-import MagicIcon from "../../assets/icons/magician.jsx"
-
-
+import MagicIcon from "../../assets/icons/magician.jsx";
+import ImagePreview from '../../components/ImagePreview.jsx';
 
 function Profile() {
   const [inputColor, setInputColor] = useState(false);
@@ -19,7 +18,12 @@ function Profile() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('All'); 
   const [selectedFilter, setSelectedFilter] = useState('All');
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
+  const [imagePreviewState, setImagePreviewState] = useState({
+      id: "",
+      isOpen: false
+  });
+
   const {
     name,
     userName,
@@ -118,8 +122,6 @@ function Profile() {
                   </div>
                 </div>
 
-
-
                 <input
                   className="bg-transparent text-gray-400 outline-none py-1 text-sm"
                   value={userName}
@@ -135,7 +137,6 @@ function Profile() {
                 {error && <div className="text-red-500">{error}</div>}
               </div>
             </div>
-
 
             <div className="flex items-center gap-2 mb-14 relative lg:right-0 right-12">
               <CreditIcon />
@@ -172,11 +173,13 @@ function Profile() {
 
             <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-10">
               {filteredCreations.map((image, index) => (
-                <ImageCard
-                  key={index}
-                  image={image.transformationUrl}
-                  description={image.title}
-                />
+                <div key={index}> 
+                  <ImageCard2
+                    image={image.transformationUrl}
+                    description={image.title}
+                    onClick={() => setImagePreviewState({ id: image._id, isOpen: true })} 
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -186,10 +189,17 @@ function Profile() {
             onClose={() => setIsModalOpen(false)}
             onConfirm={updateProfilePhoto}
           />
+          
+         
+          {imagePreviewState.isOpen && (
+            <ImagePreview 
+              imagePreviewState={imagePreviewState} 
+              setImagePreviewState={setImagePreviewState} 
+            />
+          )}
         </>
-      )
-      }
-    </div >
+      )}
+    </div>
   );
 }
 

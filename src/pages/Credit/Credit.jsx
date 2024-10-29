@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from "../../styles";
-import TbJewishStarFilled from '../../assets/icons/TbJewishStarFilled.jsx';
+import StarIcon from '../../assets/icons/StarIcon.jsx';
 import AiFillThunderbolt from '../../assets/icons/AiFillThunderbolt.jsx';
 import IoDiamond from '../../assets/icons/IoDiamond.jsx';
 import CreditIcon from "../../assets/icons/creditIcon.jsx";
 import CustomIcon from '../../assets/icons/CustomIcon.jsx';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
-import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage'
+import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { getUserInfo } from '../../utils/getUserInfo';
 
 function Credit() {
@@ -62,8 +62,6 @@ function Credit() {
 
   return (
     <div className={styles.innerWrapper}>
-   
-      
       <div className="flex justify-between items-center">
         <div className="text-left">
           <h1 className={`${styles.heading3}`}>Buy Credit</h1>
@@ -77,11 +75,11 @@ function Credit() {
         </div>
       </div>
 
-      <div className="flex justify-center mt-28 space-x-6 flex-wrap gap-6 lg:ml-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10 ">
         {/* Free Credit Package */}
-        <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10 ml-5">
+        <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <TbJewishStarFilled  className="text-white" />
+            <StarIcon className="text-white w-8 h-8" /> {/* Set fixed size */}
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Free</p>
           <h1 className={`${styles.heading3}`}>0$</h1>
@@ -97,9 +95,9 @@ function Credit() {
         </div>
 
         {/* Pro Credit Package */}
-        <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10">
+        <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <AiFillThunderbolt  className="text-white" />
+            <AiFillThunderbolt className="text-white w-14 h-14" /> 
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Pro</p>
           <h1 className={`${styles.heading3}`}>29$</h1>
@@ -117,9 +115,9 @@ function Credit() {
         </div>
 
         {/* Diamond Credit Package */}
-        <div className="w-60 h-96 rounded-lg shadow-lg flex flex-col items-center py-4 bg-[#131313] space-y-10">
+        <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <IoDiamond className="text-white" />
+            <IoDiamond className="text-white w-10 h-10" /> 
           </div>
           <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
           <h1 className={`${styles.heading3}`}>79$</h1>
@@ -138,6 +136,7 @@ function Credit() {
       </div>
     </div>
   );
-};
+}
 
 export default Credit;
+
