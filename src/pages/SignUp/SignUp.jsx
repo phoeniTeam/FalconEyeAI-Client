@@ -12,6 +12,8 @@ import Swal from 'sweetalert2';
 
 function SignUp() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
+
     const navigate = useNavigate();
     const [register, setRegister] = useState({
         username: '',
@@ -109,6 +111,15 @@ function SignUp() {
 
         
     },[register.name, register.username, register.email, register.password])
+    useEffect(() => {
+        
+
+        const userIsSignedIn = JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE));
+
+        if (userIsSignedIn) {
+            localStorage.removeItem(USER_LOCAL_STORAGE);
+        }
+    }, []);
     return (
         <div
             className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}

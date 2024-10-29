@@ -58,6 +58,7 @@ function SignIn() {
                 // redirect home page
                 navigate('/home');
             } else {
+                
                 setErrorMessage('Invalid credentials');
                 // display error message
             }
@@ -79,6 +80,16 @@ function SignIn() {
 
         
     },[ signIn.email, signIn.password])
+
+    useEffect(() => {
+
+        const userIsSignedIn = JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE));
+
+        if (userIsSignedIn) {
+            localStorage.removeItem(USER_LOCAL_STORAGE);
+        }
+    }, []);
+  
     return (
         <div
             className={`${styles.outerWrapper} bg-black lg:h-screen md:h-screen sm:h-screen max-sm:h-screen  flex justify-center items-center `}
