@@ -1,129 +1,172 @@
-import React, {  useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
 import CreditIcon from '../../assets/icons/creditIcon';
 import Input from '../../components/input';
 import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
 import UploadAndTransformImagesBox from '../../components/UploadAndTransformImagesBox';
-import { transformationsTypes } from '../../constants/editorConstants'
+import { transformationsTypes } from '../../constants/editorConstants';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
-import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage'
+import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage';
 import { createImage } from '../../apis/image/createImage';
 import { updateCreatorCredit } from '../../apis/creator/updateCreatorCredit';
 import { calculateNewCreditBalance } from '../../utils/calculateNewCreditBalance';
 import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
 import axios from 'axios';
 import { CloudinaryImage } from '@cloudinary/url-gen';
-import { generativeRestore,upscale,enhance } from '@cloudinary/url-gen/actions/effect';
+import {
+    generativeRestore,
+    upscale,
+    enhance,
+} from '@cloudinary/url-gen/actions/effect';
 import { improve } from '@cloudinary/url-gen/actions/adjust';
+import { FiRefreshCcw } from 'react-icons/fi';
 
 function ImageRestore() {
-      const transformationType = "image-restore"
-      const transformationPrice = transformationsTypes[transformationType].price
-      const [isProcessing, setIsProcessing] = useState(false)
-      const [creditBalance, setCreditBalance] = useState(getCreatorLocalStorage().creator?.creditBalance || 0)
-      const [image, setImage] = useState({
-          title: "",
-          transformationType: transformationType,
-          publicId: "",
-          secureURL: "",
-          width: "",
-          height: "",
-          config: "",
-          transformationUrl: "",
-          aspectRatio: "",
-          color: "",
-          prompt: "",
-          creatorId: getCreatorLocalStorage().creator._id
-      })
-  
-        const isButtonActive =
-            image.title.trim() !== '' &&
-            image.secureURL !== '' &&
-            creditBalance > 0 &&
-            !isProcessing;
-          
-      const transformImage = async () => {
-          setIsProcessing(true)
-          if (image.publicId) {
-              const myImage = new CloudinaryImage(image.publicId, {
-                  cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-              });
+    const transformationType = 'image-restore';
+    const transformationPrice = transformationsTypes[transformationType].price;
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [creditBalance, setCreditBalance] = useState(
+        getCreatorLocalStorage().creator?.creditBalance || 0
+    );
+    const [image, setImage] = useState({
+        title: '',
+        transformationType: transformationType,
+        publicId: '',
+        secureURL: '',
+        width: '',
+        height: '',
+        config: '',
+        transformationUrl: '',
+        aspectRatio: '',
+        color: '',
+        prompt: '',
+        creatorId: getCreatorLocalStorage().creator._id,
+    });
 
-                const url = myImage.effect(generativeRestore())
+    const keysToCheck = [
+        'title',
+        'publicId',
+        'secureURL',
+        'width',
+        'height',
+        'config',
+        'transformationUrl',
+        'aspectRatio',
+        'color',
+        'prompt',
+    ];
+
+    const isButtonActive =
+        image.title.trim() !== '' &&
+        image.secureURL !== '' &&
+        creditBalance > 0 &&
+        !isProcessing;
+
+    const transformImage = async () => {
+        setIsProcessing(true);
+        if (image.publicId) {
+            const myImage = new CloudinaryImage(image.publicId, {
+                cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+            });
+
+            const url = myImage
+                .effect(generativeRestore())
                 .effect(upscale())
                 .effect(enhance())
                 .adjust(improve())
                 .toURL();
-  
-              await uploadTransformedImage(url);
-          }
-      };
-  
-      const uploadTransformedImage = async (imageUrl) => {
-          try {
-              const response = await axios.get(imageUrl, { responseType: 'blob' });
-              const transformedImageBlob = response.data;
-  
-              const contentType = response.headers['content-type'];
-              let fileExtension = 'jpg';
-              if (contentType.includes('png')) {
-                  fileExtension = 'png';
-              }
-  
-              const formData = new FormData();
-              formData.append('file', transformedImageBlob, `${image.title}.${fileExtension}`);
-              formData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
-  
-              const uploadResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`, formData, {
-                  headers: {
-                      'X-Requested-With': 'XMLHttpRequest'
-                  }
-              });
-  
-              setImage(prev => ({ ...prev, 
-                transformationUrl: uploadResponse.data.secure_url
-             }));
-  
-          } catch (error) {
-              console.error('Upload failed:', error);
-          } finally {
-              setIsProcessing(false)
-          }
-      };
-  
-      useEffect(() => {
-          if (image.transformationUrl) {
-              saveTheImageToDatabase();
-          }
-      }, [image.transformationUrl]);
-  
-      const saveTheImageToDatabase = () => {
-          const fetchAPIData = async () => {
-              if (!image || !getCreatorLocalStorage().token) {
-                  console.log("image or authToken is not defined")
-                  return;
-              }
-              try {
-                  const result = await createImage(image, getCreatorLocalStorage().token);
-  
-                  const newBalance = calculateNewCreditBalance(getCreatorLocalStorage().creator.creditBalance, -transformationPrice)
-                  updateCreatorCredit(getCreatorLocalStorage().creator._id, getCreatorLocalStorage().token, newBalance)
-                  const updatedData = {
-                      creator: {
-                          ...getCreatorLocalStorage().creator,
-                          creditBalance: newBalance
-                      }
-                  };
-                  updateCreatorLocalStorage(updatedData);
-                  setCreditBalance(newBalance);
-  
-              } catch (error) {
-                  console.log(error)
-              }
-          };
-          fetchAPIData();
-      };
-  
+
+            await uploadTransformedImage(url);
+        }
+    };
+
+    const uploadTransformedImage = async (imageUrl) => {
+        try {
+            const response = await axios.get(imageUrl, {
+                responseType: 'blob',
+            });
+            const transformedImageBlob = response.data;
+
+            const contentType = response.headers['content-type'];
+            let fileExtension = 'jpg';
+            if (contentType.includes('png')) {
+                fileExtension = 'png';
+            }
+
+            const formData = new FormData();
+            formData.append(
+                'file',
+                transformedImageBlob,
+                `${image.title}.${fileExtension}`
+            );
+            formData.append(
+                'upload_preset',
+                import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+            );
+
+            const uploadResponse = await axios.post(
+                `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`,
+                formData,
+                {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                }
+            );
+
+            setImage((prev) => ({
+                ...prev,
+                transformationUrl: uploadResponse.data.secure_url,
+            }));
+        } catch (error) {
+            console.error('Upload failed:', error);
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    useEffect(() => {
+        if (image.transformationUrl) {
+            saveTheImageToDatabase();
+        }
+    }, [image.transformationUrl]);
+
+    const saveTheImageToDatabase = () => {
+        const fetchAPIData = async () => {
+            if (!image || !getCreatorLocalStorage().token) {
+                console.log('image or authToken is not defined');
+                return;
+            }
+            try {
+                const result = await createImage(
+                    image,
+                    getCreatorLocalStorage().token
+                );
+
+                const newBalance = calculateNewCreditBalance(
+                    getCreatorLocalStorage().creator.creditBalance,
+                    -transformationPrice
+                );
+                updateCreatorCredit(
+                    getCreatorLocalStorage().creator._id,
+                    getCreatorLocalStorage().token,
+                    newBalance
+                );
+                const updatedData = {
+                    creator: {
+                        ...getCreatorLocalStorage().creator,
+                        creditBalance: newBalance,
+                    },
+                };
+                updateCreatorLocalStorage(updatedData);
+                setCreditBalance(newBalance);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchAPIData();
+    };
+    const hasValues = keysToCheck.some((key) => image[key] !== '');
     return (
         <div className="w-full flex flex-col justify-between gap-8 ">
             <div className="flex flex-col items-start gap-4 w-full">
@@ -139,15 +182,48 @@ function ImageRestore() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col items-start gap-1">
+                <div className="flex flex-col items-start gap-1 w-full">
                     <div className={`${styles.paragraph2} text-white `}>
                         Refine images by removing noise and imperfections
                     </div>
-                    <div className="flex items-center justify-start gap-4">
-                        <SmallCreditIcon />
-                        <div className={`${styles.paragraph2} text-white `}>
-                            {transformationPrice}
+                    <div className="flex items-center justify-between w-full ">
+                        <div className="flex items-center justify-start gap-4">
+                            <SmallCreditIcon />
+                            <div className={`${styles.paragraph2} text-white `}>
+                                {transformationPrice}
+                            </div>
                         </div>
+                        {hasValues && (
+                            <div
+                                onClick={() => setMenuOpen(!menuOpen)}
+                                className="btn btn-circle border-none bg-[#131313] hover:bg-grayDark min-h-10 h-10 w-10 "
+                            >
+                                <FiRefreshCcw
+                                    className={`w-5 h-5 lg:w-6 lg:h-6 text-white cursor-pointer ${styles.transition500}`}
+                                    onClick={() => {
+                                        if (hasValues) {
+                                            setImage({
+                                                title: '',
+                                                transformationType:
+                                                    transformationType,
+                                                publicId: '',
+                                                secureURL: '',
+                                                width: '',
+                                                height: '',
+                                                config: '',
+                                                transformationUrl: '',
+                                                aspectRatio: '',
+                                                color: '',
+                                                prompt: '',
+                                                creatorId:
+                                                    getCreatorLocalStorage()
+                                                        .creator._id,
+                                            });
+                                        }
+                                    }}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -156,10 +232,15 @@ function ImageRestore() {
                     label="Image Title"
                     id="imageTitle"
                     value={image.title}
-                    onChange={(e) => setImage(prev => ({ ...prev, title: e.target.value }))}
+                    onChange={(e) =>
+                        setImage((prev) => ({ ...prev, title: e.target.value }))
+                    }
                 />
-                <UploadAndTransformImagesBoxV2 image={image} setImage={setImage} isProcessing={isProcessing} />
-
+                <UploadAndTransformImagesBoxV2
+                    image={image}
+                    setImage={setImage}
+                    isProcessing={isProcessing}
+                />
             </div>
             <div className="w-full p-2">
                 <button
