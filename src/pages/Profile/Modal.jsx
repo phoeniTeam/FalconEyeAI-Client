@@ -33,8 +33,7 @@ const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
 
   const handleImageReset = () => {
     setSelectedImage(null);
-    setImagePreview(null);
-    onConfirm(defaultUserImage);
+    setImagePreview(defaultUserImage); 
   };
 
   const handleDragOver = (e) => {
@@ -59,7 +58,7 @@ const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
                      bg-black bg-opacity-10 backdrop-filter backdrop-blur-md"
           onClick={handleOutsideClick}
         >
-          <div className={`modal-content bg-grayDark max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
+          <div className={`modal-content bg-gray-800 max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-white transition"
               onClick={onClose}
@@ -77,7 +76,7 @@ const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
                 <img
                   src={imagePreview || profilePhoto || defaultUserImage}
                   alt="Profile"
-                  className="w-full h-full rounded-full border-4 border-blue-500 shadow-lg object-cover"
+                  className="w-full h-full rounded-full border-4 border-darkWhite shadow-lg object-cover"
                 />
 
                 {imagePreview && (
@@ -113,8 +112,7 @@ const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
 
               <button
                 onClick={handleConfirmImage}
-                className={`${styles.newGradientButton} text-white py-2 px-4 rounded transition mt-4 ${imagePreview ? '' : 'opacity-50 cursor-not-allowed'}`}
-                disabled={!imagePreview}
+                className={`${styles.newGradientButton} text-white py-2 px-4 rounded transition mt-4`}
               >
                 Confirm Upload
               </button>

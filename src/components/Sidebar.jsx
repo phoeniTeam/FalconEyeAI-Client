@@ -15,10 +15,14 @@ import { IoClose } from 'react-icons/io5';
 import BasketIcon from '../assets/icons/basketIcon';
 import { useNavigate } from 'react-router-dom';
 import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
+import useUserProfile from '../hooks/creator/useUserProfile'; 
 
 function Sidebar() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
-    const creatorLocalStorage = getCreatorLocalStorage();
+    // const creatorLocalStorage = getCreatorLocalStorage();
+    
+  
+    const { name } = useUserProfile(); 
 
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
@@ -43,16 +47,12 @@ function Sidebar() {
         {
             label: 'Object Removal',
             route: '/transformation/object-removal',
-            icon: (
-                <HiMiniSquare2Stack className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
-            ),
+            icon: <HiMiniSquare2Stack className="w-5 h-5 lg:w-6 lg:h-6 text-white" />,
         },
         {
             label: 'Object Recolor',
             route: '/transformation/object-recolor',
-            icon: (
-                <IoMdColorFill className="w-5 h-5 lg:w-6 lg:h-6 text-white " />
-            ),
+            icon: <IoMdColorFill className="w-5 h-5 lg:w-6 lg:h-6 text-white " />,
         },
         {
             label: 'Background Removal',
@@ -135,10 +135,10 @@ function Sidebar() {
                                             : 'hover:bg-grayDark'
                                         }`}
                                 >
-                                    {link.icon}
+                                   {link.icon}
                                     <span className={`${styles.paragraph4}`}>
                                         {link.label === 'Profile'
-                                            ? `${creatorLocalStorage?.creator?.name || 'Profile'} `
+                                            ? `${name || 'Profile'} ` 
                                             : link.label}
                                     </span>
                                 </Link>
