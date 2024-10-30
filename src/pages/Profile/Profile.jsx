@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { FaUserTie, FaEdit } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import styles from "../../styles";
@@ -12,27 +12,27 @@ import Filter from '../../components/Filter.jsx';
 import CheckmarkIcon from "../../assets/icons/CheckmarkIcon.jsx";
 import MagicIcon from "../../assets/icons/magician.jsx";
 import ImagePreview from '../../components/ImagePreview.jsx';
-import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage'; 
-import Loader from '../../components/Loader.jsx'; 
+import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
+import Loader from '../../components/Loader.jsx';
 
 function Profile() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [inputColor, setInputColor] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('All'); 
+  const [filterType, setFilterType] = useState('All');
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [isEditing, setIsEditing] = useState(false);
   const [imagePreviewState, setImagePreviewState] = useState({
-      id: "",
-      isOpen: false
+    id: "",
+    isOpen: false
   });
 
   const userData = getCreatorLocalStorage();
-  
+
   useEffect(() => {
     if (!userData) {
-      navigate("/sign-in"); 
+      navigate("/sign-in");
     }
   }, [userData, navigate]);
 
@@ -65,7 +65,7 @@ function Profile() {
 
   const handleFilterChange = (type) => {
     setFilterType(type);
-    setSelectedFilter(type); 
+    setSelectedFilter(type);
   };
 
   const handleNameChange = (e) => {
@@ -82,7 +82,7 @@ function Profile() {
   return (
     <div className={styles.innerWrapper}>
       {loading ? (
-        <Loader />  
+        <Loader />
       ) : (
         <>
           <div className="flex justify-between items-center">
@@ -116,7 +116,7 @@ function Profile() {
                     <span className="text-white text-xl">{name}</span>
                   )}
 
-                  <div className="ml-2 flex-shrink-0 cursor-pointer"
+                  <div className="ml-2 flex-shrink-0 cursor-pointer text-darkWhite"
                     onClick={() => {
                       if (isEditing) {
                         updateName(name);
@@ -127,9 +127,9 @@ function Profile() {
                     }}
                   >
                     {isEditing ? (
-                      <CheckmarkIcon size={20} className="text-white hover:text-gray-400 transition duration-200 mt-5" />
+                      <CheckmarkIcon size={20} className="text-darkWhite hover:text-gray-400 transition duration-200 mt-5" />
                     ) : (
-                      <FaEdit size={17} className="text-white hover:text-gray-400 transition duration-200" />
+                      <FaEdit size={17} className="text-darkWhite hover:text-gray-400 transition duration-200" />
                     )}
                   </div>
                 </div>
@@ -142,7 +142,7 @@ function Profile() {
                 />
 
                 <div className="flex items-center mt-2">
-                  <MagicIcon width={18} height={18} /> 
+                  <MagicIcon width={18} height={18} />
                   <span className="text-white relative left-2">{creations.length}</span>
                 </div>
 
@@ -185,11 +185,11 @@ function Profile() {
 
             <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-10">
               {filteredCreations.map((image, index) => (
-                <div key={index}> 
+                <div key={index}>
                   <ImageCard2
                     image={image.transformationUrl}
                     description={image.title}
-                    onClick={() => setImagePreviewState({ id: image._id, isOpen: true })} 
+                    onClick={() => setImagePreviewState({ id: image._id, isOpen: true })}
                   />
                 </div>
               ))}
@@ -202,12 +202,12 @@ function Profile() {
             onConfirm={updateProfilePhoto}
             profilePhoto={profilePhoto}
 
-          /> 
-          
+          />
+
           {imagePreviewState.isOpen && (
-            <ImagePreview 
-              imagePreviewState={imagePreviewState} 
-              setImagePreviewState={setImagePreviewState} 
+            <ImagePreview
+              imagePreviewState={imagePreviewState}
+              setImagePreviewState={setImagePreviewState}
             />
           )}
         </>
