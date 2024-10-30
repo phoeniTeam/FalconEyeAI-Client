@@ -4,7 +4,7 @@ const styles = {
     outerWrapper: "py-10 md:py-20 h-auto",
     footerOuterWrapper: "pt-10 md:pt-20 pb-5 md:pb-10 h-auto",
     wrapper: "max-w-[1200px] px-4 mx-auto",
-    innerWrapper: "py-8 px-9",
+    innerWrapper: "py-8 px-4 md:px-9",
     outerWrapperAppPages: "max-w-[1300px] mx-auto",
 
     heroHeading: "text-5xl sm:text-6xl md:text-7xl font-bold",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useRef } from 'react';
 import styles from '../styles';
 import { logoSide } from '../assets';
 import { HiHome } from 'react-icons/hi2';
@@ -22,6 +22,7 @@ function Sidebar({ refreshProfile }) {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const [creatorData, setCreatorData] = useState(null);
+    const sidebarRef = useRef(null);
 
     const sideLinks = [
         { label: 'Home', route: '/home', icon: <HiHome className="w-5 h-5 lg:w-6 lg:h-6 text-white" /> },
@@ -49,11 +50,28 @@ function Sidebar({ refreshProfile }) {
         setCreatorData(creator);
     }, [refreshProfile]);
 
+    const handleLinkClick = () => {
+        setIsOpen(false);
+    };
+
+    const handleClickOutside = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target) && isOpen) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen]);
+
     return (
         <div className="flex">
             <SlMenu onClick={() => setIsOpen(!isOpen)} className="text-white w-6 h-6 m-4 lg:hidden cursor-pointer" />
-            <div className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}>
-                <div onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-start py-2 pt-4 pl-4 pb-4 cursor-pointer lg:hidden">
+            <div ref={sidebarRef} className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}>
+                <div onClick={() => setIsOpen(!isOpen)} className="flex items-center justify-start  w-10 h-10 py-2 pt-4 pl-4 pb-4 cursor-pointer lg:hidden">
                     <IoClose className="text-white w-7 h-7" />
                 </div>
                 <Link to={'/'} className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
@@ -64,7 +82,7 @@ function Sidebar({ refreshProfile }) {
                     <ul className="menu gap-1">
                         {sideLinks.map((link, index) => (
                             <li key={index}>
-                                <Link to={link.route} className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${isActive(link.route) ? `${styles.primaryBackground}` : 'hover:bg-grayDark'}`}>
+                                <Link to={link.route} onClick={handleLinkClick} className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${isActive(link.route) ? `${styles.primaryBackground}` : 'hover:bg-grayDark'}`}>
                                     {link.icon}
                                     <span className={`${styles.paragraph4}`}>{link.label}</span>
                                 </Link>
@@ -74,7 +92,7 @@ function Sidebar({ refreshProfile }) {
                     <ul className="menu">
                         {subSideLinks.map((link, index) => (
                             <li key={index}>
-                                <Link to={link.route} className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${isActive(link.route) ? `${styles.primaryBackground}` : 'hover:bg-grayDark'}`}>
+                                <Link to={link.route} onClick={handleLinkClick} className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${isActive(link.route) ? `${styles.primaryBackground}` : 'hover:bg-grayDark'}`}>
                                     {link.label === 'Profile' ? (
                                         creatorData?.creator?.photo ? (
                                             <img src={creatorData.creator.photo} alt="profile image" className="h-6 w-6 rounded-full" />

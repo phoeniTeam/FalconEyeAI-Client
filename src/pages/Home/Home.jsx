@@ -68,7 +68,7 @@ function Home() {
 
     return (
         <>
-            <div className={`px-9 flex-grow py-8`}>
+            <div className={`${styles.innerWrapper} flex-grow`}>
                 <div className="w-full flex flex-col justify-between">
                     <div className={`${styles.heading1} text-center`}>
                         Unleash Your Creativity <br />
