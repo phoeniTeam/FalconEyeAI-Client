@@ -4,16 +4,16 @@ import { FaUserTie, FaEdit } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import styles from "../../styles";
 import Modal from '../Profile/Modal';
-import ImageCard2 from '../../components/ImageCard2.jsx';
+import ImageCard2 from '../../components/ImageCard2';
 import CreditIcon from "../../assets/icons/creditIcon";
-import useUserProfile from '../../hooks/creator/useUserProfile.js';
-import searchForImage from '../../utils/searchForTerm.js';
-import Filter from '../../components/Filter.jsx';
-import CheckmarkIcon from "../../assets/icons/CheckmarkIcon.jsx";
-import MagicIcon from "../../assets/icons/magician.jsx";
-import ImagePreview from '../../components/ImagePreview.jsx';
+import useUserProfile from '../../hooks/creator/useUserProfile';
+import searchForImage from '../../utils/searchForTerm';
+import Filter from '../../components/Filter';
+import CheckmarkIcon from "../../assets/icons/CheckmarkIcon";
+import MagicIcon from "../../assets/icons/magician";
+import ImagePreview from '../../components/ImagePreview';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
-import Loader from '../../components/Loader.jsx';
+import Loader from '../../components/Loader';
 
 function Profile() {
   const navigate = useNavigate();
