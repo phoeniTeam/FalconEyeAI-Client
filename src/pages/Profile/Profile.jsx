@@ -4,7 +4,7 @@ import { FaUserTie, FaEdit } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import styles from "../../styles";
 import Modal from '../Profile/Modal';
-import ImageCard2 from '../../components/ImageCard2';
+import ImageCard2 from '../../components/imageCard2.jsx';
 import CreditIcon from "../../assets/icons/creditIcon";
 import useUserProfile from '../../hooks/creator/useUserProfile';
 import searchForImage from '../../utils/searchForTerm';

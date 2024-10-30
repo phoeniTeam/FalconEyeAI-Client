@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
 import CreditIcon from '../../assets/icons/creditIcon';
-import Input from '../../components/input';
-import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
-import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
+import Input from '../../components/Input.jsx';
+import SmallCreditIcon from '../../assets/icons/SmallCreditIcon.jsx';
+import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2.jsx';
 import { transformationsTypes } from '../../constants/editorConstants';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage';

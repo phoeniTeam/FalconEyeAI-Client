@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
-import Input from '../../components/input';
-import CreditIcon from '../../assets/icons/creditIcon';
-import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
-import UploudAndtranforamtioncopy from '../../components/UploudAndtranforamtioncopy';
+import Input from '../../components/Input.jsx';
+import CreditIcon from '../../assets/icons/creditIcon.jsx';
+import SmallCreditIcon from '../../assets/icons/SmallCreditIcon.jsx';
+import UploudAndtranforamtioncopy from '../../components/UploudAndtranforamtioncopy.jsx';
 import axios from 'axios';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { createImage } from '../../apis/image/createImage';
