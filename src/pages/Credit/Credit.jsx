@@ -15,6 +15,30 @@ function Credit() {
   const navigate = useNavigate();
   const [creditBalance, setCreditBalance] = useState(0);
 
+  const packages = [
+    {
+      id: '1',
+      name: 'Free',
+      price: '0',
+      credit: '10',
+      icon: <StarIcon className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />,
+    },
+    {
+      id: '2',
+      name: 'Pro',
+      price: '29',
+      credit: '220',
+      icon: <AiFillThunderbolt className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+    },
+    {
+      id: '3',
+      name: 'Premium',
+      price: '89',
+      credit: '500',
+      icon: <IoDiamond className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
+    }
+  ]
+
   const makePayment = async (plan) => {
     const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
     const plansPrices = {
@@ -79,65 +103,53 @@ function Credit() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10 ">
-        {/* Free Credit Package */}
-        <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
-          <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <StarIcon className="text-white w-8 h-8" />
-          </div>
-          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Free</p>
-          <h1 className={`${styles.heading3}`}>0$</h1>
-          <span className="flex space-x-2 items-center rounded-full">
-            <CustomIcon />
-            <p className={`${styles.paragraph4}  text-darkWhite`}>10 Credit</p>
-          </span>
-          <div className="flex-grow">
-            <button type="submit" className={styles.newGradientButton}>
-              <div className={styles.newInnerButton}>Free</div>
-            </button>
-          </div>
-        </div>
+      <div className='w-full'>
 
-        {/* Pro Credit Package */}
-        <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
-          <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <AiFillThunderbolt className="text-white w-14 h-14" />
-          </div>
-          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Pro</p>
-          <h1 className={`${styles.heading3}`}>29$</h1>
-          <span className="flex space-x-2 items-center rounded-full">
-            <CustomIcon />
-            <p className={`${styles.paragraph4}  text-darkWhite`}>220 Credit</p>
-          </span>
-          <div className="flex-grow">
-            <button
-              onClick={() => makePayment(2)}
-              className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
-              Buy Credit
-            </button>
-          </div>
-        </div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-items-center gap-4 mt-10 '>
+          {packages.map((packageItem, index) => (
+            <div
+              key={index}
+              className={`max-w-[250px] p-8 flex flex-col gap-10 bg-grayDark rounded-lg shadow-lg transform hover:scale-105 ${styles.transition500}`}
+            >
+              <div className='flex relative justify-center '>
+                <div className='shadow-md w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full'></div>
+                {packageItem.icon}
+              </div>
+              <div className='text-center'>
+                <h2 className={`${styles.heading4} ${styles.primaryText}`}>{packageItem.name}</h2>
+              </div>
 
-        {/* Diamond Credit Package */}
-        <div className="flex flex-col items-center py-6 bg-[#131313] rounded-lg shadow-lg lg:w-72 h-[450px] space-y-14 transition-transform transform hover:scale-105">
-          <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
-            <IoDiamond className="text-white w-14 h-14" />
-          </div>
-          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
-          <h1 className={`${styles.heading3}`}>89$</h1>
-          <span className="flex space-x-2 items-center rounded-full">
-            <CustomIcon />
-            <p className={`${styles.paragraph4} text-darkWhite`}>500 Credit</p>
-          </span>
-          <div className="flex-grow">
-            <button
-              onClick={() => makePayment(3)}
-              className={`${styles.primaryButton} px-8 transition-all duration-300 ease-in-out`}>
-              Buy Credit
-            </button>
-          </div>
+              <div className={`text-center`}>
+                <p className={`${styles.heading3}`}>{packageItem.price}$</p>
+              </div>
+
+              <div className="flex justify-center items-center gap-1">
+                <CustomIcon />
+                <p className='text-darkWhite'>{packageItem.credit} credit</p>
+              </div>
+
+              <div className='flex justify-center'>
+                {
+                  packageItem.name === 'Free' ? (
+                    <button type="submit" className={styles.newGradientButton}>
+                      <div className={styles.newInnerButton}>Free</div>
+                    </button>
+                  )
+                    : (
+                      <button
+                        onClick={() => makePayment(packageItem.id)}
+                        className={`${styles.primaryButton}  ${styles.transition500}`}>
+                        Buy Credit
+                      </button>
+                    )
+                }
+              </div>
+            </div>
+          ))}
         </div>
       </div>
+
+
     </div>
   );
 }
