@@ -15,9 +15,10 @@ function Filter({ onFilterChange }) {
 
     return (
         <>
-            <div className="dropdown dropdown-hover max-md:dropdown-end">
+            <div className="dropdown max-md:dropdown-end">
                 <div
                     onClick={() => setMenuOpen(!menuOpen)}
+                    tabIndex={0} role="button"
                     className="btn btn-circle border-none bg-[#131313] hover:bg-[#131313] min-h-10 h-10 w-10 "
                 >
                     <FaFilter className="text-grayLight w-5 h-5" />
