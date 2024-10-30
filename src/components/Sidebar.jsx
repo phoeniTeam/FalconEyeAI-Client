@@ -21,10 +21,6 @@ function Sidebar() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
     const creatorLocalStorage = getCreatorLocalStorage();
     const { name , profilePhoto } = useUserProfile(); 
-    const [userProfile, setUserProfile] = useState({
-        name: name,
-        profilePhoto: profilePhoto,
-    });
 
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
