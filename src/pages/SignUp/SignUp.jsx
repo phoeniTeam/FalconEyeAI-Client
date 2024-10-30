@@ -221,7 +221,7 @@ function SignUp() {
                                 )}
                                 <button
                                     type="submit"
-                                    className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1  "
+                                    className="text-white bg-gradient-to-r from-[#4D91FF] via-[#620A9C] to-[#FF00CC] rounded-full p-1  "
                                 >
                                     <div className={`gradient-button`}>
                                         Sign Up

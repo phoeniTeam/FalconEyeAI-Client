@@ -59,7 +59,6 @@ function SignIn() {
                 // redirect home page
                 navigate('/home');
             } else {
-
                 setErrorMessage('Invalid credentials');
                 // display error message
             }
@@ -77,14 +76,11 @@ function SignIn() {
     };
 
     useEffect(() => {
-        setErrorMessage("")
-
-
-    }, [signIn.email, signIn.password])
+        setErrorMessage('');
+    }, [signIn.email, signIn.password]);
 
     useEffect(() => {
-
-        const userIsSignedIn = getCreatorLocalStorage()
+        const userIsSignedIn = getCreatorLocalStorage();
 
         if (userIsSignedIn) {
             localStorage.removeItem(USER_LOCAL_STORAGE);
@@ -157,7 +153,7 @@ function SignIn() {
                                 )}
                                 <button
                                     type="submit"
-                                    className="text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1 "
+                                    className="text-white bg-gradient-to-r from-[#4D91FF] via-[#620A9C] to-[#FF00CC] rounded-full p-1 "
                                 >
                                     <div className="gradient-button ">
                                         Sign In
@@ -172,6 +168,14 @@ function SignIn() {
                                         Sign Up
                                     </Link>
                                 </p>
+                                {/* <p className="text-center text-darkWhite mt-2 text-sm">
+                                    <Link
+                                        to="#"
+                                        className={`${styles.primaryTextOnHover} text-darkWhite`}
+                                    >
+                                        Forgot Password?
+                                    </Link>
+                                </p> */}
                             </div>
                         </form>
                     </div>
