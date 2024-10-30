@@ -105,11 +105,11 @@ function Credit() {
 
       <div className='w-full'>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-items-center gap-4 mt-10 '>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-items-center gap-y-6 gap-x-2 mt-10 '>
           {packages.map((packageItem, index) => (
             <div
               key={index}
-              className={`max-w-[250px] p-8 flex flex-col gap-10 bg-grayDark rounded-lg shadow-lg transform hover:scale-105 ${styles.transition500}`}
+              className={`max-w-[250px] p-[38px] flex flex-col gap-10 bg-grayDark rounded-lg shadow-lg transform hover:scale-105 ${styles.transition500}`}
             >
               <div className='flex relative justify-center '>
                 <div className='shadow-md w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full'></div>
@@ -125,7 +125,7 @@ function Credit() {
 
               <div className="flex justify-center items-center gap-1">
                 <CustomIcon />
-                <p className='text-darkWhite'>{packageItem.credit} credit</p>
+                <p className='text-darkWhite text-sm'>{packageItem.credit} credit</p>
               </div>
 
               <div className='flex justify-center'>
