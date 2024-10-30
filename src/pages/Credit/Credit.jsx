@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import styles from "../../styles";
 import StarIcon from '../../assets/icons/StarIcon.jsx';
 import AiFillThunderbolt from '../../assets/icons/AiFillThunderbolt.jsx';
@@ -12,7 +12,7 @@ import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import { getUserInfo } from '../../utils/getUserInfo';
 
 function Credit() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [creditBalance, setCreditBalance] = useState(0);
 
   const makePayment = async (plan) => {
@@ -56,13 +56,13 @@ function Credit() {
   };
 
   useEffect(() => {
-    const userData = getCreatorLocalStorage(); 
+    const userData = getCreatorLocalStorage();
     if (!userData) {
-      navigate("/sign-in"); 
+      navigate("/sign-in");
     } else {
-      fetchUserCredit(); 
+      fetchUserCredit();
     }
-  }, [navigate]); 
+  }, [navigate]);
 
   return (
     <div className={styles.innerWrapper}>
@@ -123,7 +123,7 @@ function Credit() {
           <div className="bg-primary-gradient-color p-4 rounded-full flex justify-center items-center">
             <IoDiamond className="text-white w-14 h-14" />
           </div>
-          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Diamond</p>
+          <p className={`${styles.paragraph1} ${styles.primaryText}`}>Premium</p>
           <h1 className={`${styles.heading3}`}>89$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
