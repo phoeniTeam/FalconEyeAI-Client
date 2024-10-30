@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
-import Input from '../../components/input';
+import Input from '../../components/Input.jsx';
 import CreditIcon from '../../assets/icons/creditIcon';
-import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
+import SmallCreditIcon from '../../assets/icons/SmallCreditIcon.jsx';
 import UploadAndTransformImagesBox from '../../components/UploadAndTransformImagesBox';
 import { transformationsTypes } from '../../constants/editorConstants'
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
@@ -10,7 +10,7 @@ import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage
 import { createImage } from '../../apis/image/createImage';
 import { updateCreatorCredit } from '../../apis/creator/updateCreatorCredit';
 import { calculateNewCreditBalance } from '../../utils/calculateNewCreditBalance';
-import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
+import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2.jsx';
 import axios from 'axios';
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { generativeRemove } from "@cloudinary/url-gen/actions/effect";

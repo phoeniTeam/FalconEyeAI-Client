@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles';
-import Input from '../../components/input';
-import CreditIcon from '../../assets/icons/creditIcon';
+import Input from '../../components/Input.jsx';
+import CreditIcon from '../../assets/icons/creditIcon.jsx';
 import { IoIosArrowDown } from 'react-icons/io';
-import SmallCreditIcon from '../../assets/icons/smallCreditIcon';
-import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2';
+import SmallCreditIcon from '../../assets/icons/SmallCreditIcon.jsx';
+import UploadAndTransformImagesBoxV2 from '../../components/UploadAndTransformImagesBoxV2.jsx';
 import { aspectRatioOptions, transformationsTypes } from '../../constants/editorConstants'
 import { CloudinaryImage } from '@cloudinary/url-gen';
 import { fill } from "@cloudinary/url-gen/actions/resize";
