@@ -1,6 +1,7 @@
 import {
     mohammedDhabaabImage,
-    abdulazizAlhazmiImage
+    abdulazizAlhazmiImage,
+    womenImage
 } from '../assets'
 
 export const navbarLinks = [
@@ -47,31 +48,23 @@ export const teamInfo = [
         github: "https://github.com/comsaziz",
         email: "comsaziz2@gmail.com"
     },
-    // {
-    //     name: "",
-    //     role: "Full Stack Developer | S",
-    //     about: "",
-    //     image: "",
-    //     website: "",
-    //     linkedin: "",
-    //     github: ""
-    // },
-    // {
-    //     name: "",
-    //     role: "Full Stack Developer | S",
-    //     about: "",
-    //     image: "",
-    //     website: "",
-    //     linkedin: "",
-    //     github: ""
-    // },
-    // {
-    //     name: "",
-    //     role: "Full Stack Developer | S",
-    //     about: "",
-    //     image: "",
-    //     website: "",
-    //     linkedin: "",
-    //     github: ""
-    // },
+    {
+        name: "Najwa Almutairi",
+        role: "Software Developer",
+        about: "Passionate and detail-oriented front-end developer with a technical background, dedicated to crafting engaging digital experiences. Skilled in creating user-friendly interfaces and implementing responsive design.",
+        image: womenImage,
+        website: "",
+        linkedin: "",
+        github: ""
+    },
+    {
+        name: "Rana Almalki",
+        role: "Software Engineer",
+        about: "Software engineer specializing in web development, with strong expertise in React and JavaScript. I have extensive experience working with frameworks like Tailwind and Bootstrap, enabling me to create attractive and user-friendly interfaces. My passion for technology and attention to detail help me deliver innovative and effective software solutions.",
+        image: womenImage,
+        website: "",
+        linkedin: "https://www.linkedin.com/in/rana-almalki-computer-science",
+        github: "https://www.github.com/ranaalmalki",
+        email: "ranaalmalki12@gmail.com"
+    },
 ]
