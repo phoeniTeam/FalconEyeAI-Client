@@ -14,7 +14,7 @@ import { div } from 'framer-motion/client';
 import styles from './styles';
 import About from './pages/About/About';
 
-const router = createBrowserRouter([
+const createRouter = (refreshProfile, toggleProfileRefresh) => createBrowserRouter([
     {
         path: '/',
         errorElement: <ErrorPage />,
@@ -98,10 +98,10 @@ const router = createBrowserRouter([
         element: (
             <div className={`${styles.outerWrapperAppPages}`}>
                 <div className="flex h-screen max-md:flex-col">
-                    <Sidebar />
+                    <Sidebar refreshProfile={refreshProfile} />
                     <div className="flex-grow scroll-container ">
                         <ScrollRestoration />
-                        <Profile />
+                        <Profile toggleProfileRefresh={toggleProfileRefresh} />
                     </div>
                 </div>
             </div>
@@ -121,4 +121,4 @@ const router = createBrowserRouter([
     },
 ]);
 
-export default router;
+export default createRouter;

@@ -15,8 +15,8 @@ import ImagePreview from '../../components/ImagePreview.jsx';
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import Loader from '../../components/Loader.jsx';
 
-function Profile() {
-  const navigate = useNavigate();
+function Profile({toggleProfileRefresh}) {
+  const navigate = useNavigate(); 
   const [inputColor, setInputColor] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -120,6 +120,7 @@ function Profile() {
                     onClick={() => {
                       if (isEditing) {
                         updateName(name);
+                        toggleProfileRefresh();
                         setIsEditing(false);
                       } else {
                         setIsEditing(true);
@@ -201,9 +202,9 @@ function Profile() {
             onClose={() => setIsModalOpen(false)}
             onConfirm={updateProfilePhoto}
             profilePhoto={profilePhoto}
-
-          />
-
+            toggleProfileRefresh={toggleProfileRefresh}
+          /> 
+          
           {imagePreviewState.isOpen && (
             <ImagePreview
               imagePreviewState={imagePreviewState}

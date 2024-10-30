@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCreatorLocalStorage } from '../../utils/getCreatorLocalStorage';
 import defaultUserImage from '../../assets/home/users/default-user.png';
+import { updateCreatorLocalStorage } from '../../utils/updateCreatorLocalStorage';
 
 const useUserProfile = () => {
   const [name, setName] = useState("");
@@ -46,6 +47,13 @@ const useUserProfile = () => {
     try {
       const creatorId = getCreatorLocalStorage().creator._id;
       const token = getCreatorLocalStorage().token;
+      const updatedData = {
+        creator: {
+            ...getCreatorLocalStorage().creator,
+            name: name,
+        },
+    };
+    updateCreatorLocalStorage(updatedData);
 
       if (newName && newName !== userName) {
         const response = await fetch(`${import.meta.env.VITE_CREATORS_API}/${creatorId}`, {
@@ -79,6 +87,14 @@ const useUserProfile = () => {
     try {
       const creatorId = getCreatorLocalStorage().creator._id;
       const token = getCreatorLocalStorage().token;
+
+      const updatedData = {
+        creator: {
+            ...getCreatorLocalStorage().creator,
+            photo: newPhoto,
+        },
+    };
+    updateCreatorLocalStorage(updatedData);
 
       const response = await fetch(`${import.meta.env.VITE_CREATORS_API}/${creatorId}`, {
         method: 'PATCH',

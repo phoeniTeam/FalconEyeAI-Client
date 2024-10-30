@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles';
 import { logoSide } from '../assets';
 import { HiHome } from 'react-icons/hi2';
@@ -17,11 +17,13 @@ import { useNavigate } from 'react-router-dom';
 import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
 import useUserProfile from '../hooks/creator/useUserProfile';
 
-function Sidebar() {
+function Sidebar({ refreshProfile }) {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
-    const creatorLocalStorage = getCreatorLocalStorage();
+    const [creatorLocalStorage, setCreatorLocalStorage] = useState(
+        getCreatorLocalStorage()
+    );
     const { name, profilePhoto } = useUserProfile();
-
+    console.log(refreshProfile);
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
@@ -83,6 +85,10 @@ function Sidebar() {
         navigate('/');
     };
 
+    useEffect(() => {
+        setCreatorLocalStorage(getCreatorLocalStorage());
+        console.log(creatorLocalStorage);
+    }, [refreshProfile]);
     return (
         <div className="flex">
             <SlMenu
@@ -100,7 +106,7 @@ function Sidebar() {
                 >
                     <IoClose className="text-white w-7 h-7" />
                 </div>
-                <Link to={"/"} className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
+                <Link to={'/'} className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
                     <img
                         src={logoSide}
                         alt="logo"
@@ -141,7 +147,8 @@ function Sidebar() {
                                         creatorLocalStorage?.creator?.photo ? (
                                             <img
                                                 src={
-                                                    profilePhoto
+                                                    creatorLocalStorage.creator
+                                                        .photo
                                                 }
                                                 alt="profile image"
                                                 className="h-6 w-6 rounded-full"
@@ -155,7 +162,10 @@ function Sidebar() {
 
                                     <span className={`${styles.paragraph4}`}>
                                         {link.label === 'Profile'
-                                            ? `${name || 'Profile'} `
+                                            ? `${
+                                                  creatorLocalStorage.creator
+                                                      .name || 'Profile'
+                                              } `
                                             : link.label}
                                     </span>
                                 </Link>

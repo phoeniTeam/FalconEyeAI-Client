@@ -4,7 +4,7 @@ import { FaUpload, FaRedo } from 'react-icons/fa';
 import defaultUserImage from '../../assets/home/users/default-user.png';
 import styles from '../../styles';
 
-const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
+const Modal = ({ isOpen, onClose, onConfirm, profilePhoto , toggleProfileRefresh}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -28,12 +28,14 @@ const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
   const handleConfirmImage = () => {
     const imageToSave = imagePreview || defaultUserImage;
     onConfirm(imageToSave);
+    toggleProfileRefresh();
     onClose();
   };
 
   const handleImageReset = () => {
     setSelectedImage(null);
     setImagePreview(defaultUserImage); 
+    toggleProfileRefresh();
   };
 
   const handleDragOver = (e) => {
