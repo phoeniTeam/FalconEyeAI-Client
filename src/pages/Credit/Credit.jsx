@@ -89,7 +89,7 @@ function Credit() {
           <h1 className={`${styles.heading3}`}>0$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
-            <p className={`${styles.paragraph4} text-gray-500`}>10 Credit</p>
+            <p className={`${styles.paragraph4}  text-darkWhite`}>10 Credit</p>
           </span>
           <div className="flex-grow">
             <button type="submit" className={styles.newGradientButton}>
@@ -107,7 +107,7 @@ function Credit() {
           <h1 className={`${styles.heading3}`}>29$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
-            <p className={`${styles.paragraph4} text-gray-500`}>220 Credit</p>
+            <p className={`${styles.paragraph4}  text-darkWhite`}>220 Credit</p>
           </span>
           <div className="flex-grow">
             <button
@@ -127,7 +127,7 @@ function Credit() {
           <h1 className={`${styles.heading3}`}>89$</h1>
           <span className="flex space-x-2 items-center rounded-full">
             <CustomIcon />
-            <p className={`${styles.paragraph4} text-gray-500`}>500 Credit</p>
+            <p className={`${styles.paragraph4} text-darkWhite`}>500 Credit</p>
           </span>
           <div className="flex-grow">
             <button

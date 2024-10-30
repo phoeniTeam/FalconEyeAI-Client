@@ -59,7 +59,7 @@ const Modal = ({ isOpen, onClose, onConfirm, profilePhoto }) => {
                      bg-black bg-opacity-10 backdrop-filter backdrop-blur-md"
           onClick={handleOutsideClick}
         >
-          <div className={`modal-content bg-gray-800 max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
+          <div className={`modal-content bg-grayDark max-w-md w-96 p-7 rounded-md shadow-2xl relative`}>
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-white transition"
               onClick={onClose}

@@ -111,7 +111,7 @@ function Home() {
 
                     {/* Gallery Section */}
                     <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 mt-5">
-                        {filteredImagesWithUserInfo.map((creation, index) => (
+                        {filteredImagesWithUserInfo.slice().reverse().map((creation, index) => (
                             <ImageCard
                                 key={index}
                                 onClick={() => setImagePreviewState({ id: creation._id, isOpen: true })}
