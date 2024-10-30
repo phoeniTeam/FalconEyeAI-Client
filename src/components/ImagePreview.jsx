@@ -5,6 +5,7 @@ import { handleImageDownload } from "../apis/image/handleImageDownload";
 import { FaDownload } from "react-icons/fa6";
 import { transformationsTypes } from '../constants/editorConstants'
 import moment from "moment";
+import { FaClock } from "react-icons/fa6";
 
 function ImagePreview({ imagePreviewState, setImagePreviewState }) {
     const { imageData, loadingImageData, errorImageData } = useGetImage(imagePreviewState.id)
@@ -28,12 +29,16 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
                             />
                         </div>
 
-                        <div className="flex flex-col mt-12 mb-8">
-                            <div className="flex flex-col sm:flex-row items-center justify-between">
-                                <h2 className={`${styles.heading4}`}>{imageData.title}</h2>
-                                <p className={`${styles.paragraph4} text-grayLight`}>{moment(imageData.createdAt).fromNow()}</p>
+                        <div className="flex flex-col gap-2 mt-12 mb-8">
+                            <h2 className={`${styles.heading4}`}>{imageData.title}</h2>
+                            <div className="flex flex-wrap sm:items-center gap-1 justify-between">
+                                <p className={`text-xs sm:text-sm text-darkWhite bg-grayDark py-1 px-2 rounded-full`}>{transformationsTypes[imageData.transformationType].name}</p>
+                                <div className={`text-xs text-grayLight flex items-center gap-1 fill-current`}>
+                                    <FaClock className="fill-current" />
+                                    <p>{moment(imageData.createdAt).fromNow()}</p>
+                                </div>
                             </div>
-                            <p className={`${styles.paragraph3} text-darkWhite`}>{transformationsTypes[imageData.transformationType].name}</p>
+
                         </div>
 
 
