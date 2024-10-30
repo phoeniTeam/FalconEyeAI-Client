@@ -47,6 +47,7 @@ import creation10Image from "./home/gallery/10.webp"
 // about us page
 import mohammedDhabaabImage from "./about/Mohammed Dhabaab - Photo.webp"
 import abdulazizAlhazmiImage from "./about/Abdulaziz Alhazmi - Photo.webp"
+import womenImage from "./about/woman - image.webp"
 
 import targetImage from "./about/target-icon.png"
 import eyeImage from "./about/eye-icon.png"
@@ -99,5 +100,6 @@ export {
     targetImage,
     eyeImage,
     mohammedDhabaabImage,
-    abdulazizAlhazmiImage
+    abdulazizAlhazmiImage,
+    womenImage
 }
