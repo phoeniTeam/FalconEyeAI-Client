@@ -140,12 +140,12 @@ function SignUp() {
                             Sign Up
                         </h2>
                         <form
-                            className="w-full max-w-md"
+                            className="w-full max-w-md grid justify-items-center "
                             onSubmit={handleSubmit}
                         >
-                            <div className="mb-4 flex items-center">
-                                <div className="relative w-full">
-                                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                            <div className="mb-4 flex items-center ">
+                                <div className="relative w-full text-center">
+                                    <div className="absolute md:left-3 md:top-1/2 sm:left-12 sm:top-1/2 max-sm:hidden transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
                                         <BsFillPersonFill className="h-6 w-6" />
                                     </div>
                                     <input
@@ -155,15 +155,15 @@ function SignUp() {
                                         onChange={handleChange}
                                         name="username"
                                         placeholder="UserName"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
+                                        className=" md:w-full  sm:w-4/5 max-sm:w-3/4 pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-4 flex items-center">
-                                <div className="relative w-full">
-                                    <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
-                                        <FaRegUser className="h-6 w-6" />{' '}
+                                <div className="relative w-full text-center">
+                                <div className="absolute md:left-3 md:top-1/2 sm:left-12 sm:top-1/2 max-sm:hidden  transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                                <FaRegUser className="h-6 w-6" />{' '}
                                     </div>
                                     <input
                                         type="text"
@@ -172,15 +172,15 @@ function SignUp() {
                                         onChange={handleChange}
                                         name="name"
                                         placeholder="Name"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
+                                        className=" md:w-full  sm:w-4/5 max-sm:w-3/4 pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-4 flex items-center  ">
-                                <div className="relative w-full">
-                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-3 top-1/2 text-[#1A1A1D]">
-                                        <MdEmail className=" h-6 w-6" />
+                                <div className="relative w-full text-center">
+                                <div className="absolute md:left-3 md:top-1/2 sm:left-12 sm:top-1/2 max-sm:hidden transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                                <MdEmail className=" h-6 w-6" />
                                     </div>
 
                                     <input
@@ -190,15 +190,15 @@ function SignUp() {
                                         onChange={handleChange}
                                         name="email"
                                         placeholder="Email"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
+                                        className=" md:w-full  sm:w-4/5 max-sm:w-3/4 pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-8 flex items-center ">
-                                <div className="relative w-full">
-                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-3 top-1/2 text-[#1A1A1D]">
-                                        <RiLockPasswordLine className="h-6 w-6" />
+                                <div className="relative w-full text-center">
+                                <div className="absolute md:left-3 md:top-1/2 sm:left-12 sm:top-1/2 max-sm:hidden transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
+                                <RiLockPasswordLine className="h-6 w-6" />
                                     </div>
                                     <input
                                         type="password"
@@ -207,21 +207,21 @@ function SignUp() {
                                         value={register.password}
                                         onChange={handleChange}
                                         placeholder="Password"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
+                                        className=" md:w-full  sm:w-4/5 max-sm:w-3/4 pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col md:w-full  sm:w-4/5 max-sm:w-3/4">
                                 <div className="pt-5"></div>
                                 {errorMessage && (
-                                    <p className="text-red-500 text-xs">
+                                    <p className="text-red-500 text-xs pb-3 text-center">
                                         {errorMessage}
                                     </p>
                                 )}
                                 <button
                                     type="submit"
-                                    className="text-white bg-gradient-to-r from-[#4D91FF] via-[#620A9C] to-[#FF00CC] rounded-full p-1  "
+                                    className=" text-white bg-gradient-to-r from-[#333399] via-[#333399] to-[#FF00CC] rounded-full p-1  "
                                 >
                                     <div className={`gradient-button`}>
                                         Sign Up

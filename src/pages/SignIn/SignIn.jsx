@@ -102,17 +102,17 @@ function SignIn() {
                     </div>
                     <div className="lg:p-16 md:p-0">
                         <h2
-                            className={`${styles.heading2} text-white flex lg:justify-start p-6 mb-5 md:text-center sm:text-center max-sm:text-center`}
+                            className={`${styles.heading2} text-white flex lg:justify-start p-6 mb-5 md:justify-center sm:justify-center max-sm:justify-center`}
                         >
                             Sign In
                         </h2>
                         <form
-                            className="w-full max-w-md"
+                            className="w-full max-w-md grid justify-items-center"
                             onSubmit={handleSignIn}
                         >
                             <div className="mb-4 flex items-center  ">
-                                <div className="relative w-full">
-                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-3 top-1/2 text-[#1A1A1D]">
+                                <div className="relative w-full text-center">
+                                <div className="absolute md:left-3 md:top-1/2 sm:left-12 sm:top-1/2 max-sm:hidden transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
                                         <MdEmail className=" h-6 w-6" />
                                     </div>
 
@@ -123,14 +123,14 @@ function SignIn() {
                                         value={signIn.email}
                                         onChange={handleChange}
                                         placeholder="Email"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
+                                        className=" md:w-full  sm:w-4/5 max-sm:w-3/4 pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
                             <div className="mb-8 flex items-center ">
-                                <div className="relative w-full">
-                                    <div className="absolute flex gap-2 items-center transform -translate-y-1/2 left-3 top-1/2 text-[#1A1A1D]">
+                                <div className="relative w-full text-center">
+                                <div className="absolute md:left-3 md:top-1/2 sm:left-12 sm:top-1/2 max-sm:hidden transform -translate-y-1/2 text-[#1A1A1D] flex gap-2 items-center">
                                         <RiLockPasswordLine className="h-6 w-6" />
                                     </div>
                                     <input
@@ -140,14 +140,14 @@ function SignIn() {
                                         value={signIn.password}
                                         onChange={handleChange}
                                         placeholder="Password"
-                                        className="pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E] "
+                                        className=" md:w-full  sm:w-4/5 max-sm:w-3/4 pl-12 border border-[#38383E] rounded-full focus:outline-none p-3 focus:ring focus:ring-blue-400 bg-[#38383E] bg-opacity-9 placeholder:text-[#1E1E1E]"
                                         required
                                     />
                                 </div>
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col md:w-full  sm:w-4/5 max-sm:w-3/4">
                                 {errorMessage && (
-                                    <p className="text-red-500 text-xs">
+                                    <p className="text-red-500 text-xs pb-3 text-center">
                                         {errorMessage}
                                     </p>
                                 )}
