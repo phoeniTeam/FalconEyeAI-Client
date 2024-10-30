@@ -85,8 +85,8 @@ function Profile({toggleProfileRefresh}) {
         <Loader />
       ) : (
         <>
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
+          <div className="flex justify-between items-start">
+            <div className="flex flex-col sm:flex-row gap-4 flex-grow">
               <div
                 className="relative w-24 h-24 flex justify-center items-center bg-[#1d1a1a] rounded-full cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
@@ -101,6 +101,8 @@ function Profile({toggleProfileRefresh}) {
                   <FaUserTie size={48} className="text-white" />
                 )}
               </div>
+
+
               <div className="flex flex-col">
                 <div className="flex items-center">
                   {isEditing ? (
@@ -116,7 +118,8 @@ function Profile({toggleProfileRefresh}) {
                     <span className="text-white text-xl">{name}</span>
                   )}
 
-                  <div className="ml-2 flex-shrink-0 cursor-pointer text-darkWhite"
+                  <div
+                    className="ml-2 flex-shrink-0 cursor-pointer text-darkWhite"
                     onClick={() => {
                       if (isEditing) {
                         updateName(name);
@@ -135,25 +138,29 @@ function Profile({toggleProfileRefresh}) {
                   </div>
                 </div>
 
+
                 <input
                   className="bg-transparent text-gray-400 outline-none py-1 text-sm"
                   value={userName}
                   readOnly
                   placeholder="Username"
                 />
+                {error && <div className="text-red-500">{error}</div>}
+              
 
-                <div className="flex items-center mt-2">
+            <div className="flex items-center mt-1">
                   <MagicIcon width={18} height={18} />
                   <span className="text-white relative left-2">{creations.length}</span>
                 </div>
 
-                {error && <div className="text-red-500">{error}</div>}
-              </div>
+                </div>
             </div>
 
-            <div className="flex items-center gap-2 mb-14 relative lg:right-0 right-12">
-              <CreditIcon />
-              <div className={`${styles.heading4}`}>{creditBalance}</div>
+            <div className="flex flex-col items-end">
+              <div className="flex items-center gap-2">
+                <CreditIcon />
+                <div className={`${styles.heading4}`}>{creditBalance}</div>
+              </div>
             </div>
           </div>
 
