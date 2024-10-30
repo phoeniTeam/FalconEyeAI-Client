@@ -6,9 +6,7 @@ import { teamInfo } from '../../constants/general';
 import { TbWorldWww } from "react-icons/tb";
 import { FaLinkedin } from "react-icons/fa";
 import { IoLogoGithub } from "react-icons/io5";
-import { IoIosRocket } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
-import TargetIcon from '../../assets/icons/targetIcon';
 import { eyeImage, targetImage } from '../../assets';
 
 function About() {
