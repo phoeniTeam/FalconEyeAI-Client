@@ -89,8 +89,9 @@ function Sidebar() {
             />
             {/* Sidebar */}
             <div
-                className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
-                    } lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}
+                className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${
+                    isOpen ? 'translate-x-0' : '-translate-x-full'
+                } lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}
             >
                 <div
                     onClick={() => setIsOpen(!isOpen)}
@@ -112,10 +113,11 @@ function Sidebar() {
                             <li key={index}>
                                 <Link
                                     to={link.route}
-                                    className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${isActive(link.route)
+                                    className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${
+                                        isActive(link.route)
                                             ? `${styles.primaryBackground}`
                                             : 'hover:bg-grayDark'
-                                        }`}
+                                    }`}
                                 >
                                     {link.icon}
                                     <span className={`${styles.paragraph4}`}>
@@ -130,12 +132,29 @@ function Sidebar() {
                             <li key={index}>
                                 <Link
                                     to={link.route}
-                                    className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${isActive(link.route)
+                                    className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${
+                                        isActive(link.route)
                                             ? `${styles.primaryBackground}`
                                             : 'hover:bg-grayDark'
-                                        }`}
+                                    }`}
                                 >
-                                    {link.icon}
+                                    {link.label === 'Profile' ? (
+                                        creatorLocalStorage?.creator?.photo ? (
+                                            <img
+                                                src={
+                                                    creatorLocalStorage.creator
+                                                        .photo
+                                                }
+                                                alt="profile image"
+                                                className="h-7 w-7 rounded-full"
+                                            />
+                                        ) : (
+                                            link.icon
+                                        )
+                                    ) : (
+                                        link.icon
+                                    )}
+
                                     <span className={`${styles.paragraph4}`}>
                                         {link.label === 'Profile'
                                             ? `${creatorLocalStorage?.creator?.name || 'Profile'} `
@@ -144,20 +163,22 @@ function Sidebar() {
                                 </Link>
                             </li>
                         ))}
-                        <li>
-                            <div
-                                onClick={logout}
-                                className={`cursor-pointer flex items-center gap-3 p-2 rounded-full group hover:text-red-700 }`}
-                            >
-                                <RiLogoutCircleLine className="w-5 h-5 lg:w-6 lg:h-6 text-white group-hover:text-red-700" />
-                                <span
-                                    className={`${styles.paragraph4} group-hover:text-red-700`}
+                        {creatorLocalStorage?.creator && (
+                            <li>
+                                <div
+                                    onClick={logout}
+                                    className={`cursor-pointer flex items-center gap-3 p-2 pl-3 rounded-full group hover:text-red-700 }`}
                                 >
-                                    {' '}
-                                    Logout
-                                </span>
-                            </div>
-                        </li>
+                                    <RiLogoutCircleLine className="w-5 h-5 lg:w-6 lg:h-6 text-white group-hover:text-red-700" />
+                                    <span
+                                        className={`${styles.paragraph4} group-hover:text-red-700`}
+                                    >
+                                        {' '}
+                                        Logout
+                                    </span>
+                                </div>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
