@@ -12,7 +12,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { MdHideImage } from 'react-icons/md';
 import { HiMiniSquare2Stack } from 'react-icons/hi2';
 import { IoClose } from 'react-icons/io5';
-import BasketIcon from '../assets/icons/basketIcon';
+import BasketIcon from '../assets/icons/BasketIcon.jsx';
 import { useNavigate } from 'react-router-dom';
 import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
 
