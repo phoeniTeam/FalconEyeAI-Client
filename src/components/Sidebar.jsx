@@ -98,13 +98,13 @@ function Sidebar() {
                 >
                     <IoClose className="text-white w-7 h-7" />
                 </div>
-                <div className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
+                <Link to={"/"} className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
                     <img
                         src={logoSide}
                         alt="logo"
                         className="w-[8.5rem] lg:w-[10.5vw] "
                     />
-                </div>
+                </Link>
 
                 <div className="flex flex-col justify-between h-[78%] md:h-[84%] lg:h-full">
                     <ul className="menu gap-1">
@@ -113,8 +113,8 @@ function Sidebar() {
                                 <Link
                                     to={link.route}
                                     className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${isActive(link.route)
-                                            ? `${styles.primaryBackground}`
-                                            : 'hover:bg-grayDark'
+                                        ? `${styles.primaryBackground}`
+                                        : 'hover:bg-grayDark'
                                         }`}
                                 >
                                     {link.icon}
@@ -131,8 +131,8 @@ function Sidebar() {
                                 <Link
                                     to={link.route}
                                     className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${isActive(link.route)
-                                            ? `${styles.primaryBackground}`
-                                            : 'hover:bg-grayDark'
+                                        ? `${styles.primaryBackground}`
+                                        : 'hover:bg-grayDark'
                                         }`}
                                 >
                                     {link.icon}

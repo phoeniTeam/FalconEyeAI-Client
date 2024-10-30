@@ -1,13 +1,15 @@
 export const navbarLinks = [
     {
-        title: "Features",
-        id: "features",
+        title: "Home",
+        id: "home",
+        link: "/"
     },
     {
-        title: "Reviews",
-        id: "reviews"
+        title: "About Us",
+        id: "about",
+        link: "/about"
     }
-]
+];
 
 
 export const socials = [
