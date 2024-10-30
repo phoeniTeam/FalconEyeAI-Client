@@ -15,10 +15,16 @@ import { IoClose } from 'react-icons/io5';
 import BasketIcon from '../assets/icons/basketIcon';
 import { useNavigate } from 'react-router-dom';
 import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
+import useUserProfile from '../hooks/creator/useUserProfile'; 
 
 function Sidebar() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
     const creatorLocalStorage = getCreatorLocalStorage();
+    const { name , profilePhoto } = useUserProfile(); 
+    const [userProfile, setUserProfile] = useState({
+        name: name,
+        profilePhoto: profilePhoto,
+    });
 
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
@@ -142,8 +148,7 @@ function Sidebar() {
                                         creatorLocalStorage?.creator?.photo ? (
                                             <img
                                                 src={
-                                                    creatorLocalStorage.creator
-                                                        .photo
+                                                    profilePhoto
                                                 }
                                                 alt="profile image"
                                                 className="h-7 w-7 rounded-full"
@@ -157,7 +162,7 @@ function Sidebar() {
 
                                     <span className={`${styles.paragraph4}`}>
                                         {link.label === 'Profile'
-                                            ? `${creatorLocalStorage?.creator?.name || 'Profile'} `
+                                            ? `${name || 'Profile'} `
                                             : link.label}
                                     </span>
                                 </Link>
