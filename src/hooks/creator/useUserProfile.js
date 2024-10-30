@@ -88,13 +88,7 @@ const useUserProfile = () => {
       const creatorId = getCreatorLocalStorage().creator._id;
       const token = getCreatorLocalStorage().token;
 
-      const updatedData = {
-        creator: {
-            ...getCreatorLocalStorage().creator,
-            photo: newPhoto,
-        },
-    };
-    updateCreatorLocalStorage(updatedData);
+
 
       const response = await fetch(`${import.meta.env.VITE_CREATORS_API}/${creatorId}`, {
         method: 'PATCH',
@@ -112,6 +106,14 @@ const useUserProfile = () => {
 
       const updatedCreator = await response.json();
       setProfilePhoto(updatedCreator.photo || defaultUserImage);
+
+      const updatedData = {
+        creator: {
+            ...getCreatorLocalStorage().creator,
+            photo: updatedCreator.photo || defaultUserImage,
+        },
+    };
+    updateCreatorLocalStorage(updatedData);
     } catch (err) {
       console.error('Failed to update photo:', err);
     }
