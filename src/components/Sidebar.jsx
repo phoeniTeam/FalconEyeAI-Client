@@ -16,6 +16,7 @@ import BasketIcon from '../assets/icons/basketIcon';
 import { useNavigate } from 'react-router-dom';
 import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
 import useUserProfile from '../hooks/creator/useUserProfile'; 
+import useUserProfile from '../hooks/creator/useUserProfile'; 
 
 function Sidebar() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
@@ -89,8 +90,9 @@ function Sidebar() {
             />
             {/* Sidebar */}
             <div
-                className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
-                    } lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}
+                className={`fixed z-50 top-0 left-0 bg-[#040509] border-r border-[#575765] h-full pl-1 py-1 transition-transform transform ${
+                    isOpen ? 'translate-x-0' : '-translate-x-full'
+                } lg:translate-x-0 lg:relative lg:flex lg:flex-col w-64 max-md:w-52`}
             >
                 <div
                     onClick={() => setIsOpen(!isOpen)}
@@ -98,13 +100,13 @@ function Sidebar() {
                 >
                     <IoClose className="text-white w-7 h-7" />
                 </div>
-                <div className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
+                <Link to={"/"} className="mb-10 lg:pt-4 pl-3 pb-1 lg:pb-2">
                     <img
                         src={logoSide}
                         alt="logo"
                         className="w-[8.5rem] lg:w-[10.5vw] "
                     />
-                </div>
+                </Link>
 
                 <div className="flex flex-col justify-between h-[78%] md:h-[84%] lg:h-full">
                     <ul className="menu gap-1">
@@ -112,10 +114,11 @@ function Sidebar() {
                             <li key={index}>
                                 <Link
                                     to={link.route}
-                                    className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${isActive(link.route)
+                                    className={`flex items-center gap-3 p-2 pl-3 mb-[2px] rounded-full ${
+                                        isActive(link.route)
                                             ? `${styles.primaryBackground}`
                                             : 'hover:bg-grayDark'
-                                        }`}
+                                    }`}
                                 >
                                     {link.icon}
                                     <span className={`${styles.paragraph4}`}>
@@ -130,10 +133,11 @@ function Sidebar() {
                             <li key={index}>
                                 <Link
                                     to={link.route}
-                                    className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${isActive(link.route)
+                                    className={`flex items-center gap-3 p-2 pl-3 mb-[6px] rounded-full ${
+                                        isActive(link.route)
                                             ? `${styles.primaryBackground}`
                                             : 'hover:bg-grayDark'
-                                        }`}
+                                    }`}
                                 >
                                    {link.icon}
                                     <span className={`${styles.paragraph4}`}>
@@ -144,20 +148,22 @@ function Sidebar() {
                                 </Link>
                             </li>
                         ))}
-                        <li>
-                            <div
-                                onClick={logout}
-                                className={`cursor-pointer flex items-center gap-3 p-2 rounded-full group hover:text-red-700 }`}
-                            >
-                                <RiLogoutCircleLine className="w-5 h-5 lg:w-6 lg:h-6 text-white group-hover:text-red-700" />
-                                <span
-                                    className={`${styles.paragraph4} group-hover:text-red-700`}
+                        {creatorLocalStorage?.creator && (
+                            <li>
+                                <div
+                                    onClick={logout}
+                                    className={`cursor-pointer flex items-center gap-3 p-2 pl-3 rounded-full group hover:text-red-700 }`}
                                 >
-                                    {' '}
-                                    Logout
-                                </span>
-                            </div>
-                        </li>
+                                    <RiLogoutCircleLine className="w-5 h-5 lg:w-6 lg:h-6 text-white group-hover:text-red-700" />
+                                    <span
+                                        className={`${styles.paragraph4} group-hover:text-red-700`}
+                                    >
+                                        {' '}
+                                        Logout
+                                    </span>
+                                </div>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>

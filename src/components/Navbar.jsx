@@ -56,7 +56,7 @@ function Navbar() {
           <div className='flex items-center gap-4'>
             {navbarLinks.map((link, index) => (
               <div key={index} className={`relative group hover:text-primary ${styles.transition500}`}>
-                <a href={`#${link.id}`}>{link.title}</a>
+                <Link to={link.link}>{link.title}</Link>
                 <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
               </div>
             ))}
@@ -89,10 +89,9 @@ function Navbar() {
         <div className='flex flex-col items-center justify-center w-full gap-4'>
           {navbarLinks.map((link, index) => (
             <div key={index} className={`relative group hover:text-primary ${styles.transition500}`}>
-              <a href={`#${link.id}`}
+              <Link to={link.link}
                 onClick={handleLinkClick}
-
-              >{link.title}</a>
+              >{link.title}</Link>
               <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
             </div>
           ))}

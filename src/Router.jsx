@@ -12,6 +12,7 @@ import SignIn from './pages/SignIn/SignIn';
 import Profile from './pages/Profile/Profile';
 import { div } from 'framer-motion/client';
 import styles from './styles';
+import About from './pages/About/About';
 
 const router = createBrowserRouter([
     {
@@ -104,6 +105,18 @@ const router = createBrowserRouter([
                     </div>
                 </div>
             </div>
+        ),
+    },
+    {
+        path: '/about',
+        errorElement: <ErrorPage />,
+        element: (
+            <>
+                <ScrollRestoration />
+                <Navbar />
+                <About />
+                <Footer />
+            </>
         ),
     },
 ]);

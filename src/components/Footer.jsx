@@ -37,7 +37,7 @@ function Footer() {
             <div className='flex flex-col sm:flex-row items-center gap-y-2 gap-x-4'>
               {navbarLinks.map((link, index) => (
                 <div key={index} className={`relative group hover:text-primary ${styles.transition500}`}>
-                  <a href={`#${link.id}`}>{link.title}</a>
+                  <Link to={link.link}>{link.title}</Link>
                   <div className={`bg-primary h-[2.2px] w-1 invisible group-hover:visible group-hover:w-full absolute bottom-0 rounded-full ${styles.transition500}`}></div>
                 </div>
               ))}
