@@ -16,14 +16,11 @@ import BasketIcon from '../assets/icons/basketIcon';
 import { useNavigate } from 'react-router-dom';
 import { getCreatorLocalStorage } from '../utils/getCreatorLocalStorage';
 import useUserProfile from '../hooks/creator/useUserProfile'; 
-import useUserProfile from '../hooks/creator/useUserProfile'; 
 
 function Sidebar() {
     const USER_LOCAL_STORAGE = import.meta.env.VITE_USER_LOCAL_STORAGE;
-    // const creatorLocalStorage = getCreatorLocalStorage();
-    
-  
-    const { name } = useUserProfile(); 
+    const creatorLocalStorage = getCreatorLocalStorage();
+    const { name , profilePhoto } = useUserProfile(); 
 
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
@@ -48,12 +45,16 @@ function Sidebar() {
         {
             label: 'Object Removal',
             route: '/transformation/object-removal',
-            icon: <HiMiniSquare2Stack className="w-5 h-5 lg:w-6 lg:h-6 text-white" />,
+            icon: (
+                <HiMiniSquare2Stack className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+            ),
         },
         {
             label: 'Object Recolor',
             route: '/transformation/object-recolor',
-            icon: <IoMdColorFill className="w-5 h-5 lg:w-6 lg:h-6 text-white " />,
+            icon: (
+                <IoMdColorFill className="w-5 h-5 lg:w-6 lg:h-6 text-white " />
+            ),
         },
         {
             label: 'Background Removal',
@@ -139,10 +140,25 @@ function Sidebar() {
                                             : 'hover:bg-grayDark'
                                     }`}
                                 >
-                                   {link.icon}
+                                    {link.label === 'Profile' ? (
+                                        creatorLocalStorage?.creator?.photo ? (
+                                            <img
+                                                src={
+                                                    profilePhoto
+                                                }
+                                                alt="profile image"
+                                                className="h-7 w-7 rounded-full"
+                                            />
+                                        ) : (
+                                            link.icon
+                                        )
+                                    ) : (
+                                        link.icon
+                                    )}
+
                                     <span className={`${styles.paragraph4}`}>
                                         {link.label === 'Profile'
-                                            ? `${name || 'Profile'} ` 
+                                            ? `${name || 'Profile'} `
                                             : link.label}
                                     </span>
                                 </Link>
