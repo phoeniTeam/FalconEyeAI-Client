@@ -29,8 +29,8 @@ function ImagePreview({ imagePreviewState, setImagePreviewState }) {
                         </div>
 
                         <div className="flex flex-col mt-12 mb-8">
-                            <div className="flex items-center justify-between">
-                                <h2 className={`${styles.heading3}`}>{imageData.title}</h2>
+                            <div className="flex flex-col sm:flex-row items-center justify-between">
+                                <h2 className={`${styles.heading4}`}>{imageData.title}</h2>
                                 <p className={`${styles.paragraph4} text-grayLight`}>{moment(imageData.createdAt).fromNow()}</p>
                             </div>
                             <p className={`${styles.paragraph3} text-darkWhite`}>{transformationsTypes[imageData.transformationType].name}</p>

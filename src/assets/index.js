@@ -44,6 +44,13 @@ import creation8Image from "./home/gallery/8.webp"
 import creation9Image from "./home/gallery/9.webp"
 import creation10Image from "./home/gallery/10.webp"
 
+// about us page
+import mohammedDhabaabImage from "./about/Mohammed Dhabaab - Photo.webp"
+import abdulazizAlhazmiImage from "./about/Abdulaziz Alhazmi - Photo.webp"
+
+import targetImage from "./about/target-icon.png"
+import eyeImage from "./about/eye-icon.png"
+
 const creationsImages = [
     creation1Image,
     creation2Image,
@@ -86,5 +93,11 @@ export {
     generativeFillOriginalImage,
     generativeFillTransformedImage,
 
-    creationsImages
+    creationsImages,
+
+
+    targetImage,
+    eyeImage,
+    mohammedDhabaabImage,
+    abdulazizAlhazmiImage
 }
